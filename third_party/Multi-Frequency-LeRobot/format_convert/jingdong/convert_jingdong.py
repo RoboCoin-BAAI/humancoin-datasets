@@ -165,6 +165,8 @@ def convert(source, output, ffmpeg="ffmpeg"):
                     raise ValueError(f"Expected 21 xyz hand points: {raw}")
                 array = (array.reshape(count, 21, 3) @ stereo["R1"].T).reshape(count, 63)
             names = [f"value_{i:03d}" for i in range(array.shape[1])]
+            if raw in RAW_HAND_POINTS:
+                names = [f"point_{i:02d}_{axis}" for i in range(21) for axis in ("x", "y", "z")]
             columns = dict(common)
             columns.update({name: pa.array(array[:, i]) for i, name in enumerate(names)})
             pq.write_table(pa.table(columns), data / (key + ".parquet"))
@@ -185,7 +187,7 @@ def convert(source, output, ffmpeg="ffmpeg"):
         pq.write_table(pa.table(index), data / "master_index.parquet")
         converted = layout.create_empty_dataset_info(
             info["fps"], {**features, **layout.DEFAULT_FEATURES},
-            master_feature=CAMERAS[next(iter(CAMERAS))], robot_type=info.get("robot_type"))
+            master_feature=CAMERAS[next(iter(CAMERAS))], robot_type=None)
         converted.update(total_episodes=1, total_frames=count, total_tasks=len(tasks),
                          total_videos=2, splits={"train": "0:1"}, codebase_version="v2.1")
         write_json(stage / "meta/info.json", converted)
