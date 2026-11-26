@@ -18,6 +18,7 @@ import pyarrow.parquet as pq
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 from format_convert.jingdong.stereo import calibration, rectify_video
+from format_convert.field_naming import HAND_LANDMARK_NAMES
 spec = importlib.util.spec_from_file_location("mf_layout", REPO / "src/mf_lerobot/utils.py")
 layout = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(layout)
@@ -166,7 +167,8 @@ def convert(source, output, ffmpeg="ffmpeg"):
                 array = (array.reshape(count, 21, 3) @ stereo["R1"].T).reshape(count, 63)
             names = [f"value_{i:03d}" for i in range(array.shape[1])]
             if raw in RAW_HAND_POINTS:
-                names = [f"point_{i:02d}_{axis}" for i in range(21) for axis in ("x", "y", "z")]
+                names = [f"{joint}_{axis}" for joint in HAND_LANDMARK_NAMES
+                         for axis in ("x", "y", "z")]
             columns = dict(common)
             columns.update({name: pa.array(array[:, i]) for i, name in enumerate(names)})
             pq.write_table(pa.table(columns), data / (key + ".parquet"))
@@ -178,7 +180,8 @@ def convert(source, output, ffmpeg="ffmpeg"):
                                      producer="jingdong",
                                      source_feature=raw,
                                      coordinate_transform="X_rectified = R1 @ X_source",
-                                     point_order="source order; anatomical order unconfirmed")
+                                     point_order=HAND_LANDMARK_NAMES,
+                                     point_order_basis="user-confirmed source point visualization")
             stats[key] = dict(min=array.min(0).tolist(), max=array.max(0).tolist(),
                               mean=array.mean(0).tolist(), std=array.std(0).tolist(), count=[count])
             mapping[raw] = key
