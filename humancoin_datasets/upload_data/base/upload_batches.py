@@ -30,7 +30,7 @@ def main():
     parser.add_argument("--csv-dir", required=True, type=Path)
     parser.add_argument("--destination", required=True, help="KS3 root prefix")
     parser.add_argument("--ks3-tool", type=Path, default=Path("/opt/ks3/ks3util-2.18"))
-    parser.add_argument("--ks3-config", type=Path, default=Path("/opt/ks3/ks3util-config"))
+    parser.add_argument("--ks3-config", type=Path, default=Path("/opt/ks3/ks3util-config-team"))
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
     upload_batches(args.csv_dir, args.destination,
