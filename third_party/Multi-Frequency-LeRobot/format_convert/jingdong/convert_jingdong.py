@@ -69,7 +69,7 @@ def structured_annotation(source, output, segments, timestamps, fps):
         if row.get(key)))
     return dict(
         schema_version="1.0", episode_dir=str(output / "data/chunk-000/episode_000000"),
-        source=dict(file="source/jingdong/meta/episodes.jsonl",
+        source=dict(file=str(source / "meta/episodes.jsonl"),
                     sha256=hashlib.sha256(raw).hexdigest()),
         timesteps_s=sorted({time for row in subtasks for time in (row["start_s"], row["end_s"])}),
         finish_reason=None, objects=[], scene=None, subtask=subtasks,
@@ -150,7 +150,7 @@ def convert(source, output):
             try:
                 array = np.asarray(values, dtype=np.float64).reshape(count, -1)
             except (ValueError, TypeError):
-                # Structured source annotations remain in the archived Parquet.
+                # Object and occlusion structs are outside this numeric feature layout.
                 continue
             if not np.isfinite(array).all():
                 raise ValueError(f"Non-finite source values: {raw}")
@@ -183,18 +183,8 @@ def convert(source, output):
             for i, text in enumerate(tasks)), encoding="utf-8")
         (stage / "meta/episodes_stats.jsonl").write_text(
             json.dumps(dict(episode_index=0, stats=stats), allow_nan=False) + "\n", encoding="utf-8")
-        archive = stage / "source/jingdong"
-        shutil.copytree(source / "meta", archive / "meta")
-        pq.write_table(table, archive / "episode_000000.parquet")
         write_json(stage / "annotation/raw_episode_000000_structured.json",
                    structured_annotation(source, output, segments, timestamps, info["fps"]))
-        write_json(archive / "conversion.json", dict(
-            source=str(source), field_mapping=mapping,
-            timestamps="source seconds preserved without resampling",
-            video_processing="byte-for-byte copies; distortion status unconfirmed",
-            calibration="preserved verbatim under source/jingdong/meta",
-            hand_semantics="raw hand points use source left-camera coordinates; source order and units retained; 61D MANO is source data",
-            unmapped_columns=[key for key in table.column_names if key not in mapping and key not in RESERVED]))
         stage.rename(output)
     except BaseException:
         shutil.rmtree(stage)
