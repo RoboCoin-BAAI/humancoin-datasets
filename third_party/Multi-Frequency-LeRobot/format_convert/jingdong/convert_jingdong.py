@@ -187,7 +187,7 @@ def convert(source, output, ffmpeg="ffmpeg"):
             info["fps"], {**features, **layout.DEFAULT_FEATURES},
             master_feature=CAMERAS[next(iter(CAMERAS))], robot_type=info.get("robot_type"))
         converted.update(total_episodes=1, total_frames=count, total_tasks=len(tasks),
-                         total_videos=2, splits={"train": "0:1"})
+                         total_videos=2, splits={"train": "0:1"}, codebase_version="v2.1")
         write_json(stage / "meta/info.json", converted)
         episode = dict(episode_index=0, tasks=tasks, length=count)
         (stage / "meta/episodes.jsonl").write_text(json.dumps(episode) + "\n", encoding="utf-8")
