@@ -160,6 +160,10 @@ def convert(source, output, ffmpeg="ffmpeg"):
                 continue
             if not np.isfinite(array).all():
                 raise ValueError(f"Non-finite source values: {raw}")
+            if raw in RAW_HAND_POINTS:
+                if array.shape[1] != 63:
+                    raise ValueError(f"Expected 21 xyz hand points: {raw}")
+                array = (array.reshape(count, 21, 3) @ stereo["R1"].T).reshape(count, 63)
             names = [f"value_{i:03d}" for i in range(array.shape[1])]
             columns = dict(common)
             columns.update({name: pa.array(array[:, i]) for i, name in enumerate(names)})
@@ -168,7 +172,10 @@ def convert(source, output, ffmpeg="ffmpeg"):
             if raw in RAW_HAND_POINTS:
                 if len(names) != 63:
                     raise ValueError(f"Expected 21 xyz hand points: {raw}")
-                features[key].update(coordinate_frame="source_left_camera",
+                features[key].update(coordinate_frame="rectified_left_camera",
+                                     producer="jingdong",
+                                     source_feature=raw,
+                                     coordinate_transform="X_rectified = R1 @ X_source",
                                      point_order="source order; anatomical order unconfirmed")
             stats[key] = dict(min=array.min(0).tolist(), max=array.max(0).tolist(),
                               mean=array.mean(0).tolist(), std=array.std(0).tolist(), count=[count])
@@ -213,7 +220,7 @@ def convert(source, output, ffmpeg="ffmpeg"):
             source_video="provider-confirmed undistorted pinhole",
             transform="X_right = R @ X_left + T", source_translation_unit="millimeters",
             projection_p95_px=stereo["source_projection_p95_px"],
-            raw_hand_points_frame="source left camera; use R1 to rotate into rectified left camera"))
+            raw_hand_points_frame="rectified left camera; raw denotes Jingdong algorithm output"))
         stage.rename(output)
     except BaseException:
         shutil.rmtree(stage)
