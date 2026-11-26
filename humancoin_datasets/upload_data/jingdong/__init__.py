@@ -1,1 +1,0 @@
-"""Publish Jingdong dataset manifests."""
