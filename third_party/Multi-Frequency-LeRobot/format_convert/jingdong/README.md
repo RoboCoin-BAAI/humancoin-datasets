@@ -1,0 +1,19 @@
+# 京东数据转换
+
+一个源 `instance-*/` 转为一个独立的 HumanCoin v3.1 多频数据集。
+支持单实例目录或包含多个实例的 batch 目录。
+
+```bash
+/opt/ego/bin/python third_party/Multi-Frequency-LeRobot/format_convert/jingdong/convert_jingdong.py \
+  --source "$HOME/data/jingdong/batch_0000001" \
+  --output-dir "$HOME/data/jingdong_humancoin/batch_0000001"
+```
+
+- 左右目映射为 `observation.images.head_left` 和 `observation.images.head_right`，视频逐字节复制。
+- 保留源时间戳，按特征输出 Parquet，并构建 master index。源任务区间采用包含结束帧的语义，转换为逐帧 task index。
+- `observation.state` 和 `action` 保留。其他数值字段置于 `observation.source.<原字段名>`，保留原维度和数值。
+- 原始元数据、标定及完整源 Parquet 存放在 `source/jingdong/`。结构化物体、遮挡信息可从这里读取。
+- 当前样本的 MANO 为 61 维，手部点序、坐标系、单位、camera_pos 四元数顺序以及视频去畸变状态待供应方确认。转换记录保留这些状态，源手部字段使用 source 名称。
+- 先在相邻临时目录转换，成功后发布。已有输出会报错，请为再次转换指定新目录。
+
+依赖 NumPy 和 PyArrow。无需 GPU 推理。
