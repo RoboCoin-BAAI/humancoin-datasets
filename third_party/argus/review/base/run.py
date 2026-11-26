@@ -97,6 +97,14 @@ def execute(item):
         data = json.loads(source.read_text(encoding='utf-8'))
         validate(data, standard=standard)
         output.parent.mkdir(parents=True, exist_ok=True)
+        receipt_path = job / f'.{source.stem.removesuffix("_structured")}_structured.claim.json'
+        receipt = json.loads(receipt_path.read_text(encoding='utf-8'))
+        report = {
+            'status': receipt.get('refinement_status', 'complete'),
+            'issues': receipt.get('refinement_issues', []),
+            'model_content': receipt.get('model_content'),
+        }
+        finish_claim(output.with_name(output.stem + '_refinement_report.json'), report)
         finish_claim(output, data)
         if json.loads(output.read_text(encoding='utf-8')) != data:
             raise ValueError('Published output verification failed; work retained')

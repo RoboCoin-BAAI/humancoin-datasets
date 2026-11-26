@@ -49,7 +49,8 @@ def run(job: Path, model: str, timeout: int = 120, *, capture_snapshot=None, cap
     pending, outputs = [], []
     # Validate all input and existing output before dispatching any extra paid calls.
     for source in sources:
-        prepared = extraction.prepare(source)
+        from review.structured_draft import build
+        prepared = build(extraction.prepare(source))
         output = (output_dir if output_dir is not None else job) / f'{source.stem}_structured.json'
         claim = job / f'.{source.stem}_structured.claim.json'
         identity = {'source_sha256': prepared['source']['sha256'], 'model': model,
@@ -80,8 +81,7 @@ def run(job: Path, model: str, timeout: int = 120, *, capture_snapshot=None, cap
     for prepared, output, claim, identity in pending:
         verify_capture()
         local, missing = extractor.completion_plan(prepared)
-        finish_claim(job / f'{output.stem}_draft.json', dict(
-            prepared=prepared, resolved=local, pending=missing))
+        finish_claim(job / f'{output.stem}_draft.json', prepared)
         print(f'== structured preparation: model={model}, '
               f'pending_actions={len(missing["timeline"])}, '
               f'pending_objects={len(missing["objects"])}, '

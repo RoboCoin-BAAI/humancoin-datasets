@@ -270,15 +270,23 @@ def call_qwen(prepared, model, endpoint, key, timeout, *, receipt=None, result_v
         else:
             payload = dispatch()
         choice = payload['choices'][0]
-        if choice.get('finish_reason') != 'stop':
-            raise ValueError(f'Incomplete Standard {standard} response')
+        incomplete = choice.get('finish_reason') != 'stop'
         content = (choice['message'].get('content') or '').strip()
-        if not content:
-            raise ValueError(f'Empty Standard {standard} JSON response from {model}')
+        if incomplete:
+            content = ''
         if content.startswith('```'):
             content = content.split('\n', 1)[1].rsplit('```', 1)[0]
         try:
-            result = assemble(prepared, json.loads(content), standard)
+            from review.structured_draft import refine
+            try:
+                response = json.loads(content)
+            except (ValueError, TypeError):
+                response = None
+            result, issues = refine(prepared, response)
+            if receipt is not None:
+                receipt["refinement_status"] = "partial" if issues else "complete"
+                receipt["refinement_issues"] = issues
+                receipt["model_content"] = content
             if result_validator:
                 result_validator(result)
         except Exception as exc:
@@ -306,6 +314,8 @@ def main(argv=None):
     if prepared.get('parse_ok') is True:
         from review.annotation_input import prepare
         prepared = prepare(args.input)
+    from review.structured_draft import build
+    prepared = build(prepared)
     completion_plan(prepared)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     claim = args.output.with_name('.' + args.output.name + '.structured.claim.json')
