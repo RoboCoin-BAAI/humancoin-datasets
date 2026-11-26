@@ -142,7 +142,7 @@ def convert(source, output):
             pq.write_table(pa.table(common), data / (key + ".parquet"))
             mapping[raw] = key
         for raw in table.column_names:
-            if raw in RESERVED:
+            if raw not in {*RAW_HAND_POINTS, "camera_pos"}:
                 continue
             key = raw if raw.startswith("observation.") or raw == "action" else "observation.source." + raw
             key = RAW_HAND_POINTS.get(raw, key)
