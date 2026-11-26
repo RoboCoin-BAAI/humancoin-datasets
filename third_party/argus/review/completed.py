@@ -35,7 +35,7 @@ def completed_result(job, output_dir=None):
         sources=sorted((job/'run_final/out').glob('episode_*.json'))
         if not sources:
             return None
-        from review.extract_dimensions import prepare
+        from review.annotation_input import prepare
         outputs=[]
         for source in sources:
             prepared=prepare(source)

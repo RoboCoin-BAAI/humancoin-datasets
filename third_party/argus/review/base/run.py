@@ -15,26 +15,20 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 def selected_standard(arguments):
-    value = 1
+    value = 3
     for index, argument in enumerate(arguments):
         if argument == '--annotation-standard':
             value = int(arguments[index + 1])
         elif argument.startswith('--annotation-standard='):
             value = int(argument.split('=', 1)[1])
-    if value not in (1, 2, 3):
+    if value != 3:
         raise ValueError('Annotation standard must be 1, 2 or 3')
     return value
 
 
-def validate(data, standard=1):
-    if standard >= 2:
-        from review.standard2 import validate_final
-        return validate_final(data, standard)
-    from jsonschema import Draft202012Validator
-    schema = json.loads((ROOT / 'review/schemas/episode_structured.schema.json').read_text(encoding='utf-8'))
-    Draft202012Validator(schema).validate(data)
-    from review.object_policy import validate_objects
-    validate_objects(data['objects'])
+def validate(data, standard=3):
+    from review.standard import validate_final
+    return validate_final(data, standard)
 
 
 def plan(video, output, arguments=(), keep_work=False):
@@ -86,7 +80,7 @@ def execute(item):
             return dict(status='done', output=str(output), reused=True)
         # Fail on missing schema dependencies before making model calls.
         from jsonschema import Draft202012Validator
-        filename = 'episode_structured.standard2.schema.json' if standard >= 2 else 'episode_structured.schema.json'
+        filename = 'episode_structured.standard.schema.json'
         schema = json.loads((ROOT / 'review/schemas' / filename).read_text(encoding='utf-8'))
         Draft202012Validator.check_schema(schema)
         result = subprocess.run(item['command'], cwd=ROOT, check=False)

@@ -306,7 +306,7 @@ def main() -> int:
                     help='Model for semantic structured completion; defaults to --model')
     ap.add_argument('--structured-timeout', type=int, default=120,
                     help='Seconds per structured completion request (default 120)')
-    ap.add_argument('--annotation-standard', type=int, choices=(1, 2, 3), default=1,
+    ap.add_argument('--annotation-standard', type=int, choices=(3,), default=3,
                     help='Structured annotation standard; 2 uses V2 scenes, verbs, object nouns and canonical task_name')
     ap.add_argument("--max-minutes", type=float, default=0, help="read at most this much footage (default: all)")
     ap.add_argument('--annotation-start-s', type=float, default=None,
@@ -338,7 +338,7 @@ def main() -> int:
         complete = completed_result(a.out, structured_dir)
         if complete:
             if a.annotation_standard >= 2:
-                from review.standard2 import validate_final
+                from review.standard import validate_final
                 try:
                     for output in complete['outputs']:
                         validate_final(json.loads(Path(output).read_text(encoding='utf-8')), a.annotation_standard)

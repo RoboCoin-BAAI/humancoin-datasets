@@ -9,7 +9,7 @@ import os
 from pathlib import Path
 import tempfile
 
-from review import extract_dimensions as extraction
+from review import annotation_input as extraction
 
 
 def finish_claim(claim: Path, value: dict) -> None:
@@ -29,13 +29,10 @@ def finish_claim(claim: Path, value: dict) -> None:
 
 
 def run(job: Path, model: str, timeout: int = 120, *, capture_snapshot=None, capture_video=None,
-        output_dir: Path | None = None, standard: int = 1) -> list[Path]:
-    if standard not in (1, 2, 3):
-        raise ValueError('Annotation standard must be 1, 2 or 3')
-    extractor = extraction
-    if standard >= 2:
-        from review import standard2
-        extractor = standard2
+        output_dir: Path | None = None, standard: int = 3) -> list[Path]:
+    if standard != 3:
+        raise ValueError('Only the current annotation standard (3) is supported')
+    from review import standard as extractor
     def verify_capture():
         if capture_video is not None:
             from review.capture_context import snapshot_for_video
@@ -45,7 +42,7 @@ def run(job: Path, model: str, timeout: int = 120, *, capture_snapshot=None, cap
     verify_capture()
     from review.qwen_endpoint import settings
     key, endpoint, provider = settings(model)
-    processor = (extractor.signature(standard) if standard >= 2 else hashlib.sha256(Path(extraction.__file__).read_bytes()).hexdigest())
+    processor = extractor.signature(standard)
     sources = sorted((job / 'run_final' / 'out').glob('episode_*.json'))
     if not sources:
         raise ValueError('No completed episode output is available for structured extraction')

@@ -35,7 +35,7 @@ def compact(job, *, annotation_output=False):
         for source in outputs:
             target = annotation / source.name
             if target != source and not target.exists():
-                from review.extract_dimensions import write_new
+                from review.annotation_input import write_new
                 write_new(target, json.loads(source.read_bytes()))
         outputs = [annotation / p.name for p in outputs]
     keep = {p.name for p in outputs if p.parent == job} | {'structured_complete.json', 'l3_input.json', '.l3_review.lock'}

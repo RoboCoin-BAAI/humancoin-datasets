@@ -3,7 +3,7 @@ import json
 import re
 from pathlib import Path
 
-SCENES = json.loads((Path(__file__).parent / 'schemas/humancoin_scenes_v1.json').read_text(encoding='utf-8'))['categories']
+SCENES = json.loads((Path(__file__).parent / 'schemas/humancoin_scenes.json').read_text(encoding='utf-8'))['categories']
 
 
 def validate_scene(category, area):
