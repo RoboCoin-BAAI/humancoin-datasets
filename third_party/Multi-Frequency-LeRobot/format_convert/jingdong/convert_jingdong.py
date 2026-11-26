@@ -150,6 +150,8 @@ def convert(source, output, ffmpeg="ffmpeg"):
                 continue
             key = raw if raw.startswith("observation.") or raw == "action" else "observation.source." + raw
             key = RAW_HAND_POINTS.get(raw, key)
+            if raw == "camera_pos":
+                key = "observation.camera_pose"
             values = table[raw].to_pylist()
             try:
                 array = np.asarray(values, dtype=np.float64).reshape(count, -1)
