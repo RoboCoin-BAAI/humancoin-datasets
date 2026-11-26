@@ -2,12 +2,14 @@
 
 import argparse
 import copy
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
 import shutil
 import sys
 import tempfile
+import re
 
 import numpy as np
 import pyarrow as pa
@@ -38,6 +40,49 @@ def write_json(path, value):
 def read_lines(path):
     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()
             if line.strip()]
+
+
+def structured_annotation(source, output, segments, timestamps, fps):
+    """Extract source text and intervals using the Argus v1 schema."""
+    task_rows = read_lines(source / "meta/tasks.jsonl")
+    descriptions = list(dict.fromkeys(row["task_desc_en"] for row in task_rows
+                                     if row.get("task_desc_en")))
+    subtasks = []
+    for segment in segments:
+        text = segment["language_instruction"]
+        words = re.findall(r"[A-Za-z]+", text)
+        if not words:
+            raise ValueError("Source segment has no action text")
+        start, end = segment["start_frame"], segment["end_frame"]
+        # Source intervals include end_frame; output intervals end at the next frame.
+        end_s = float(timestamps[end + 1]) if end + 1 < len(timestamps) else float(timestamps[end]) + 1 / fps
+        subtasks.append(dict(
+            start_s=float(timestamps[start]), end_s=end_s, arm=None,
+            action=[words[0].lower()], object=None, destination=None,
+            spatial_relation=None, contribution=None, progress=None,
+            hands_visible=None, hands_wearing=None, text=text))
+    raw = (source / "meta/episodes.jsonl").read_bytes()
+    scenes = list(dict.fromkeys(
+        row[key] for row in task_rows
+        for key in ("scene_cn", "first_scene_cn", "first_scene_en",
+                    "second_scene_cn", "second_scene_en", "third_scene_cn", "third_scene_en")
+        if row.get(key)))
+    return dict(
+        schema_version="1.0", episode_dir=str(output / "data/chunk-000/episode_000000"),
+        source=dict(file="source/jingdong/meta/episodes.jsonl",
+                    sha256=hashlib.sha256(raw).hexdigest()),
+        timesteps_s=sorted({time for row in subtasks for time in (row["start_s"], row["end_s"])}),
+        finish_reason=None, objects=[], scene=None, subtask=subtasks,
+        task_description="\n".join(descriptions) or None, task_name=None,
+        key_events=[], state_changes=[], tasks=[], scene_graph=[], recovery=[],
+        instruction_variants=[], data_issues=[], viewpoint=None, performance_review=None,
+        actions=dict(vocabulary=sorted({a for row in subtasks for a in row["action"]})),
+        scene_classification=dict(category="unknown", area="unknown",
+                                  original_description=" / ".join(scenes) or None),
+        annotation_provenance=dict(
+            provider="jingdong", task_metadata=task_rows,
+            action_extraction="first English word of each source instruction; no taxonomy inference",
+            missing_evidence="arm, objects, destination, scene taxonomy and progress remain unspecified"))
 
 
 def convert(source, output):
@@ -141,6 +186,8 @@ def convert(source, output):
         archive = stage / "source/jingdong"
         shutil.copytree(source / "meta", archive / "meta")
         pq.write_table(table, archive / "episode_000000.parquet")
+        write_json(stage / "annotation/episode_000000_structured.json",
+                   structured_annotation(source, output, segments, timestamps, info["fps"]))
         write_json(stage / "meta/jingdong_source.json", dict(
             source=str(source), field_mapping=mapping,
             timestamps="source seconds preserved without resampling",
