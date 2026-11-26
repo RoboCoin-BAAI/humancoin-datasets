@@ -194,7 +194,6 @@ def convert(source, output, ffmpeg="ffmpeg"):
             videos={}, intrinsics={}, extrinsics={"baseline_m": stereo["baseline_m"]},
             camera_features={}, stereo_pair=["head_left_rectified", "head_right_rectified"],
             frame_policy="source_order", synchronization_checked=False,
-            frame_mapping=str(output / "calibrations/frame_mapping.parquet"),
             source_episode=str(output / "data/chunk-000/episode_000000"))
         for side, key, projection in zip(("left", "right"), CAMERAS.values(), ("P1", "P2")):
             matrix = stereo[projection]
@@ -208,9 +207,6 @@ def convert(source, output, ffmpeg="ffmpeg"):
         # JSON is also valid YAML, consumed by the existing safe_load readers.
         write_json(stage / "calibrations/rectify_params.yaml",
                    {key: stereo[key].tolist() for key in ("R1", "R2", "P1", "P2", "Q")})
-        pq.write_table(pa.table(dict(frame_index=list(range(count)),
-            left_frame_index=list(range(count)), right_frame_index=list(range(count)),
-            timestamp=timestamps)), stage / "calibrations/frame_mapping.parquet")
         write_json(stage / "calibrations/source_geometry.json", dict(
             source_video="provider-confirmed undistorted pinhole",
             transform="X_right = R @ X_left + T", source_translation_unit="millimeters",
