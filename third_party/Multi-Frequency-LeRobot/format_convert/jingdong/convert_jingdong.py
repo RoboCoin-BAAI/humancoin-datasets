@@ -169,10 +169,20 @@ def convert(source, output, ffmpeg="ffmpeg"):
             if raw in RAW_HAND_POINTS:
                 names = [f"{joint}_{axis}" for joint in HAND_LANDMARK_NAMES
                          for axis in ("x", "y", "z")]
+            if raw == "camera_pos":
+                if array.shape[1] != 7:
+                    raise ValueError("Expected 7D camera pose")
+                names = ["x", "y", "z", "qx", "qy", "qz", "qw"]
             columns = dict(common)
             columns.update({name: pa.array(array[:, i]) for i, name in enumerate(names)})
             pq.write_table(pa.table(columns), data / (key + ".parquet"))
             features[key] = dict(dtype="float64", shape=[len(names)], names=names, fps=info["fps"])
+            if raw == "camera_pos":
+                features[key].update(
+                    quaternion_order="xyzw",
+                    quaternion_order_status="assumed; provider convention unconfirmed",
+                    coordinate_frame="source camera pose; world/camera transform direction unconfirmed",
+                    rectification_transform_applied=False)
             if raw in RAW_HAND_POINTS:
                 if len(names) != 63:
                     raise ValueError(f"Expected 21 xyz hand points: {raw}")
