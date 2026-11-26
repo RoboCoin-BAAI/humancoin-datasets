@@ -23,6 +23,10 @@ CAMERAS = {
     "observation.images.cam_head_ego_right": "observation.images.head_right",
 }
 RESERVED = {"timestamp", "frame_index", "episode_index", "index", "task_index"}
+RAW_HAND_POINTS = {
+    "left_kp3d": "observation.raw_hand_left_points",
+    "right_kp3d": "observation.raw_hand_right_points",
+}
 
 
 def write_json(path, value):
@@ -96,6 +100,7 @@ def convert(source, output):
             if raw in RESERVED:
                 continue
             key = raw if raw.startswith("observation.") or raw == "action" else "observation.source." + raw
+            key = RAW_HAND_POINTS.get(raw, key)
             values = table[raw].to_pylist()
             try:
                 array = np.asarray(values, dtype=np.float64).reshape(count, -1)
@@ -109,6 +114,11 @@ def convert(source, output):
             columns.update({name: pa.array(array[:, i]) for i, name in enumerate(names)})
             pq.write_table(pa.table(columns), data / (key + ".parquet"))
             features[key] = dict(dtype="float64", shape=[len(names)], names=names, fps=info["fps"])
+            if raw in RAW_HAND_POINTS:
+                if len(names) != 63:
+                    raise ValueError(f"Expected 21 xyz hand points: {raw}")
+                features[key].update(coordinate_frame="source_left_camera",
+                                     point_order="source order; anatomical order unconfirmed")
             stats[key] = dict(min=array.min(0).tolist(), max=array.max(0).tolist(),
                               mean=array.mean(0).tolist(), std=array.std(0).tolist(), count=[count])
             mapping[raw] = key
@@ -136,7 +146,7 @@ def convert(source, output):
             timestamps="source seconds preserved without resampling",
             video_processing="byte-for-byte copies; distortion status unconfirmed",
             calibration="preserved verbatim under source/jingdong/meta",
-            hand_semantics="source order, units and coordinates retained; 61D MANO is source data",
+            hand_semantics="raw hand points use source left-camera coordinates; source order and units retained; 61D MANO is source data",
             unmapped_columns=[key for key in table.column_names if key not in mapping and key not in RESERVED]))
         stage.rename(output)
     except BaseException:
