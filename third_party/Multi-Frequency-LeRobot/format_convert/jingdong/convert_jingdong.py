@@ -186,9 +186,9 @@ def convert(source, output):
         archive = stage / "source/jingdong"
         shutil.copytree(source / "meta", archive / "meta")
         pq.write_table(table, archive / "episode_000000.parquet")
-        write_json(stage / "annotation/episode_000000_structured.json",
+        write_json(stage / "annotation/raw_episode_000000_structured.json",
                    structured_annotation(source, output, segments, timestamps, info["fps"]))
-        write_json(stage / "meta/jingdong_source.json", dict(
+        write_json(archive / "conversion.json", dict(
             source=str(source), field_mapping=mapping,
             timestamps="source seconds preserved without resampling",
             video_processing="byte-for-byte copies; distortion status unconfirmed",
