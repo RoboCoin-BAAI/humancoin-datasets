@@ -1,0 +1,1018 @@
+{
+  "date": "2026-10-20",
+  "hardware": {
+    "RTX 4090": {
+      "precision": "fp8",
+      "canvas": [
+        480,
+        480
+      ],
+      "cases": [
+        {
+          "frames": 10,
+          "inference_fps": 45.15
+        },
+        {
+          "frames": 81,
+          "inference_fps": 140.38
+        },
+        {
+          "frames": 85,
+          "inference_fps": 113.21
+        },
+        {
+          "frames": 243,
+          "inference_fps": 124.82
+        }
+      ],
+      "repeat_85_bitwise_equal": true,
+      "overlay_85_passed": true,
+      "unload_passed": true,
+      "final_acceleration_checks": [
+        {
+          "frames": 85,
+          "canvas": [
+            480,
+            480
+          ],
+          "precision": "fp8",
+          "inference_fps": 111.05
+        },
+        {
+          "frames": 9,
+          "canvas": [
+            672,
+            480
+          ],
+          "precision": "fp8",
+          "inference_fps": 45.01
+        },
+        {
+          "frames": 9,
+          "canvas": [
+            832,
+            480
+          ],
+          "precision": "fp8",
+          "inference_fps": 38.86
+        },
+        {
+          "frames": 9,
+          "canvas": [
+            832,
+            608
+          ],
+          "precision": "bf16",
+          "inference_fps": 23.61
+        }
+      ],
+      "final_repeat_85_bitwise_equal": true,
+      "allocated_after_unload_bytes": 33554432
+    },
+    "A100": {
+      "precision": "bf16",
+      "canvas": [
+        480,
+        480
+      ],
+      "cases": [
+        {
+          "frames": 10,
+          "inference_fps": 54.85
+        },
+        {
+          "frames": 81,
+          "inference_fps": 103.29
+        },
+        {
+          "frames": 85,
+          "inference_fps": 86.77
+        },
+        {
+          "frames": 243,
+          "inference_fps": 87.23
+        }
+      ],
+      "repeat_85_bitwise_equal": true,
+      "overlay_85_passed": true,
+      "unload_passed": true,
+      "final_672x480_inference_and_overlay_passed": true
+    },
+    "H100": {
+      "precision": "fp8",
+      "canvas": [
+        480,
+        480
+      ],
+      "cases": [
+        {
+          "frames": 10,
+          "inference_fps": 55.53
+        },
+        {
+          "frames": 81,
+          "inference_fps": 190.73
+        },
+        {
+          "frames": 85,
+          "inference_fps": 171.14
+        },
+        {
+          "frames": 243,
+          "inference_fps": 193.69
+        }
+      ],
+      "repeat_85_bitwise_equal": true,
+      "overlay_85_passed": true,
+      "unload_passed": true,
+      "final_acceleration_checks": [
+        {
+          "frames": 85,
+          "canvas": [
+            480,
+            480
+          ],
+          "precision": "fp8",
+          "inference_fps": 175.69
+        },
+        {
+          "frames": 9,
+          "canvas": [
+            672,
+            480
+          ],
+          "precision": "fp8",
+          "inference_fps": 78.52
+        },
+        {
+          "frames": 9,
+          "canvas": [
+            832,
+            480
+          ],
+          "precision": "fp8",
+          "inference_fps": 65.44
+        },
+        {
+          "frames": 9,
+          "canvas": [
+            832,
+            608
+          ],
+          "precision": "bf16",
+          "inference_fps": 52.61
+        }
+      ],
+      "final_repeat_85_bitwise_equal": true,
+      "allocated_after_unload_bytes": 33554432
+    }
+  },
+  "numerical_checks": {
+    "exported_network_tensor_count": 638,
+    "exported_network_parameters_equal_to_merged_reference": true,
+    "same_process_bf16_camera_forward_bitwise_equal": true,
+    "fp8_encoder_latent_bitwise_equal_in_checked_run": true,
+    "fp8_cross_process_bitwise_equal": false,
+    "fp8_comparison_max_joint_component_error_metres": 0.00585561990737915,
+    "reference_repeat_max_joint_component_error_metres": 0.004391491413116455,
+    "scope": "Exact checks cover the exported parameters and the checked same-process forward path. FP8 end-to-end results can vary with compilation and convolution plans; cross-process bitwise equivalence is not claimed."
+  },
+  "gradio": {
+    "upload_inference_download": true,
+    "mesh_global_consistency": true,
+    "cached_consistency": true,
+    "intrinsics_anchors": true,
+    "raw_prediction_unchanged": true,
+    "unload": true
+  },
+  "video": {
+    "runtime_nvenc_nvdec_probe": true,
+    "software_fallback_verified": true,
+    "remote_fallback_reason": "NVDEC runtime probing succeeds with an initialized CUDA context. NVENC requires a newer driver API; software encoding fallback was verified.",
+    "a100_nvdec_probe_passed": true
+  },
+  "format": {
+    "ruff_check": true,
+    "ruff_format": true
+  },
+  "artifact_integrity": "assets/manifest.json",
+  "timing_scope": "Inference includes video decode/preprocessing, encoding, window forward, fusion, geometry and CPU transfer; excludes model loading, warm-up/compilation and rendering.",
+  "checks": {
+    "finite_arrays": true,
+    "frame_counts_and_timestamps": true,
+    "no_latent_or_full_heatmaps_in_outputs": true,
+    "neutral_names_and_weight_headers": true,
+    "all_relative_imports_resolve": true,
+    "all_explicit_function_parameters_used": true,
+    "final_asset_hash_verification": true,
+    "delivery_contains_no_generated_cache_or_test_outputs": true
+  },
+  "a100_optimization": {
+    "hardware": "A100-SXM4-40GB",
+    "software": {
+      "torch": "2.13.0a0+8145d630e8.nv26.06",
+      "driver": "535.161.08"
+    },
+    "precision": "bf16",
+    "supported_canvases": [
+      [
+        480,
+        480
+      ],
+      [
+        672,
+        480
+      ],
+      [
+        832,
+        480
+      ],
+      [
+        832,
+        608
+      ]
+    ],
+    "policy": "Deterministic algorithms and deterministic cuDNN are enabled. Spatial 3D convolutions retain autotuning; 2D, temporal-only and feature-projection convolutions use fixed heuristic selection. The same policy is applied to the numerical reference and candidate.",
+    "baseline_limitation": "The original autotuned baseline can vary across independent processes beyond the strict numerical gates. Numerical errors below compare against the original mathematics under the shared fixed policy; they do not claim equivalence to every unconstrained original run.",
+    "implementation": [
+      "Fused BF16 convolution input packing",
+      "Reuse encoder history views and remove redundant downblock copies",
+      "Compile the FP32 readout",
+      "Defer camera validation CPU synchronization while retaining final validation"
+    ],
+    "scheduling": {
+      "encoder_chunk_frames": 4,
+      "window_batch_size": 1
+    },
+    "timing_scope": "Inference includes decode/preprocessing, encoder, window forward, fusion, geometry and CPU transfer. Load, warm-up, prediction serialization and overlay rendering are excluded from the inference benchmark.",
+    "performance": {
+      "warmup_runs": 2,
+      "timed_runs": 7,
+      "statistic": "median",
+      "common_cases": [
+        {
+          "case": "square_01_243",
+          "frames": 243,
+          "canvas": [
+            480,
+            480
+          ],
+          "original_seconds": 2.793923352379352,
+          "same_policy_reference_seconds": 2.8785250056535006,
+          "optimized_seconds": 2.654173905029893,
+          "optimized_fps": 91.55391044252738,
+          "speedup_vs_original": 1.0526527094116258,
+          "speedup_vs_same_policy_reference": 1.0845276566838529,
+          "peak_allocated_bytes": 7228448256
+        },
+        {
+          "case": "square_02_243",
+          "frames": 243,
+          "canvas": [
+            480,
+            480
+          ],
+          "original_seconds": 2.8070271559990942,
+          "same_policy_reference_seconds": 2.903970131650567,
+          "optimized_seconds": 2.6722642020322382,
+          "optimized_fps": 90.93412238774901,
+          "speedup_vs_original": 1.0504302508203978,
+          "speedup_vs_same_policy_reference": 1.086707717538602,
+          "peak_allocated_bytes": 7228448256
+        },
+        {
+          "case": "square_03_243",
+          "frames": 243,
+          "canvas": [
+            480,
+            480
+          ],
+          "original_seconds": 2.818042863160372,
+          "same_policy_reference_seconds": 2.907922485843301,
+          "optimized_seconds": 2.673718685284257,
+          "optimized_fps": 90.88465489560859,
+          "speedup_vs_original": 1.053978819338943,
+          "speedup_vs_same_policy_reference": 1.0875947802018462,
+          "peak_allocated_bytes": 7228448256
+        },
+        {
+          "case": "wide_81",
+          "frames": 81,
+          "canvas": [
+            672,
+            480
+          ],
+          "original_seconds": 1.0503484606742859,
+          "same_policy_reference_seconds": 1.0923509681597352,
+          "optimized_seconds": 0.9880235278978944,
+          "optimized_fps": 81.98185337988308,
+          "speedup_vs_original": 1.0630804135899408,
+          "speedup_vs_same_policy_reference": 1.1055920606301821,
+          "peak_allocated_bytes": 7660807168
+        }
+      ],
+      "geometric_mean_speedup_vs_same_policy_reference": 1.0910731091479762,
+      "geometric_mean_speedup_vs_original": 1.0550245928727326,
+      "target_speedup": 1.1,
+      "minimum_speedup": 1.05,
+      "maximum_per_case_regression": 0.03,
+      "accepted": true,
+      "target_reached": false
+    },
+    "numerical_thresholds": {
+      "joints_and_vertices_rms_mm": 0.5,
+      "joints_and_vertices_max_mm": 2,
+      "translation_max_mm": 2,
+      "rotation_max_degrees": 0.5,
+      "intrinsics_max_pixels": 0.1,
+      "anchors_max_canvas_pixels": 0.1,
+      "betas_max": 0.01,
+      "probabilities_max": 0.0001,
+      "scope": "Every frame and both hands without visibility masking"
+    },
+    "numerical_maxima": {
+      "joints_3d_rms_mm": 7.901363263265901e-05,
+      "joints_3d_max_mm": 0.00036598962816045095,
+      "vertices_rms_mm": 7.831726338417324e-05,
+      "vertices_max_mm": 0.00036598962816045095,
+      "translation_rms_mm": 5.5948298802320215e-05,
+      "translation_max_mm": 0.00016049041769309352,
+      "predicted_intrinsics": 0,
+      "overlay_intrinsics": 0,
+      "betas": 7.152557373046875e-07,
+      "existence_prob": 3.129243850708008e-07,
+      "visibility_prob": 5.21540641784668e-07,
+      "overlay_joint_concentration": 2.384185791015625e-07,
+      "anchors_max_px": 0.00018319485389994188,
+      "global_orient_max_deg": 0.00014804543347523284,
+      "hand_pose_max_deg": 0.0001396644256371154
+    },
+    "numerical_passed": true,
+    "exact_checks": [
+      "Frame indices",
+      "Timestamps",
+      "Camera validity flags",
+      "Topology"
+    ],
+    "functional_matrix": {
+      "cases": [
+        {
+          "case": "frames_9",
+          "frames": 9,
+          "canvas": [
+            480,
+            480
+          ],
+          "optimized": true,
+          "repeat_exact": true
+        },
+        {
+          "case": "frames_10",
+          "frames": 10,
+          "canvas": [
+            480,
+            480
+          ],
+          "optimized": true,
+          "repeat_exact": true
+        },
+        {
+          "case": "frames_81",
+          "frames": 81,
+          "canvas": [
+            480,
+            480
+          ],
+          "optimized": true,
+          "repeat_exact": true
+        },
+        {
+          "case": "frames_82",
+          "frames": 82,
+          "canvas": [
+            480,
+            480
+          ],
+          "optimized": true,
+          "repeat_exact": true
+        },
+        {
+          "case": "frames_83",
+          "frames": 83,
+          "canvas": [
+            480,
+            480
+          ],
+          "optimized": true,
+          "repeat_exact": true
+        },
+        {
+          "case": "frames_84",
+          "frames": 84,
+          "canvas": [
+            480,
+            480
+          ],
+          "optimized": true,
+          "repeat_exact": true
+        },
+        {
+          "case": "frames_85",
+          "frames": 85,
+          "canvas": [
+            480,
+            480
+          ],
+          "optimized": true,
+          "repeat_exact": true
+        },
+        {
+          "case": "long_1001",
+          "frames": 1001,
+          "canvas": [
+            480,
+            480
+          ],
+          "optimized": true,
+          "repeat_exact": true
+        },
+        {
+          "case": "large_9",
+          "frames": 9,
+          "canvas": [
+            832,
+            480
+          ],
+          "optimized": true,
+          "repeat_exact": true
+        },
+        {
+          "case": "padded_9",
+          "frames": 9,
+          "canvas": [
+            832,
+            608
+          ],
+          "optimized": true,
+          "repeat_exact": true
+        }
+      ],
+      "runs_per_case": 2,
+      "all_finite": true,
+      "schema_verified": true,
+      "no_latent_or_full_heatmaps": true
+    },
+    "restart": {
+      "square_243_bitwise_equal": true,
+      "wide_81_bitwise_equal": true
+    },
+    "transitions": {
+      "cases": [
+        {
+          "canvas": [
+            480,
+            480
+          ],
+          "optimized": true
+        },
+        {
+          "canvas": [
+            640,
+            480
+          ],
+          "optimized": false
+        },
+        {
+          "canvas": [
+            480,
+            480
+          ],
+          "optimized": true
+        }
+      ],
+      "return_to_optimized_exact": true,
+      "no_compile_fallback": true,
+      "unsupported_fp8_rejected": true,
+      "global_flags_restored": true,
+      "allocated_after_unload": 33554432
+    },
+    "gradio": {
+      "upload_inference_download": true,
+      "mesh_global_consistency": true,
+      "cached_consistency": true,
+      "intrinsics_anchors": true,
+      "raw_prediction_unchanged": true,
+      "unload": true
+    },
+    "gpu_regressions": {
+      "RTX 4090": {
+        "cases": [
+          {
+            "case": "square",
+            "frames": 85,
+            "size": [
+              480,
+              480
+            ],
+            "precision": "fp8",
+            "overlay_passed": true
+          },
+          {
+            "case": "wide",
+            "frames": 9,
+            "size": [
+              672,
+              480
+            ],
+            "precision": "fp8",
+            "overlay_passed": true
+          },
+          {
+            "case": "padded",
+            "frames": 9,
+            "size": [
+              832,
+              608
+            ],
+            "precision": "bf16",
+            "overlay_passed": true
+          }
+        ],
+        "repeat_exact": true,
+        "allocated_after_unload_bytes": 33554432
+      },
+      "H100": {
+        "cases": [
+          {
+            "case": "square",
+            "frames": 85,
+            "size": [
+              480,
+              480
+            ],
+            "precision": "fp8",
+            "overlay_passed": true
+          },
+          {
+            "case": "wide",
+            "frames": 9,
+            "size": [
+              672,
+              480
+            ],
+            "precision": "fp8",
+            "overlay_passed": true
+          },
+          {
+            "case": "padded",
+            "frames": 9,
+            "size": [
+              832,
+              608
+            ],
+            "precision": "bf16",
+            "overlay_passed": true
+          }
+        ],
+        "repeat_exact": true,
+        "allocated_after_unload_bytes": 33554432
+      }
+    },
+    "request_stage_measurement": {
+      "frames": 243,
+      "canvas": [
+        480,
+        480
+      ],
+      "timings": {
+        "vae_decode_preprocess_seconds": 1.635234673973173,
+        "windows_seconds": 1.0088146971538663,
+        "fusion_mano_seconds": 0.008581324014812708,
+        "final_cpu_transfer_seconds": 0.004773534834384918,
+        "inference_seconds": 2.657404229976237,
+        "fps": 91.44261804767767,
+        "frame_count_seconds": 0.005268915090709925,
+        "load_seconds": 12.98546656081453,
+        "prepare_warmup_seconds": 16.840155934914947,
+        "compile_cache_save_seconds": 0.13443707022815943,
+        "render_seconds": 2.383380333893001,
+        "total_seconds": 35.22748642368242
+      },
+      "prediction_serialization_seconds": 0.15960734384134412,
+      "full_call_wall_seconds": 36.32843625405803,
+      "cache_scope": "Per-process load and warm-up are included; existing compilation artifacts may be reused."
+    },
+    "video": {
+      "runtime_probe": true,
+      "nvdec": {
+        "runtime_nvdec_probe": true,
+        "decoder": "nvdec",
+        "fallback_reason": null,
+        "decoded_frames": 81,
+        "timestamps_monotonic": true,
+        "decode_passed": true
+      },
+      "backend": "cpu",
+      "encoder": "libx264",
+      "software_fallback_verified": true,
+      "note": "NVDEC probing succeeded with an initialized CUDA context. NVENC requires driver API 13.0 but the installed driver exposes 12.1, so the tested full overlay request used software encoding. The inference input path uses the existing FFmpeg pipeline."
+    },
+    "weights_unchanged": true,
+    "policy_exception_restoration_checked": true
+  },
+  "final_merged_checks": {
+    "RTX 4090": {
+      "passed": true,
+      "precision": "fp8",
+      "frames": 10,
+      "asset_files": 90,
+      "allocated_after_unload_bytes": 33554432
+    },
+    "A100": {
+      "passed": true,
+      "precision": "bf16",
+      "frames": 9,
+      "asset_files": 90,
+      "allocated_after_unload_bytes": 33554432
+    },
+    "A100_prediction_bitwise_equal_to_validated_snapshot": true,
+    "H100_final_asset_verification_files": 90,
+    "all_asset_hashes_verified": true,
+    "weights_unchanged": true,
+    "self_contained_regular_files": true,
+    "neutral_source_names_checked": true,
+    "no_generated_cache_or_test_outputs": true,
+    "ruff_check": true,
+    "ruff_format": true,
+    "assets_manifest_sha256": "8ee6202869601c76443c60d3d0b43f31c40d9c6f13d261677238a3c021bf7eda"
+  },
+  "calibrated_camera": {
+    "date": "2026-11-13",
+    "accepted": true,
+    "hardware": "NVIDIA GeForce RTX 4090 D",
+    "software": {
+      "python": "3.14",
+      "torch": "2.13.0+cu130"
+    },
+    "scope": "Fixed rectified zero-skew pinhole K per video. H100 and A100 routing and tuning were retained; this feature was not physically retested on those GPUs.",
+    "cpu": {
+      "passed": 46,
+      "command": "PYTHONPATH=. python -m pytest -q tests",
+      "coverage": [
+        "Input formats and invalid K before loading",
+        "Source-to-canvas crop, half-pixel scale and padding",
+        "Feature-cell ray projection and PnP translation recovery",
+        "Normal and accelerated camera-head bypass, K switching and batch sizes 1/4/16",
+        "Short/full/grouped/tail windows at 9/81/85/243/1000 frames",
+        "BF16/FP8/H100 warmup propagation",
+        "Fixed-camera consistency and raw-array preservation",
+        "CLI rejects inference K during rerender"
+      ]
+    },
+    "runtime": {
+      "bf16": {
+        "accepted": true,
+        "hardware": "NVIDIA GeForce RTX 4090 D",
+        "torch": "2.13.0+cu130",
+        "precision": "bf16",
+        "model_loads": 1,
+        "predicted_head_calls": 5,
+        "calibrated_head_calls": 0,
+        "default_prediction_bitwise_equal": true,
+        "default_comparison": "Same resident model, original decode implementation",
+        "cases": [
+          {
+            "case": "fixed_k1",
+            "frames": 9,
+            "canvas": [
+              672,
+              480
+            ],
+            "precision": "bf16",
+            "camera_source": "calibration",
+            "warmup_seconds": 1.5351479570381343,
+            "elapsed": 8.290046978741884,
+            "prediction_sha256": "48b1a0f7d5d56ac1b642c7010449de1437381c88e858a759093d3e6b5ece19bb",
+            "source_sha256": "649a9ecbe0ccaa05fbe176c33545e9806dc925c54f7bd18774175eab7920b8ee"
+          },
+          {
+            "case": "fixed_k2",
+            "frames": 9,
+            "canvas": [
+              672,
+              480
+            ],
+            "precision": "bf16",
+            "camera_source": "calibration",
+            "warmup_seconds": 5.69438561797142e-05,
+            "elapsed": 0.3382059601135552,
+            "prediction_sha256": "8edd219eea3ea8a84cf461fc52bddb637b08074d714ee0cee189faa8ce0e1816",
+            "source_sha256": "649a9ecbe0ccaa05fbe176c33545e9806dc925c54f7bd18774175eab7920b8ee"
+          },
+          {
+            "case": "predicted",
+            "frames": 9,
+            "canvas": [
+              672,
+              480
+            ],
+            "precision": "bf16",
+            "camera_source": "predicted",
+            "warmup_seconds": 0.35334948310628533,
+            "elapsed": 0.7153956689871848,
+            "prediction_sha256": "569f0ca0d01427a6e304a5b5a109c6834c06c193f92cce7d443c2810c14e32d4",
+            "source_sha256": "649a9ecbe0ccaa05fbe176c33545e9806dc925c54f7bd18774175eab7920b8ee"
+          },
+          {
+            "case": "original_decode",
+            "frames": 9,
+            "canvas": [
+              672,
+              480
+            ],
+            "precision": "bf16",
+            "camera_source": "predicted",
+            "warmup_seconds": 6.34901225566864e-05,
+            "elapsed": 0.3413888602517545,
+            "prediction_sha256": "569f0ca0d01427a6e304a5b5a109c6834c06c193f92cce7d443c2810c14e32d4",
+            "source_sha256": "649a9ecbe0ccaa05fbe176c33545e9806dc925c54f7bd18774175eab7920b8ee"
+          },
+          {
+            "case": "display_only",
+            "frames": 9,
+            "canvas": [
+              672,
+              480
+            ],
+            "precision": "bf16",
+            "camera_source": "predicted",
+            "warmup_seconds": 5.755200982093811e-05,
+            "elapsed": 0.5148740359582007,
+            "prediction_sha256": "569f0ca0d01427a6e304a5b5a109c6834c06c193f92cce7d443c2810c14e32d4",
+            "source_sha256": "649a9ecbe0ccaa05fbe176c33545e9806dc925c54f7bd18774175eab7920b8ee"
+          },
+          {
+            "case": "both_k",
+            "frames": 9,
+            "canvas": [
+              672,
+              480
+            ],
+            "precision": "bf16",
+            "camera_source": "calibration",
+            "warmup_seconds": 6.44288957118988e-05,
+            "elapsed": 0.5354185020551085,
+            "prediction_sha256": "48b1a0f7d5d56ac1b642c7010449de1437381c88e858a759093d3e6b5ece19bb",
+            "source_sha256": "649a9ecbe0ccaa05fbe176c33545e9806dc925c54f7bd18774175eab7920b8ee"
+          },
+          {
+            "case": "padding",
+            "frames": 9,
+            "canvas": [
+              832,
+              480
+            ],
+            "precision": "bf16",
+            "camera_source": "calibration",
+            "warmup_seconds": 1.529960392974317,
+            "elapsed": 1.9910679240711033,
+            "prediction_sha256": "24e798ff3aed121dfe3c752c08a336fede533d2369d9b9f90e3eb283a62281b6",
+            "source_sha256": "0da9a176d8a3981097fb448c840bb1cfaef42982406f8dffdd95822790cf31c9"
+          },
+          {
+            "case": "crop",
+            "frames": 9,
+            "canvas": [
+              480,
+              480
+            ],
+            "precision": "bf16",
+            "camera_source": "calibration",
+            "warmup_seconds": 1.1129076909273863,
+            "elapsed": 1.4349629888311028,
+            "prediction_sha256": "864760d11be92a6cfd23c2416f631f371985e2755b4e30d1c1921eeab02231ff",
+            "source_sha256": "649a9ecbe0ccaa05fbe176c33545e9806dc925c54f7bd18774175eab7920b8ee"
+          },
+          {
+            "case": "grouped_243",
+            "frames": 243,
+            "canvas": [
+              480,
+              480
+            ],
+            "precision": "bf16",
+            "camera_source": "calibration",
+            "warmup_seconds": 2.8925717850215733,
+            "elapsed": 7.621956128627062,
+            "prediction_sha256": "c1f2639e0caaed0db336828ee8765ea6c773bcf9f9e6977946535a8a4b049e1d",
+            "source_sha256": "8eab0fa591e34c590194250fd32a9b4d633e515cf73dbc98ace975ffcf72338e"
+          }
+        ],
+        "compile": false
+      },
+      "fp8": {
+        "accepted": true,
+        "hardware": "NVIDIA GeForce RTX 4090 D",
+        "torch": "2.13.0+cu130",
+        "precision": "fp8",
+        "model_loads": 1,
+        "predicted_head_calls": 14,
+        "calibrated_head_calls": 0,
+        "default_prediction_bitwise_equal": true,
+        "default_comparison": "Same resident model, original decode implementation",
+        "cases": [
+          {
+            "case": "fixed_k1",
+            "frames": 9,
+            "canvas": [
+              672,
+              480
+            ],
+            "precision": "fp8",
+            "camera_source": "calibration",
+            "warmup_seconds": 133.80961785279214,
+            "elapsed": 140.64890753338113,
+            "prediction_sha256": "965fe8251e37f93241c6ca7aa1aaf82128f343447e659b56123d8f9f471d83d4",
+            "source_sha256": "649a9ecbe0ccaa05fbe176c33545e9806dc925c54f7bd18774175eab7920b8ee"
+          },
+          {
+            "case": "fixed_k2",
+            "frames": 9,
+            "canvas": [
+              672,
+              480
+            ],
+            "precision": "fp8",
+            "camera_source": "calibration",
+            "warmup_seconds": 0.32704321667551994,
+            "elapsed": 0.5766675337217748,
+            "prediction_sha256": "ab0aba13321520a5cff039b3ab8d8a51185b90541c635b1ae3792ebe231630ea",
+            "source_sha256": "649a9ecbe0ccaa05fbe176c33545e9806dc925c54f7bd18774175eab7920b8ee"
+          },
+          {
+            "case": "predicted",
+            "frames": 9,
+            "canvas": [
+              672,
+              480
+            ],
+            "precision": "fp8",
+            "camera_source": "predicted",
+            "warmup_seconds": 2.5999925709329545,
+            "elapsed": 2.8317489842884243,
+            "prediction_sha256": "7f332ad2dca0bc39e987b01c84ab04c4f93f28eda8d26fb412a066f38514c63f",
+            "source_sha256": "649a9ecbe0ccaa05fbe176c33545e9806dc925c54f7bd18774175eab7920b8ee"
+          },
+          {
+            "case": "original_decode",
+            "frames": 9,
+            "canvas": [
+              672,
+              480
+            ],
+            "precision": "fp8",
+            "camera_source": "predicted",
+            "warmup_seconds": 0.0005755499005317688,
+            "elapsed": 0.21973998984321952,
+            "prediction_sha256": "7f332ad2dca0bc39e987b01c84ab04c4f93f28eda8d26fb412a066f38514c63f",
+            "source_sha256": "649a9ecbe0ccaa05fbe176c33545e9806dc925c54f7bd18774175eab7920b8ee"
+          },
+          {
+            "case": "display_only",
+            "frames": 9,
+            "canvas": [
+              672,
+              480
+            ],
+            "precision": "fp8",
+            "camera_source": "predicted",
+            "warmup_seconds": 0.0005741612985730171,
+            "elapsed": 0.4075787430629134,
+            "prediction_sha256": "7f332ad2dca0bc39e987b01c84ab04c4f93f28eda8d26fb412a066f38514c63f",
+            "source_sha256": "649a9ecbe0ccaa05fbe176c33545e9806dc925c54f7bd18774175eab7920b8ee"
+          },
+          {
+            "case": "both_k",
+            "frames": 9,
+            "canvas": [
+              672,
+              480
+            ],
+            "precision": "fp8",
+            "camera_source": "calibration",
+            "warmup_seconds": 0.0005894429050385952,
+            "elapsed": 0.4208898590877652,
+            "prediction_sha256": "965fe8251e37f93241c6ca7aa1aaf82128f343447e659b56123d8f9f471d83d4",
+            "source_sha256": "649a9ecbe0ccaa05fbe176c33545e9806dc925c54f7bd18774175eab7920b8ee"
+          },
+          {
+            "case": "padding",
+            "frames": 9,
+            "canvas": [
+              832,
+              480
+            ],
+            "precision": "fp8",
+            "camera_source": "calibration",
+            "warmup_seconds": 127.89734316291288,
+            "elapsed": 128.45720207504928,
+            "prediction_sha256": "7e84da7798fd810a077ed6da4c14a5a26240f59afc37a5047a26d13e78127395",
+            "source_sha256": "0da9a176d8a3981097fb448c840bb1cfaef42982406f8dffdd95822790cf31c9"
+          },
+          {
+            "case": "crop",
+            "frames": 9,
+            "canvas": [
+              480,
+              480
+            ],
+            "precision": "fp8",
+            "camera_source": "calibration",
+            "warmup_seconds": 128.0935891889967,
+            "elapsed": 128.6655187611468,
+            "prediction_sha256": "c5eb884d41983cdacfed51d490beb2bf408a7b94f07fab7c06c1b00928f21d5b",
+            "source_sha256": "649a9ecbe0ccaa05fbe176c33545e9806dc925c54f7bd18774175eab7920b8ee"
+          },
+          {
+            "case": "grouped_243",
+            "frames": 243,
+            "canvas": [
+              480,
+              480
+            ],
+            "precision": "fp8",
+            "camera_source": "calibration",
+            "warmup_seconds": 57.75459567736834,
+            "elapsed": 60.336978539824486,
+            "prediction_sha256": "2cf8d87fefe6896a8aeae88be3a788448ead75373fa1a87b2f28095eb57f8756",
+            "source_sha256": "8eab0fa591e34c590194250fd32a9b4d633e515cf73dbc98ace975ffcf72338e"
+          }
+        ],
+        "compile": true
+      }
+    },
+    "saved_outputs": {
+      "cases": 18,
+      "source_frame_indices_and_pts_match": true,
+      "finite_arrays": true,
+      "consistent_camera_and_time_axis_unchanged": true,
+      "overlay_frame_count_and_source_size_match": true
+    },
+    "regression": {
+      "comparison": "Paired calls on the same resident model and warmed kernels, using the original decode implementation from the pre-change snapshot. All saved arrays were bitwise equal in both precisions.",
+      "cross_process_bitwise_equivalence_claimed": false,
+      "original_bf16_repeat_max_absolute_difference": {
+        "translation": 0.0006780624389648438,
+        "hand_pose": 0.013690769672393799,
+        "predicted_intrinsics": 0.24383544921875
+      },
+      "note": "The unchanged original BF16 package also varies between independent processes under its existing convolution autotuning policy; cross-process differences are not used as an exact regression gate."
+    },
+    "interfaces": {
+      "gradio": {
+        "accepted": true,
+        "precision": "bf16",
+        "compile": false,
+        "labels_verified": true,
+        "upload_inference_download": true,
+        "calibrated_consistency": true,
+        "saved_geometry_rerender": true,
+        "blank_k_restores_prediction": true,
+        "legacy_display_k_rerender_preserves_predictions": true,
+        "unload": true
+      },
+      "cli": {
+        "accepted": true,
+        "cases": [
+          {
+            "case": "cli_fixed",
+            "accepted": true,
+            "frames": 9
+          },
+          {
+            "case": "cli_consistent",
+            "accepted": true,
+            "frames": 9
+          },
+          {
+            "case": "cli_legacy_rerender",
+            "accepted": true,
+            "raw_arrays_unchanged": true
+          }
+        ]
+      }
+    },
+    "integrity": {
+      "manifest": "assets/manifest.json",
+      "manifest_sha256": "eb2e096bdeca4701566a5ff725a8a275e35da71504224701e3055c7f861e2ff0",
+      "verified_files": 91,
+      "weights_unchanged": true,
+      "source_identity_separates_compilation_cache": true
+    },
+    "format": {
+      "ruff_format": true,
+      "ruff_check": true
+    },
+    "test_outputs": "Temporary validation workspace outside the delivery directory"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "verified_targets": 24,
+  "verified_samples": 593,
+  "deleted_old_repositories": 30,
+  "excluded_redirect_aliases": 2,
+  "errors": 0,
+  "verification": "Local file paths and sizes; non-LFS local Git hashes; old-to-new unchanged recording Git/LFS hashes; updated JSON matched local",
+  "modelscope_modified": false
+}

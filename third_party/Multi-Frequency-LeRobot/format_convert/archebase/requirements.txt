@@ -1,0 +1,8 @@
+numpy
+pyarrow
+PyYAML
+mcap
+protobuf
+rosbags
+av
+imageio-ffmpeg

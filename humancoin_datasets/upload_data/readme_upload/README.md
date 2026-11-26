@@ -1,0 +1,136 @@
+# HumanCOIN 数据集发布脚本
+
+已集成到 RoboEgo Hand Vis 的 `upload_data.readme_upload` 模块。从仓库根目录使用下述命令运行，也可进入本目录直接运行脚本。仅负责本地检查、README 生成、上传和远端删除，不包含网页、定时任务或跨仓库授权同步。
+
+## 文件
+
+| 文件 | 作用 |
+|---|---|
+| `check_load.py` | 使用 HumanCOIN 读取首、中、末帧，检查加载情况 |
+| `gen_readme.py` | 根据元数据生成 README，不自动加载数据 |
+| `upload2hub.py` | 上传 HF / 魔搭，支持新建、批量与仅更新 README |
+| `delete_from_hub.py` | 删除指定远端 dataset 仓库及历史 |
+| `_common.py` | 共用的命名、文件筛选、凭据与错误处理 |
+| `config/project.json` | 作者、联系邮箱、引用及数据许可证 |
+| `config/hf.yaml`、`config/ms.yaml` | 可选上传配置示例 |
+| `tests/` | 模拟客户端测试，不操作远端 |
+
+## 安装
+
+Python 3.10+：
+
+```bash
+pip install -r humancoin_datasets/upload_data/readme_upload/requirements.txt
+# 仅需要 check_load.py 时，额外安装：
+pip install -r humancoin_datasets/upload_data/readme_upload/requirements-check.txt
+```
+
+数据读取工具：[FlagOpen/HumanCOIN](https://github.com/FlagOpen/HumanCOIN)。数据门户：[HumanCOIN-DATA](https://flagopen.github.io/HumanCOIN-DataManager/)。
+
+## 1. 加载检查（可选）
+
+```bash
+python -m humancoin_datasets.upload_data.readme_upload.check_load --dataset /path/to/dataset
+```
+
+检查主时间轴帧数、样本时间戳和 observation 特征，通过 HumanCOIN/PyAV 读取首、中、末帧。异常返回非零退出码；不修改数据、不写 README。这是抽样检查，不是逐帧验证。
+
+## 2. 生成 README
+
+```bash
+python -m humancoin_datasets.upload_data.readme_upload.gen_readme --dataset /path/to/dataset
+# 覆盖已有文件：
+python -m humancoin_datasets.upload_data.readme_upload.gen_readme --dataset /path/to/dataset --force
+```
+
+读取 `meta/readme.json`、`meta/info.json`、可选的 `meta/tasks.jsonl` 和 `config/project.json`，默认生成 `<dataset>/README.md`。包含任务、场景、传感器、时间对齐、加载示例、作者及引用；文件数和体积从本地重算。`--output` 可指定输出路径，`--project-config` 可替换项目配置。
+
+数据集许可证为 **CC BY-NC 4.0**（`license: cc-by-nc-4.0`），不代表工具代码的许可证。README 带 HF 的 `Name`、`Email`、`Intended use` 文本申请表单；HF 账号信息收集由平台设置控制。
+
+需要“检查通过才生成”时自行串联：
+
+```bash
+python -m humancoin_datasets.upload_data.readme_upload.check_load --dataset /path/to/dataset && \
+python -m humancoin_datasets.upload_data.readme_upload.gen_readme --dataset /path/to/dataset --force
+```
+
+### L1 多任务数据集
+
+L1 发布结构为 `dataset_name/unique_task_name/{meta,data,videos,annotation,calibrations}`。将 `--dataset` 指向 **dataset_name 层级**，即可在该层生成一份上传用 `README.md`；原有根目录直接包含 `meta/info.json` 的单样本方式继续支持。
+
+```bash
+python -m humancoin_datasets.upload_data.readme_upload.gen_readme \
+  --dataset /path/to/publish/l1_living_room_cover_task_1920x1456_30fps_2views --force
+```
+
+名称使用 `dataset_name`，默认 repo_id 为 `HumanCOIN/<dataset_name>`。场景、级别、示例任务描述及公共传感器、存储、标注、标定说明取目录名排序后的第一个任务。任务数量按 `unique_task_name` 子目录数统计，帧数、时长、文件数和体积汇总所有任务。动作与物品取去重并集，物品只显示名称；不累计各传感器的样本数，不显示 L1 质量标记、EEG、EMG。文件统计包含每个任务的 `meta/readme.json`，不包含数据集根目录的 `README.md`。
+
+加载示例逐个将子任务目录传给 `HumanCOINDataset`，不把多任务集合根目录当作单条 recording。生成卡片不会修改子任务元数据或上传文件。
+
+## 3. 上传
+
+凭据使用 `HF_TOKEN` / `MODELSCOPE_TOKEN` 环境变量或平台已有登录缓存；魔搭也支持 `MS_TOKEN`。不要把 Token 写进 YAML 或版本库。需要时可在 Bash 中隐藏输入：
+
+```bash
+read -rsp 'HF Token: ' HF_TOKEN; echo; export HF_TOKEN
+read -rsp 'ModelScope Token: ' MODELSCOPE_TOKEN; echo; export MODELSCOPE_TOKEN
+```
+
+先预览，再分别上传两个平台：
+
+```bash
+python -m humancoin_datasets.upload_data.readme_upload.upload2hub --hub hf --folders /path/to/dataset --create-repo --dry-run
+python -m humancoin_datasets.upload_data.readme_upload.upload2hub --hub hf --folders /path/to/dataset --create-repo
+python -m humancoin_datasets.upload_data.readme_upload.upload2hub --hub ms --folders /path/to/dataset --create-repo
+```
+
+默认目标为 `HumanCOIN/<dataset_name>`，名称读取 `meta/readme.json`，缺少该文件时使用目录名。`--create-repo` 允许创建不存在的仓库；已有仓库只更新同名文件，不删除远端独有文件。上传不自动生成 README，也不自动运行加载检查。
+
+常用选项：
+
+| 参数 | 用途 |
+|---|---|
+| `--folders A B` | 一次上传多个本地数据集，每个对应一个仓库 |
+| `--repo-id owner/name` | 显式指定目标，仅限一个本地目录 |
+| `--readme-only` | 仅上传根目录 README |
+| `--allow` / `--ignore` | 相对路径 glob 筛选；生成 README 也支持相同参数 |
+| `--config humancoin_datasets/upload_data/readme_upload/config/ms.yaml` | 从 YAML 读取参数，命令行优先 |
+| `--max-workers 8` | 魔搭并发；HF 使用 SDK 默认并发 |
+| `--max-retries 3` | 总上传尝试次数 |
+| `--skip-errors` | 批次中失败后继续，最终仍返回非零状态 |
+| `--dry-run` | 只显示计划，不联网、不修改远端 |
+
+默认排除 `.git`、缓存、`backup`、`.env` 等，不上传软链接。新 HF 仓库可用 `--create-repo --private` 保持私有。
+
+**权限与平台适配**：HF 上传前设置自动审批。魔搭新建仓库默认公开，上传已有仓库前会将其设为公开。HF 上传完整 README。魔搭使用临时 README 副本，去掉 `gated` 和 `extra_gated_*`，保留许可证、通用元数据和正文。大文件优先用硬链接暂存，临时目录会自动清理。
+
+## 4. 删除远端仓库
+
+```bash
+python -m humancoin_datasets.upload_data.readme_upload.delete_from_hub --hub both --repo-id HumanCOIN/DATASET_NAME --dry-run
+python -m humancoin_datasets.upload_data.readme_upload.delete_from_hub --hub both --repo-id HumanCOIN/DATASET_NAME
+```
+
+`--hub` 支持 `hf`、`ms`、`both`，`--repo-id` 可写多个完整仓库名称。缺少环境变量时隐藏询问各平台 Token；删除需要相应管理权限。不再额外确认，非预览命令会删除远端仓库及历史，保留本地数据。删除后回读验证，不自动重试删除请求；跨平台不是事务，某个平台失败时另一个仍会尝试。
+
+重传流程：删除成功 → 生成 README → `upload2hub.py --create-repo`。普通更新不需要先删除。
+
+上传依赖单独安装，不会自动运行流水线。Hugging Face SDK 版本范围允许 0.x / 1.x，避免与主项目的 1.x 版本约束冲突。接口签名测试已在本机 0.35.3 上通过；1.x 和魔搭 SDK 尚未在本机验证。默认项目配置随 Python 包一起安装。
+
+## 测试
+
+```bash
+python -m unittest discover -s tests/readme_upload -v
+```
+
+本地脚本不会读取 GitHub Actions Secrets，不存储 Token 或用户申请信息。用 `--help` 查看各入口完整参数。
+# 上传后自动加入 Hugging Face Collection
+
+HF 配置支持 `collection`（Collection URL 或 slug），命令行对应 `--collection`。
+`config/hf.yaml` 已设置为 `HumanCOIN/humancoin-all-datasets`。
+每个仓库上传成功后，以 `exists_ok=True` 加入集合；断点续传跳过的已完成仓库也会补加。
+不启用或修改集合的 Gating Group 设置。魔搭不使用此参数。
+
+上传成功而加入集合失败时，日志分别保留 `Uploaded:` 和 `Collection add failed:`，
+进程返回非零状态。用原日志目录续跑即可核验并跳过已完成上传，重试加入集合。
+

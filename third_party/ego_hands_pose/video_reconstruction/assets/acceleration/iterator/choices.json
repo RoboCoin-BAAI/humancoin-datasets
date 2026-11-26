@@ -1,0 +1,168 @@
+{
+  "encoder.down_blocks.0.resnets.0.conv1": {
+    "mode": "direct",
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "warps": 4,
+    "stages": 3,
+    "group_m": 8
+  },
+  "encoder.down_blocks.0.resnets.0.conv2": {
+    "mode": "direct",
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "warps": 4,
+    "stages": 3,
+    "group_m": 8
+  },
+  "encoder.down_blocks.0.resnets.1.conv1": {
+    "mode": "direct",
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "warps": 4,
+    "stages": 3,
+    "group_m": 8
+  },
+  "encoder.down_blocks.0.resnets.1.conv2": {
+    "mode": "direct",
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "warps": 4,
+    "stages": 3,
+    "group_m": 8
+  },
+  "encoder.down_blocks.1.resnets.0.conv2": {
+    "mode": "incremental",
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "warps": 4,
+    "stages": 3,
+    "group_m": 8
+  },
+  "encoder.down_blocks.1.resnets.1.conv1": {
+    "mode": "incremental",
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "warps": 4,
+    "stages": 3,
+    "group_m": 8
+  },
+  "encoder.down_blocks.1.resnets.1.conv2": {
+    "mode": "incremental",
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "warps": 4,
+    "stages": 3,
+    "group_m": 8
+  },
+  "encoder.down_blocks.2.resnets.0.conv2": {
+    "mode": "incremental",
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "warps": 4,
+    "stages": 4,
+    "group_m": 8
+  },
+  "encoder.down_blocks.2.resnets.1.conv1": {
+    "mode": "incremental",
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "warps": 4,
+    "stages": 4,
+    "group_m": 8
+  },
+  "encoder.down_blocks.2.resnets.1.conv2": {
+    "mode": "incremental",
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "warps": 4,
+    "stages": 4,
+    "group_m": 8
+  },
+  "encoder.down_blocks.3.resnets.0.conv1": {
+    "mode": "incremental",
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "warps": 4,
+    "stages": 4,
+    "group_m": 8
+  },
+  "encoder.down_blocks.3.resnets.0.conv2": {
+    "mode": "incremental",
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "warps": 4,
+    "stages": 4,
+    "group_m": 8
+  },
+  "encoder.down_blocks.3.resnets.1.conv1": {
+    "mode": "incremental",
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "warps": 4,
+    "stages": 4,
+    "group_m": 8
+  },
+  "encoder.down_blocks.3.resnets.1.conv2": {
+    "mode": "incremental",
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "warps": 4,
+    "stages": 4,
+    "group_m": 8
+  },
+  "encoder.mid_block.resnets.0.conv1": {
+    "mode": "original"
+  },
+  "encoder.mid_block.resnets.0.conv2": {
+    "mode": "original"
+  },
+  "encoder.mid_block.resnets.1.conv1": {
+    "mode": "original"
+  },
+  "encoder.mid_block.resnets.1.conv2": {
+    "mode": "original"
+  }
+}

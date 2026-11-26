@@ -1,0 +1,85 @@
+{
+  "layers": {
+    "encoder.conv_in": {
+      "scale": 0.0022344104195534398
+    },
+    "encoder.down_blocks.0.resnets.0.conv1": {
+      "scale": 0.010092328563372046
+    },
+    "encoder.down_blocks.0.resnets.0.conv2": {
+      "scale": 0.006966911352042167
+    },
+    "encoder.down_blocks.0.resnets.1.conv1": {
+      "scale": 0.0030045320262738202
+    },
+    "encoder.down_blocks.0.resnets.1.conv2": {
+      "scale": 0.006746468404749757
+    },
+    "encoder.down_blocks.1.resnets.0.conv_shortcut": {
+      "scale": 0.015459497810446646
+    },
+    "encoder.down_blocks.1.resnets.0.conv1": {
+      "scale": 0.0047931311815019575
+    },
+    "encoder.down_blocks.1.resnets.0.conv2": {
+      "scale": 0.0046023626747718135
+    },
+    "encoder.down_blocks.1.resnets.1.conv1": {
+      "scale": 0.005128811949383881
+    },
+    "encoder.down_blocks.1.resnets.1.conv2": {
+      "scale": 0.00528744220071604
+    },
+    "encoder.down_blocks.2.resnets.0.conv_shortcut": {
+      "scale": 0.03130861873517772
+    },
+    "encoder.down_blocks.2.resnets.0.conv1": {
+      "scale": 0.005544008089613768
+    },
+    "encoder.down_blocks.2.resnets.0.conv2": {
+      "scale": 0.004899745129423846
+    },
+    "encoder.down_blocks.2.resnets.1.conv1": {
+      "scale": 0.005813023486770322
+    },
+    "encoder.down_blocks.2.resnets.1.conv2": {
+      "scale": 0.004150971117974934
+    },
+    "encoder.down_blocks.3.resnets.0.conv1": {
+      "scale": 0.006896530567441343
+    },
+    "encoder.down_blocks.3.resnets.0.conv2": {
+      "scale": 0.002374765124856258
+    },
+    "encoder.down_blocks.3.resnets.1.conv1": {
+      "scale": 0.004933024085648563
+    },
+    "encoder.down_blocks.3.resnets.1.conv2": {
+      "scale": 0.0027098528615439213
+    },
+    "encoder.mid_block.resnets.0.conv1": {
+      "scale": 0.004396808524489626
+    },
+    "encoder.mid_block.resnets.0.conv2": {
+      "scale": 0.0018580391816993432
+    },
+    "encoder.mid_block.resnets.1.conv1": {
+      "scale": 0.003009620761690816
+    },
+    "encoder.mid_block.resnets.1.conv2": {
+      "scale": 0.0018738272509341884
+    },
+    "encoder.conv_out": {
+      "scale": 0.0028413447591026145
+    },
+    "quant_conv": {
+      "scale": 0.005852505408592698
+    },
+    "encoder.down_blocks.1.downsampler.time_conv": {
+      "scale": 0.011732774682266125
+    },
+    "encoder.down_blocks.2.downsampler.time_conv": {
+      "scale": 0.012075208857724192
+    }
+  }
+}

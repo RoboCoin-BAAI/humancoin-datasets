@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "humancoin-datasets"
+version = "0.1.0"
+description = "HumanCoin dataset processing tools"
+readme = "README.md"
+requires-python = ">=3.10,<4.0"
+dependencies = [
+    "numpy==2.4.6",
+    "opencv-python==5.0.0.93",
+    "PyYAML==6.0.3",
+    "rerun-sdk==0.22.1",
+    "scipy==1.17.1",
+    "torch==2.7.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pyarrow==26.0.0"]
+database = ["SQLAlchemy>=2.0,<3", "psycopg[binary]>=3.2,<4"]
+privacy = ["ultralytics>=8.2.0", "opencv-python==5.0.0.93", "numpy==2.4.6"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["humancoin_datasets*", "scripts*"]
+
+[tool.setuptools.package-data]
+"humancoin_datasets.upload_data.readme_upload" = ["config/*.json", "config/*.yaml", "requirements*.txt", "README.md"]

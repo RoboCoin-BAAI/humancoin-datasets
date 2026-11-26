@@ -1,0 +1,571 @@
+{
+  "rename": [
+    {
+      "dataset": "jianzhi",
+      "source": "l1_beauty_salon_wring_task_1600x1300_30fps_2views",
+      "target": "l1_beauty_salon_dry_task_1600x1300_30fps_2views",
+      "samples": 1
+    },
+    {
+      "dataset": "jianzhi",
+      "source": "l1_beauty_salon_braid_task_1600x1300_30fps_2views",
+      "target": "l1_beauty_salon_groom_task_1600x1300_30fps_2views",
+      "samples": 1
+    },
+    {
+      "dataset": "jianzhi",
+      "source": "l1_beauty_salon_scrape_task_1600x1300_30fps_2views",
+      "target": "l1_beauty_salon_massage_task_1600x1300_30fps_2views",
+      "samples": 2
+    },
+    {
+      "dataset": "jianzhi",
+      "source": "l1_beauty_salon_attach_task_1600x1300_30fps_2views",
+      "target": "l1_beauty_salon_secure_task_1600x1300_30fps_2views",
+      "samples": 11
+    },
+    {
+      "dataset": "jianzhi",
+      "source": "l1_bedroom_attach_task_1600x1300_30fps_2views",
+      "target": "l1_bedroom_secure_task_1600x1300_30fps_2views",
+      "samples": 3
+    },
+    {
+      "dataset": "jianzhi",
+      "source": "l1_beverage_shop_attach_task_1600x1300_30fps_2views",
+      "target": "l1_beverage_shop_secure_task_1600x1300_30fps_2views",
+      "samples": 24
+    },
+    {
+      "dataset": "jianzhi",
+      "source": "l1_conference_center_attach_task_1600x1300_30fps_2views",
+      "target": "l1_conference_center_secure_task_1600x1300_30fps_2views",
+      "samples": 1
+    },
+    {
+      "dataset": "jianzhi",
+      "source": "l1_conference_center_roll_task_1600x1300_30fps_2views",
+      "target": "l1_conference_center_shape_task_1600x1300_30fps_2views",
+      "samples": 1
+    },
+    {
+      "dataset": "jianzhi",
+      "source": "l1_hair_salon_wring_task_1600x1300_30fps_2views",
+      "target": "l1_hair_salon_dry_task_1600x1300_30fps_2views",
+      "samples": 5
+    },
+    {
+      "dataset": "jianzhi",
+      "source": "l1_healthcare_facility_scrape_task_1600x1300_30fps_2views",
+      "target": "l1_healthcare_facility_massage_task_1600x1300_30fps_2views",
+      "samples": 2
+    },
+    {
+      "dataset": "jianzhi",
+      "source": "l1_logistics_facility_attach_task_1600x1300_30fps_2views",
+      "target": "l1_logistics_facility_secure_task_1600x1300_30fps_2views",
+      "samples": 9
+    },
+    {
+      "dataset": "jianzhi",
+      "source": "l1_other_attach_task_1600x1300_30fps_2views",
+      "target": "l1_other_secure_task_1600x1300_30fps_2views",
+      "samples": 1
+    },
+    {
+      "dataset": "jianzhi",
+      "source": "l1_restaurant_attach_task_1600x1300_30fps_2views",
+      "target": "l1_restaurant_secure_task_1600x1300_30fps_2views",
+      "samples": 1
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_bedroom_attach_task_1920x1456_30fps_2views",
+      "target": "l1_bedroom_secure_task_1920x1456_30fps_2views",
+      "samples": 2
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_kitchen_scoop_task_1920x1456_30fps_2views",
+      "target": "l1_kitchen_collect_task_1920x1456_30fps_2views",
+      "samples": 6
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_kitchen_load_task_1920x1456_25fps_2views",
+      "target": "l1_kitchen_fill_task_1920x1456_25fps_2views",
+      "samples": 1
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_laundry_area_load_task_1920x1456_30fps_2views",
+      "target": "l1_laundry_area_fill_task_1920x1456_30fps_2views",
+      "samples": 3
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_living_room_thread_task_1920x1456_30fps_2views",
+      "target": "l1_living_room_sew_task_1920x1456_30fps_2views",
+      "samples": 3
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_logistics_facility_scan_task_1920x1456_25fps_2views",
+      "target": "l1_logistics_facility_check_task_1920x1456_25fps_2views",
+      "samples": 1
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_logistics_facility_scan_task_1920x1456_30fps_2views",
+      "target": "l1_logistics_facility_check_task_1920x1456_30fps_2views",
+      "samples": 39
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_logistics_facility_load_task_1920x1456_30fps_2views",
+      "target": "l1_logistics_facility_fill_task_1920x1456_30fps_2views",
+      "samples": 6
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_logistics_facility_thread_task_1920x1456_30fps_2views",
+      "target": "l1_logistics_facility_sew_task_1920x1456_30fps_2views",
+      "samples": 1
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_office_punch_task_1920x1456_25fps_2views",
+      "target": "l1_office_processing_task_1920x1456_25fps_2views",
+      "samples": 3
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_office_punch_task_1920x1456_30fps_2views",
+      "target": "l1_office_processing_task_1920x1456_30fps_2views",
+      "samples": 6
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_office_wind_task_1920x1456_30fps_2views",
+      "target": "l1_office_shape_task_1920x1456_30fps_2views",
+      "samples": 15
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_other_attach_task_1920x1456_25fps_2views",
+      "target": "l1_other_secure_task_1920x1456_25fps_2views",
+      "samples": 1
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_retail_store_load_task_1920x1456_25fps_2views",
+      "target": "l1_retail_store_fill_task_1920x1456_25fps_2views",
+      "samples": 1
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_retail_store_load_task_1920x1456_30fps_2views",
+      "target": "l1_retail_store_fill_task_1920x1456_30fps_2views",
+      "samples": 8
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_retail_store_attach_task_1920x1456_30fps_2views",
+      "target": "l1_retail_store_secure_task_1920x1456_30fps_2views",
+      "samples": 4
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_storage_room_tear_task_1920x1456_30fps_2views",
+      "target": "l1_storage_room_cut_task_1920x1456_30fps_2views",
+      "samples": 2
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_storage_room_thread_task_1920x1456_30fps_2views",
+      "target": "l1_storage_room_sew_task_1920x1456_30fps_2views",
+      "samples": 2
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_storage_room_wind_task_1920x1456_30fps_2views",
+      "target": "l1_storage_room_shape_task_1920x1456_30fps_2views",
+      "samples": 11
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_study_room_attach_task_1920x1456_25fps_2views",
+      "target": "l1_study_room_secure_task_1920x1456_25fps_2views",
+      "samples": 1
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_study_room_attach_task_1920x1456_30fps_2views",
+      "target": "l1_study_room_secure_task_1920x1456_30fps_2views",
+      "samples": 5
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_workroom_thread_task_1920x1456_30fps_2views",
+      "target": "l1_workroom_sew_task_1920x1456_30fps_2views",
+      "samples": 2
+    }
+  ],
+  "merge": [
+    {
+      "dataset": "jianzhi",
+      "target": "l1_beauty_salon_polish_task_1600x1300_30fps_2views",
+      "anchor": "l1_beauty_salon_polish_task_1600x1300_30fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 20,
+      "sources": {
+        "l1_beauty_salon_file_task_1600x1300_30fps_2views": 5
+      },
+      "additional_samples": 5,
+      "total_samples": 25
+    },
+    {
+      "dataset": "jianzhi",
+      "target": "l1_beverage_shop_clean_task_1600x1300_30fps_2views",
+      "anchor": "l1_beverage_shop_clean_task_1600x1300_30fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 154,
+      "sources": {
+        "l1_beverage_shop_scrape_task_1600x1300_30fps_2views": 2
+      },
+      "additional_samples": 2,
+      "total_samples": 156
+    },
+    {
+      "dataset": "jianzhi",
+      "target": "l1_hair_salon_groom_task_1600x1300_30fps_2views",
+      "anchor": "l1_hair_salon_roll_task_1600x1300_30fps_2views",
+      "target_exists_locally": false,
+      "anchor_samples": 26,
+      "sources": {
+        "l1_hair_salon_braid_task_1600x1300_30fps_2views": 2,
+        "l1_hair_salon_comb_task_1600x1300_30fps_2views": 1,
+        "l1_hair_salon_style_task_1600x1300_30fps_2views": 2,
+        "l1_hair_salon_brush_task_1600x1300_30fps_2views": 9,
+        "l1_hair_salon_roll_task_1600x1300_30fps_2views": 26,
+        "l1_hair_salon_straighten_task_1600x1300_30fps_2views": 4
+      },
+      "additional_samples": 18,
+      "total_samples": 44
+    },
+    {
+      "dataset": "jianzhi",
+      "target": "l1_hair_salon_secure_task_1600x1300_30fps_2views",
+      "anchor": "l1_hair_salon_secure_task_1600x1300_30fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 1,
+      "sources": {
+        "l1_hair_salon_attach_task_1600x1300_30fps_2views": 6
+      },
+      "additional_samples": 6,
+      "total_samples": 7
+    },
+    {
+      "dataset": "jianzhi",
+      "target": "l1_living_room_clean_task_1600x1300_30fps_2views",
+      "anchor": "l1_living_room_clean_task_1600x1300_30fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 20,
+      "sources": {
+        "l1_living_room_scrape_task_1600x1300_30fps_2views": 1
+      },
+      "additional_samples": 1,
+      "total_samples": 21
+    },
+    {
+      "dataset": "jianzhi",
+      "target": "l1_retail_store_secure_task_1600x1300_30fps_2views",
+      "anchor": "l1_retail_store_secure_task_1600x1300_30fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 1,
+      "sources": {
+        "l1_retail_store_attach_task_1600x1300_30fps_2views": 41
+      },
+      "additional_samples": 41,
+      "total_samples": 42
+    },
+    {
+      "dataset": "jianzhi",
+      "target": "l1_workroom_secure_task_1600x1300_30fps_2views",
+      "anchor": "l1_workroom_secure_task_1600x1300_30fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 2,
+      "sources": {
+        "l1_workroom_attach_task_1600x1300_30fps_2views": 2
+      },
+      "additional_samples": 2,
+      "total_samples": 4
+    },
+    {
+      "dataset": "guanglun",
+      "target": "l1_kitchen_fill_task_1920x1456_30fps_2views",
+      "anchor": "l1_kitchen_fill_task_1920x1456_30fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 14,
+      "sources": {
+        "l1_kitchen_load_task_1920x1456_30fps_2views": 3
+      },
+      "additional_samples": 3,
+      "total_samples": 17
+    },
+    {
+      "dataset": "guanglun",
+      "target": "l1_kitchen_secure_task_1920x1456_30fps_2views",
+      "anchor": "l1_kitchen_secure_task_1920x1456_30fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 1,
+      "sources": {
+        "l1_kitchen_attach_task_1920x1456_30fps_2views": 2
+      },
+      "additional_samples": 2,
+      "total_samples": 3
+    },
+    {
+      "dataset": "guanglun",
+      "target": "l1_laundry_area_fold_task_1920x1456_25fps_2views",
+      "anchor": "l1_laundry_area_fold_task_1920x1456_25fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 7,
+      "sources": {
+        "l1_laundry_area_roll_task_1920x1456_25fps_2views": 1
+      },
+      "additional_samples": 1,
+      "total_samples": 8
+    },
+    {
+      "dataset": "guanglun",
+      "target": "l1_laundry_area_fold_task_1920x1456_30fps_2views",
+      "anchor": "l1_laundry_area_fold_task_1920x1456_30fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 55,
+      "sources": {
+        "l1_laundry_area_roll_task_1920x1456_30fps_2views": 2
+      },
+      "additional_samples": 2,
+      "total_samples": 57
+    },
+    {
+      "dataset": "guanglun",
+      "target": "l1_living_room_fold_task_1920x1456_30fps_2views",
+      "anchor": "l1_living_room_fold_task_1920x1456_30fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 6,
+      "sources": {
+        "l1_living_room_unfold_task_1920x1456_30fps_2views": 1
+      },
+      "additional_samples": 1,
+      "total_samples": 7
+    },
+    {
+      "dataset": "guanglun",
+      "target": "l1_living_room_secure_task_1920x1456_30fps_2views",
+      "anchor": "l1_living_room_secure_task_1920x1456_30fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 1,
+      "sources": {
+        "l1_living_room_attach_task_1920x1456_30fps_2views": 3
+      },
+      "additional_samples": 3,
+      "total_samples": 4
+    },
+    {
+      "dataset": "guanglun",
+      "target": "l1_living_room_shape_task_1920x1456_30fps_2views",
+      "anchor": "l1_living_room_wind_task_1920x1456_30fps_2views",
+      "target_exists_locally": false,
+      "anchor_samples": 3,
+      "sources": {
+        "l1_living_room_wind_task_1920x1456_30fps_2views": 3,
+        "l1_living_room_roll_task_1920x1456_30fps_2views": 1
+      },
+      "additional_samples": 1,
+      "total_samples": 4
+    },
+    {
+      "dataset": "guanglun",
+      "target": "l1_logistics_facility_cut_task_1920x1456_30fps_2views",
+      "anchor": "l1_logistics_facility_cut_task_1920x1456_30fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 4,
+      "sources": {
+        "l1_logistics_facility_tear_task_1920x1456_30fps_2views": 4
+      },
+      "additional_samples": 4,
+      "total_samples": 8
+    },
+    {
+      "dataset": "guanglun",
+      "target": "l1_logistics_facility_fold_task_1920x1456_30fps_2views",
+      "anchor": "l1_logistics_facility_fold_task_1920x1456_30fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 20,
+      "sources": {
+        "l1_logistics_facility_unfold_task_1920x1456_30fps_2views": 1
+      },
+      "additional_samples": 1,
+      "total_samples": 21
+    },
+    {
+      "dataset": "guanglun",
+      "target": "l1_logistics_facility_secure_task_1920x1456_25fps_2views",
+      "anchor": "l1_logistics_facility_secure_task_1920x1456_25fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 1,
+      "sources": {
+        "l1_logistics_facility_attach_task_1920x1456_25fps_2views": 14
+      },
+      "additional_samples": 14,
+      "total_samples": 15
+    },
+    {
+      "dataset": "guanglun",
+      "target": "l1_logistics_facility_secure_task_1920x1456_30fps_2views",
+      "anchor": "l1_logistics_facility_secure_task_1920x1456_30fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 4,
+      "sources": {
+        "l1_logistics_facility_attach_task_1920x1456_30fps_2views": 85
+      },
+      "additional_samples": 85,
+      "total_samples": 89
+    },
+    {
+      "dataset": "guanglun",
+      "target": "l1_office_fill_task_1920x1456_30fps_2views",
+      "anchor": "l1_office_fill_task_1920x1456_30fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 1,
+      "sources": {
+        "l1_office_load_task_1920x1456_30fps_2views": 2
+      },
+      "additional_samples": 2,
+      "total_samples": 3
+    },
+    {
+      "dataset": "guanglun",
+      "target": "l1_office_secure_task_1920x1456_25fps_2views",
+      "anchor": "l1_office_secure_task_1920x1456_25fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 1,
+      "sources": {
+        "l1_office_attach_task_1920x1456_25fps_2views": 6,
+        "l1_office_staple_task_1920x1456_25fps_2views": 7
+      },
+      "additional_samples": 13,
+      "total_samples": 14
+    },
+    {
+      "dataset": "guanglun",
+      "target": "l1_office_secure_task_1920x1456_30fps_2views",
+      "anchor": "l1_office_secure_task_1920x1456_30fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 8,
+      "sources": {
+        "l1_office_attach_task_1920x1456_30fps_2views": 4,
+        "l1_office_staple_task_1920x1456_30fps_2views": 17
+      },
+      "additional_samples": 21,
+      "total_samples": 29
+    },
+    {
+      "dataset": "guanglun",
+      "target": "l1_retail_store_check_task_1920x1456_30fps_2views",
+      "anchor": "l1_retail_store_check_task_1920x1456_30fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 5,
+      "sources": {
+        "l1_retail_store_scan_task_1920x1456_30fps_2views": 1
+      },
+      "additional_samples": 1,
+      "total_samples": 6
+    },
+    {
+      "dataset": "guanglun",
+      "target": "l1_storage_room_fill_task_1920x1456_30fps_2views",
+      "anchor": "l1_storage_room_fill_task_1920x1456_30fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 5,
+      "sources": {
+        "l1_storage_room_load_task_1920x1456_30fps_2views": 1
+      },
+      "additional_samples": 1,
+      "total_samples": 6
+    },
+    {
+      "dataset": "guanglun",
+      "target": "l1_storage_room_secure_task_1920x1456_30fps_2views",
+      "anchor": "l1_storage_room_secure_task_1920x1456_30fps_2views",
+      "target_exists_locally": true,
+      "anchor_samples": 1,
+      "sources": {
+        "l1_storage_room_attach_task_1920x1456_30fps_2views": 2
+      },
+      "additional_samples": 2,
+      "total_samples": 3
+    }
+  ],
+  "semantic_pending": [],
+  "resolved_semantic_directories": [
+    {
+      "dataset": "jianzhi",
+      "source": "l1_beauty_salon_scrape_task_1600x1300_30fps_2views",
+      "target": "l1_beauty_salon_massage_task_1600x1300_30fps_2views"
+    },
+    {
+      "dataset": "jianzhi",
+      "source": "l1_beverage_shop_scrape_task_1600x1300_30fps_2views",
+      "target": "l1_beverage_shop_clean_task_1600x1300_30fps_2views"
+    },
+    {
+      "dataset": "jianzhi",
+      "source": "l1_conference_center_roll_task_1600x1300_30fps_2views",
+      "target": "l1_conference_center_shape_task_1600x1300_30fps_2views"
+    },
+    {
+      "dataset": "jianzhi",
+      "source": "l1_hair_salon_brush_task_1600x1300_30fps_2views",
+      "target": "l1_hair_salon_groom_task_1600x1300_30fps_2views"
+    },
+    {
+      "dataset": "jianzhi",
+      "source": "l1_hair_salon_roll_task_1600x1300_30fps_2views",
+      "target": "l1_hair_salon_groom_task_1600x1300_30fps_2views"
+    },
+    {
+      "dataset": "jianzhi",
+      "source": "l1_hair_salon_straighten_task_1600x1300_30fps_2views",
+      "target": "l1_hair_salon_groom_task_1600x1300_30fps_2views"
+    },
+    {
+      "dataset": "jianzhi",
+      "source": "l1_healthcare_facility_scrape_task_1600x1300_30fps_2views",
+      "target": "l1_healthcare_facility_massage_task_1600x1300_30fps_2views"
+    },
+    {
+      "dataset": "jianzhi",
+      "source": "l1_living_room_scrape_task_1600x1300_30fps_2views",
+      "target": "l1_living_room_clean_task_1600x1300_30fps_2views"
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_laundry_area_roll_task_1920x1456_25fps_2views",
+      "target": "l1_laundry_area_fold_task_1920x1456_25fps_2views"
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_laundry_area_roll_task_1920x1456_30fps_2views",
+      "target": "l1_laundry_area_fold_task_1920x1456_30fps_2views"
+    },
+    {
+      "dataset": "guanglun",
+      "source": "l1_living_room_roll_task_1920x1456_30fps_2views",
+      "target": "l1_living_room_shape_task_1920x1456_30fps_2views"
+    }
+  ],
+  "remote_state_verified": false
+}

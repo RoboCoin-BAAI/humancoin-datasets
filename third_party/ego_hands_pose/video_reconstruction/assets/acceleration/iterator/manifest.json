@@ -1,0 +1,8 @@
+{
+  "choices_sha256": "549b2bf59f4389a7feac1c68a0b7974d581c6c7aac05f7a7c0388682711ea49b",
+  "protected_layers": [
+    "encoder.conv_in",
+    "encoder.conv_out",
+    "quant_conv"
+  ]
+}

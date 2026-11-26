@@ -1,0 +1,109 @@
+{
+  "encoder.conv_in": {
+    "implementation": "conv2d",
+    "layout": "channels_last"
+  },
+  "encoder.down_blocks.0.resnets.0.conv1": {
+    "implementation": "native",
+    "layout": "channels_last"
+  },
+  "encoder.down_blocks.0.resnets.0.conv2": {
+    "implementation": "native",
+    "layout": "channels_last"
+  },
+  "encoder.down_blocks.0.resnets.1.conv1": {
+    "implementation": "native",
+    "layout": "channels_last"
+  },
+  "encoder.down_blocks.0.resnets.1.conv2": {
+    "implementation": "native",
+    "layout": "channels_last"
+  },
+  "encoder.down_blocks.1.resnets.0.conv_shortcut": {
+    "implementation": "original"
+  },
+  "encoder.down_blocks.1.resnets.0.conv1": {
+    "implementation": "native",
+    "layout": "channels_last"
+  },
+  "encoder.down_blocks.1.resnets.0.conv2": {
+    "implementation": "native",
+    "layout": "channels_last"
+  },
+  "encoder.down_blocks.1.resnets.1.conv1": {
+    "implementation": "native",
+    "layout": "channels_last"
+  },
+  "encoder.down_blocks.1.resnets.1.conv2": {
+    "implementation": "native",
+    "layout": "channels_last"
+  },
+  "encoder.down_blocks.2.resnets.0.conv_shortcut": {
+    "implementation": "native",
+    "layout": "contiguous"
+  },
+  "encoder.down_blocks.2.resnets.0.conv1": {
+    "implementation": "native",
+    "layout": "contiguous"
+  },
+  "encoder.down_blocks.2.resnets.0.conv2": {
+    "implementation": "native",
+    "layout": "channels_last"
+  },
+  "encoder.down_blocks.2.resnets.1.conv1": {
+    "implementation": "native",
+    "layout": "contiguous"
+  },
+  "encoder.down_blocks.2.resnets.1.conv2": {
+    "implementation": "native",
+    "layout": "contiguous"
+  },
+  "encoder.down_blocks.3.resnets.0.conv1": {
+    "implementation": "conv2d",
+    "layout": "channels_last"
+  },
+  "encoder.down_blocks.3.resnets.0.conv2": {
+    "implementation": "native",
+    "layout": "channels_last"
+  },
+  "encoder.down_blocks.3.resnets.1.conv1": {
+    "implementation": "native",
+    "layout": "channels_last"
+  },
+  "encoder.down_blocks.3.resnets.1.conv2": {
+    "implementation": "native",
+    "layout": "channels_last"
+  },
+  "encoder.mid_block.resnets.0.conv1": {
+    "implementation": "native",
+    "layout": "channels_last"
+  },
+  "encoder.mid_block.resnets.0.conv2": {
+    "implementation": "native",
+    "layout": "channels_last"
+  },
+  "encoder.mid_block.resnets.1.conv1": {
+    "implementation": "native",
+    "layout": "channels_last"
+  },
+  "encoder.mid_block.resnets.1.conv2": {
+    "implementation": "native",
+    "layout": "channels_last"
+  },
+  "encoder.conv_out": {
+    "implementation": "conv2d",
+    "layout": "channels_last"
+  },
+  "quant_conv": {
+    "implementation": "native",
+    "layout": "contiguous"
+  },
+  "encoder.down_blocks.1.downsampler.time_conv": {
+    "implementation": "conv2d",
+    "layout": "contiguous"
+  },
+  "encoder.down_blocks.2.downsampler.time_conv": {
+    "implementation": "conv2d",
+    "layout": "contiguous"
+  }
+}

@@ -1,0 +1,267 @@
+dataset: L3
+level: L3
+depth_workers_per_gpu: 1
+start_at: download
+cpu_failure_policy: continue_passed
+paths:
+  python: /share/project/liuyou/humancoin/envs/ego/bin/python
+  repo: /share/project/liuyou/humancoin/code/roboego-hand-vis
+  code_root: /share/project/liuyou/humancoin/code
+  input_root: /share/project/liuyou/humancoin/data/L3_lerobot
+  output_root: /share/project/liuyou/humancoin/data/L3_lerobot
+  state_root: /share/project/liuyou/humancoin/data/pipeline_tasks
+  ffmpeg: /share/project/liuyou/humancoin/envs/ego/bin/ffmpeg
+  ffprobe: /share/project/liuyou/humancoin/envs/ego/bin/ffprobe
+  ks3_tool: /share/project/liuyou/humancoin/utils/ks3/ks3util-linux-amd64
+  ks3_config: /share/project/liuyou/humancoin/utils/ks3/ks3util-config
+  model_root: /share/project/liuyou/humancoin/code/Fast-FoundationStereo
+  checkpoint: /share/project/liuyou/humancoin/code/Fast-FoundationStereo/weights/model_best_bp2_serialize.pth
+  openvins_root: /share/project/liuyou/humancoin/code/open_vins
+run_stages:
+- download
+- qc
+- rectify
+- review
+- points
+- readme
+- depth
+force_stages: []
+stages:
+  download:
+    role: cpu
+    depends: []
+    command:
+    - '{python}'
+    - '{repo}/scripts/pipeline/download.py'
+    - --level
+    - L3
+    - --source
+    - '{source}'
+    - --output
+    - '{output_root}/{batch}'
+    - --tool
+    - '{ks3_tool}'
+    - --config
+    - '{ks3_config}'
+    backup_paths:
+    - '{session}'
+  qc:
+    role: cpu
+    depends:
+    - download
+    command:
+    - '{python}'
+    - '{repo}/humancoin_datasets/lerobot_headband_integrity/L3/run.py'
+    - --source
+    - '{session}'
+    - --workers
+    - '1'
+    - --ffprobe
+    - '{ffprobe}'
+    - --calibration-root
+    - '{output_root}'
+    inputs:
+    - videos/chunk-*/observation.images.head*/*
+    - data/chunk-*/episode_*/observation.images.head*.parquet
+    - data/chunk-*/episode_*/observation.*imu*.parquet
+    - audios/**/*.wav
+    - meta/calibrations.jsonl
+    - meta/collect_info.jsonl
+    - calibrations/camera*.yaml
+    adopt_command:
+    - '{python}'
+    - '{repo}/scripts/pipeline/check.py'
+    - --level
+    - L3
+    - --stage
+    - qc
+    - --session
+    - '{session}'
+    validate_command:
+    - '{python}'
+    - '{repo}/scripts/pipeline/check.py'
+    - --level
+    - L3
+    - --stage
+    - qc
+    - --session
+    - '{session}'
+    outputs:
+    - annotation/quality_report.json
+  points:
+    role: cpu
+    depends:
+    - qc
+    command:
+    - '{python}'
+    - '{repo}/humancoin_datasets/lerobot_hand_pose/L3/convert_world_points.py'
+    - --source
+    - '{session}'
+    - --workers
+    - '1'
+    - --side
+    - both
+    - --overwrite
+    inputs:
+    - data/chunk-*/episode_*/observation.hand_skeleton.parquet
+    - data/chunk-*/episode_*/observation.left_wrist_pose.parquet
+    - data/chunk-*/episode_*/observation.right_wrist_pose.parquet
+    validate_command:
+    - '{python}'
+    - '{repo}/scripts/pipeline/check.py'
+    - --level
+    - L3
+    - --stage
+    - points
+    - --session
+    - '{session}'
+    outputs:
+    - data/chunk-*/episode_*/observation.hand_left_points.parquet
+    - data/chunk-*/episode_*/observation.hand_right_points.parquet
+  rectify:
+    role: cpu
+    depends:
+    - qc
+    command:
+    - '{python}'
+    - '{repo}/humancoin_datasets/lerobot_stereo_rectification/L3/run.py'
+    - --source
+    - '{session}'
+    - --workers
+    - '1'
+    - --ffmpeg
+    - '{ffmpeg}'
+    force_args:
+    - --no-skip-existing
+    adopt_command:
+    - '{python}'
+    - '{repo}/scripts/pipeline/check.py'
+    - --level
+    - L3
+    - --stage
+    - rectify
+    - --session
+    - '{session}'
+    validate_command:
+    - '{python}'
+    - '{repo}/scripts/pipeline/check.py'
+    - --level
+    - L3
+    - --stage
+    - rectify
+    - --session
+    - '{session}'
+    outputs:
+    - calibrations/*dataset_manifest.json
+    - calibrations/*rectify_params.yaml
+    - videos/chunk-*/observation.images.*_rectified/episode_*.mp4
+  review:
+    role: cpu
+    inputs:
+    - meta/qc_reports.jsonl
+    force_args:
+    - --force
+    depends:
+    - qc
+    - rectify
+    command:
+    - '{python}'
+    - '{code_root}/argus/review/L3/run.py'
+    - --structured-only
+    - --source
+    - '{session}'
+    - --workers
+    - '1'
+    - --jobs
+    - '1'
+    - --no-board
+    - --model
+    - qwen3.8-27b
+    - --structured-model
+    - qwen3.8-27b
+    - --structured-timeout
+    - '120'
+    - --reasoning
+    - none
+    - --sample-fps
+    - '1'
+    - --max-tokens
+    - '16384'
+    - --concurrency
+    - '1'
+    - --cap
+    - '0'
+    backup_paths:
+    - '{session}/annotation/argus'
+    outputs:
+    - annotation/episode_*_structured.json
+  readme:
+    role: cpu
+    depends:
+    - rectify
+    - review
+    - points
+    command:
+    - '{python}'
+    - '{repo}/humancoin_datasets/build_json/L3/build_readme.py'
+    - --root
+    - '{session}'
+    inputs:
+    - annotation/episode_*_structured.json
+    - meta/info.json
+    - data/chunk-*/episode_*/master_index.parquet
+    - depth/chunk-*/*/lerobot_depth.json
+    outputs:
+    - meta/readme.json
+  vio:
+    role: cpu
+    depends:
+    - qc
+    - rectify
+    command:
+    - '{python}'
+    - '{repo}/humancoin_datasets/lerobot_vio/L3/run.py'
+    - --source
+    - '{session}'
+    - --openvins-root
+    - '{openvins_root}'
+    - --workers
+    - '1'
+    - --init-mode
+    - static-then-dynamic
+    outputs:
+    - data/chunk-*/episode_*/observation.left_camera_pose.parquet
+  depth:
+    role: gpu
+    depends:
+    - qc
+    - rectify
+    command:
+    - '{python}'
+    - '{repo}/humancoin_datasets/lerobot_fast_foundation_depth/L3/run.py'
+    - --source
+    - '{session}'
+    - --model-root
+    - '{model_root}'
+    - --ckpt
+    - '{checkpoint}'
+    - --engine
+    - throughput
+    - --gpus
+    - '{gpu}'
+    - --num-frames
+    - auto
+    - --depth-format
+    - hevc12
+    - --batch-size
+    - '4'
+    - --ffmpeg
+    - '{ffmpeg}'
+    backup_paths:
+    - '{session}/depth'
+    outputs:
+    # HEVC12 publishing stores the video under videos and per-episode metadata
+    # and validity masks under annotation. Artifact checks only stat these files.
+    - annotation/chunk-*/observation.images.depth_headband_left_rectified/episode_*/lerobot_depth.json
+    - annotation/chunk-*/observation.images.depth_headband_left_rectified/episode_*/valid_mask_ffv1.mkv
+    - videos/chunk-*/observation.images.depth_headband_left_rectified/episode_*.mp4

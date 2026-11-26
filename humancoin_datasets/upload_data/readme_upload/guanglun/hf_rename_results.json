@@ -1,0 +1,282 @@
+[
+  {
+    "source": "HumanCOIN/l1_beauty_salon_wring_task_1600x1300_30fps_2views",
+    "target": "HumanCOIN/l1_beauty_salon_dry_task_1600x1300_30fps_2views",
+    "dataset": "jianzhi",
+    "status": "renamed",
+    "commit": "9574992480a5a8e4643d9950bf72542a90d1c9f8",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_beauty_salon_braid_task_1600x1300_30fps_2views",
+    "target": "HumanCOIN/l1_beauty_salon_groom_task_1600x1300_30fps_2views",
+    "dataset": "jianzhi",
+    "status": "renamed",
+    "commit": "928a3f52e71c0634b8b92e8667a7d0a7a14283cc",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_beauty_salon_scrape_task_1600x1300_30fps_2views",
+    "target": "HumanCOIN/l1_beauty_salon_massage_task_1600x1300_30fps_2views",
+    "dataset": "jianzhi",
+    "status": "renamed",
+    "commit": "a2f85f1193b5079cb224471553af7ca1d39167ad",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_beauty_salon_attach_task_1600x1300_30fps_2views",
+    "target": "HumanCOIN/l1_beauty_salon_secure_task_1600x1300_30fps_2views",
+    "dataset": "jianzhi",
+    "status": "renamed",
+    "commit": "1f75da1cdba337cab5675407e753e4b8c2e3e5cf",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_beverage_shop_attach_task_1600x1300_30fps_2views",
+    "target": "HumanCOIN/l1_beverage_shop_secure_task_1600x1300_30fps_2views",
+    "dataset": "jianzhi",
+    "status": "renamed",
+    "commit": "860a7b8a0de3c0ec8a69dd5636bc7c9bb56a897f",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_bedroom_attach_task_1600x1300_30fps_2views",
+    "target": "HumanCOIN/l1_bedroom_secure_task_1600x1300_30fps_2views",
+    "dataset": "jianzhi",
+    "status": "renamed",
+    "commit": "40bf34841978a21f2a8f15dec3ac7988ddc4f2e0",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_conference_center_attach_task_1600x1300_30fps_2views",
+    "target": "HumanCOIN/l1_conference_center_secure_task_1600x1300_30fps_2views",
+    "dataset": "jianzhi",
+    "status": "renamed",
+    "commit": "53944a90b76edd8fe82881ad2fe976523c1b799b",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_conference_center_roll_task_1600x1300_30fps_2views",
+    "target": "HumanCOIN/l1_conference_center_shape_task_1600x1300_30fps_2views",
+    "dataset": "jianzhi",
+    "status": "renamed",
+    "commit": "cf4891664c8174b89ba6a150793e2823e80ff037",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_hair_salon_wring_task_1600x1300_30fps_2views",
+    "target": "HumanCOIN/l1_hair_salon_dry_task_1600x1300_30fps_2views",
+    "dataset": "jianzhi",
+    "status": "renamed",
+    "commit": "6cfe230cae9b1a40b040f38cb70db80b219eefc6",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_healthcare_facility_scrape_task_1600x1300_30fps_2views",
+    "target": "HumanCOIN/l1_healthcare_facility_massage_task_1600x1300_30fps_2views",
+    "dataset": "jianzhi",
+    "status": "renamed",
+    "commit": "f9493cb95a2e775dd25f56051dc56ce275a5aac6",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_logistics_facility_attach_task_1600x1300_30fps_2views",
+    "target": "HumanCOIN/l1_logistics_facility_secure_task_1600x1300_30fps_2views",
+    "dataset": "jianzhi",
+    "status": "renamed",
+    "commit": "3303d38c4f34697f8bc6795cfbf1ec5303612038",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_other_attach_task_1600x1300_30fps_2views",
+    "target": "HumanCOIN/l1_other_secure_task_1600x1300_30fps_2views",
+    "dataset": "jianzhi",
+    "status": "renamed",
+    "commit": "2b5333e191271b6deb6ad91dac5b98f8ab8caf0d",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_restaurant_attach_task_1600x1300_30fps_2views",
+    "target": "HumanCOIN/l1_restaurant_secure_task_1600x1300_30fps_2views",
+    "dataset": "jianzhi",
+    "status": "renamed",
+    "commit": "e6c54ca83c9084916d4530c0954ed279a764027b",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_bedroom_attach_task_1920x1456_30fps_2views",
+    "target": "HumanCOIN/l1_bedroom_secure_task_1920x1456_30fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "e056abbf59efb9b952390d089551c3fdd3ed7f09",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_kitchen_scoop_task_1920x1456_30fps_2views",
+    "target": "HumanCOIN/l1_kitchen_collect_task_1920x1456_30fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "0ff6ef992b1b3fc8851680af0e9030590bc182bd",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_kitchen_load_task_1920x1456_25fps_2views",
+    "target": "HumanCOIN/l1_kitchen_fill_task_1920x1456_25fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "4ca99401fc5455c862fd1f74ea9f8fdb61f9daf5",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_laundry_area_load_task_1920x1456_30fps_2views",
+    "target": "HumanCOIN/l1_laundry_area_fill_task_1920x1456_30fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "0cfef8c7f2abbe3036a0b186f06bee611f620853",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_living_room_thread_task_1920x1456_30fps_2views",
+    "target": "HumanCOIN/l1_living_room_sew_task_1920x1456_30fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "b5900f2efe38c3efa5f64ba992ebbc52159a37c7",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_logistics_facility_scan_task_1920x1456_25fps_2views",
+    "target": "HumanCOIN/l1_logistics_facility_check_task_1920x1456_25fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "acf9a111a975462393bd7d25ba2acd52b83d2d6c",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_logistics_facility_scan_task_1920x1456_30fps_2views",
+    "target": "HumanCOIN/l1_logistics_facility_check_task_1920x1456_30fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "6ebdab5ba2e676c79b4e916483caa045ac45d71e",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_logistics_facility_load_task_1920x1456_30fps_2views",
+    "target": "HumanCOIN/l1_logistics_facility_fill_task_1920x1456_30fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "6723e67266de6e3bb1b16c70f3b7865bc61bed7b",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_logistics_facility_thread_task_1920x1456_30fps_2views",
+    "target": "HumanCOIN/l1_logistics_facility_sew_task_1920x1456_30fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "12450fb28171435476357f02e643f9ea8db42d02",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_office_punch_task_1920x1456_25fps_2views",
+    "target": "HumanCOIN/l1_office_processing_task_1920x1456_25fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "e4d28f90ce1f17a3870b311453df233f6c3918b8",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_office_punch_task_1920x1456_30fps_2views",
+    "target": "HumanCOIN/l1_office_processing_task_1920x1456_30fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "f0b03fea5684b3f125cc229de11b944574264c2a",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_office_wind_task_1920x1456_30fps_2views",
+    "target": "HumanCOIN/l1_office_shape_task_1920x1456_30fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "e47bb45a95918e93606a05cdb413e074b6101383",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_other_attach_task_1920x1456_25fps_2views",
+    "target": "HumanCOIN/l1_other_secure_task_1920x1456_25fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "37810691d4ff9b90a7c35397413c18997fe02c02",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_retail_store_load_task_1920x1456_25fps_2views",
+    "target": "HumanCOIN/l1_retail_store_fill_task_1920x1456_25fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "6437568746060b8cd183b30d1520f876bcb3a974",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_retail_store_load_task_1920x1456_30fps_2views",
+    "target": "HumanCOIN/l1_retail_store_fill_task_1920x1456_30fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "6659f2924f6e84f93dc02daf808ba292fff4baeb",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_retail_store_attach_task_1920x1456_30fps_2views",
+    "target": "HumanCOIN/l1_retail_store_secure_task_1920x1456_30fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "20096196797867dc7e79f0b07babe48ce5026672",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_storage_room_tear_task_1920x1456_30fps_2views",
+    "target": "HumanCOIN/l1_storage_room_cut_task_1920x1456_30fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "49f8127cf7ea810268efd19fa85780e96e837121",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_storage_room_thread_task_1920x1456_30fps_2views",
+    "target": "HumanCOIN/l1_storage_room_sew_task_1920x1456_30fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "e5445ff22e77ba7d2f3e12228c948f69f6dd62bb",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_storage_room_wind_task_1920x1456_30fps_2views",
+    "target": "HumanCOIN/l1_storage_room_shape_task_1920x1456_30fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "cc5925f3fd1940a8446dc48d270ffd147bb51837",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_study_room_attach_task_1920x1456_25fps_2views",
+    "target": "HumanCOIN/l1_study_room_secure_task_1920x1456_25fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "002176187f18ba64ee305982e4206345ded7d8cd",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_study_room_attach_task_1920x1456_30fps_2views",
+    "target": "HumanCOIN/l1_study_room_secure_task_1920x1456_30fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "db29568984577683593134d61ef676617f37a9a8",
+    "gated": "auto"
+  },
+  {
+    "source": "HumanCOIN/l1_workroom_thread_task_1920x1456_30fps_2views",
+    "target": "HumanCOIN/l1_workroom_sew_task_1920x1456_30fps_2views",
+    "dataset": "guanglun",
+    "status": "renamed",
+    "commit": "58b64c27374d04e85490ec17ed432aa8a70f4ff9",
+    "gated": "auto"
+  }
+]

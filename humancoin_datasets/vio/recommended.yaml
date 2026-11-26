@@ -1,0 +1,29 @@
+stage: vio
+
+runtime:
+  recommended_env: openvins_offline
+  requires_ros2: false
+  system_python: /share/project/liuyou/humancoin/envs/ego/bin/python
+
+io:
+  output_dir: "{session}/vio"
+
+prepare:
+  input_mode: raw
+  stereo_tolerance_s: 0.001
+  max_imu_gap_s: 0.05
+  max_imu_boundary_gap_s: 0.3
+  downsample_cameras: true
+  rectified_downsample_cameras: false
+
+run:
+  start_s: 0.0
+  duration_s:
+
+openvins:
+  root: ./open_vins
+  binary: "{openvins_root}/ov_msckf/build/roboego_openvins_offline"
+
+outputs:
+  report: "{output_dir}/report.json"
+  trajectory_npz: "{output_dir}/trajectory.npz"

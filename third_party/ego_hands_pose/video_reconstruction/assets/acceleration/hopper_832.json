@@ -1,0 +1,122 @@
+{
+  "encoder.down_blocks.2.resnets.0.conv2": {
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "num_warps": 4,
+    "num_stages": 3,
+    "maxnreg": 192
+  },
+  "encoder.down_blocks.2.resnets.1.conv1": {
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "num_warps": 4,
+    "num_stages": 3,
+    "maxnreg": 192
+  },
+  "encoder.down_blocks.2.resnets.1.conv2": {
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "num_warps": 4,
+    "num_stages": 3,
+    "maxnreg": 192
+  },
+  "encoder.down_blocks.3.resnets.0.conv1": {
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "num_warps": 4,
+    "num_stages": 4,
+    "maxnreg": null
+  },
+  "encoder.down_blocks.3.resnets.0.conv2": {
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "num_warps": 4,
+    "num_stages": 3,
+    "maxnreg": null
+  },
+  "encoder.down_blocks.3.resnets.1.conv1": {
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "num_warps": 4,
+    "num_stages": 4,
+    "maxnreg": null
+  },
+  "encoder.down_blocks.3.resnets.1.conv2": {
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "num_warps": 4,
+    "num_stages": 3,
+    "maxnreg": null
+  },
+  "encoder.mid_block.resnets.0.conv1": {
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "num_warps": 4,
+    "num_stages": 3,
+    "maxnreg": null
+  },
+  "encoder.mid_block.resnets.0.conv2": {
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "num_warps": 4,
+    "num_stages": 3,
+    "maxnreg": null
+  },
+  "encoder.mid_block.resnets.1.conv1": {
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "num_warps": 4,
+    "num_stages": 3,
+    "maxnreg": null
+  },
+  "encoder.mid_block.resnets.1.conv2": {
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "num_warps": 4,
+    "num_stages": 3,
+    "maxnreg": null
+  },
+  "encoder.down_blocks.2.downsampler.time_conv": {
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "num_warps": 4,
+    "num_stages": 3,
+    "maxnreg": null
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "encoder.conv_in": {
+    "implementation": "conv2d",
+    "alignment": 1,
+    "layout": "channels_last",
+    "compute_dtype": "float16"
+  },
+  "encoder.down_blocks.0.resnets.0.conv1": {
+    "implementation": "native",
+    "alignment": 32,
+    "layout": "contiguous",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.down_blocks.0.resnets.0.conv2": {
+    "implementation": "native",
+    "alignment": 1,
+    "layout": "contiguous",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.down_blocks.0.resnets.1.conv1": {
+    "implementation": "native",
+    "alignment": 16,
+    "layout": "contiguous",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.down_blocks.0.resnets.1.conv2": {
+    "implementation": "native",
+    "alignment": 32,
+    "layout": "contiguous",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.down_blocks.0.downsampler.resample.1": {
+    "implementation": "native",
+    "alignment": 1,
+    "layout": "contiguous",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.down_blocks.1.resnets.0.conv_shortcut": {
+    "implementation": "native",
+    "alignment": 32,
+    "layout": "contiguous",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.down_blocks.1.resnets.0.conv1": {
+    "implementation": "native",
+    "alignment": 32,
+    "layout": "contiguous",
+    "compute_dtype": "float16"
+  },
+  "encoder.down_blocks.1.resnets.0.conv2": {
+    "implementation": "native",
+    "alignment": 32,
+    "layout": "contiguous",
+    "compute_dtype": "float16"
+  },
+  "encoder.down_blocks.1.resnets.1.conv1": {
+    "implementation": "native",
+    "alignment": 16,
+    "layout": "contiguous",
+    "compute_dtype": "float16"
+  },
+  "encoder.down_blocks.1.resnets.1.conv2": {
+    "implementation": "native",
+    "alignment": 16,
+    "layout": "contiguous",
+    "compute_dtype": "float16"
+  },
+  "encoder.down_blocks.1.downsampler.resample.1": {
+    "implementation": "native",
+    "alignment": 16,
+    "layout": "contiguous",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.down_blocks.2.resnets.0.conv_shortcut": {
+    "implementation": "native",
+    "alignment": 16,
+    "layout": "contiguous",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.down_blocks.2.resnets.0.conv1": {
+    "implementation": "conv2d",
+    "alignment": 1,
+    "layout": "contiguous",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.down_blocks.2.resnets.0.conv2": {
+    "implementation": "native",
+    "alignment": 32,
+    "layout": "contiguous",
+    "compute_dtype": "float16"
+  },
+  "encoder.down_blocks.2.resnets.1.conv1": {
+    "implementation": "native",
+    "alignment": 1,
+    "layout": "contiguous",
+    "compute_dtype": "float16"
+  },
+  "encoder.down_blocks.2.resnets.1.conv2": {
+    "implementation": "conv2d",
+    "alignment": 32,
+    "layout": "contiguous",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.down_blocks.2.downsampler.resample.1": {
+    "implementation": "native",
+    "alignment": 32,
+    "layout": "contiguous",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.down_blocks.3.resnets.0.conv1": {
+    "implementation": "native",
+    "alignment": 1,
+    "layout": "channels_last",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.down_blocks.3.resnets.0.conv2": {
+    "implementation": "native",
+    "alignment": 32,
+    "layout": "contiguous",
+    "compute_dtype": "float16"
+  },
+  "encoder.down_blocks.3.resnets.1.conv1": {
+    "implementation": "native",
+    "alignment": 32,
+    "layout": "channels_last",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.down_blocks.3.resnets.1.conv2": {
+    "implementation": "native",
+    "alignment": 32,
+    "layout": "channels_last",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.mid_block.resnets.0.conv1": {
+    "implementation": "native",
+    "alignment": 32,
+    "layout": "channels_last",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.mid_block.resnets.0.conv2": {
+    "implementation": "native",
+    "alignment": 16,
+    "layout": "channels_last",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.mid_block.attentions.0.to_qkv": {
+    "implementation": "native",
+    "alignment": 16,
+    "layout": "contiguous",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.mid_block.attentions.0.proj": {
+    "implementation": "native",
+    "alignment": 16,
+    "layout": "channels_last",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.mid_block.resnets.1.conv1": {
+    "implementation": "native",
+    "alignment": 16,
+    "layout": "channels_last",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.mid_block.resnets.1.conv2": {
+    "implementation": "native",
+    "alignment": 1,
+    "layout": "channels_last",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.conv_out": {
+    "implementation": "conv2d",
+    "alignment": 16,
+    "layout": "contiguous",
+    "compute_dtype": "bfloat16"
+  },
+  "quant_conv": {
+    "implementation": "native",
+    "alignment": 32,
+    "layout": "contiguous",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.down_blocks.1.downsampler.time_conv": {
+    "implementation": "conv2d",
+    "alignment": 32,
+    "layout": "contiguous",
+    "compute_dtype": "bfloat16"
+  },
+  "encoder.down_blocks.2.downsampler.time_conv": {
+    "implementation": "conv2d",
+    "alignment": 32,
+    "layout": "contiguous",
+    "compute_dtype": "bfloat16"
+  }
+}

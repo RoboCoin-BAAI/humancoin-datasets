@@ -1,0 +1,181 @@
+{
+  "version": "v0.5-cover",
+  "source": "HumanCOIN_任务_动作_原子动作词表_v0.5_精选99词.docx",
+  "policy": "closed_enum",
+  "output_field": "common_task_name",
+  "output_suffix": "_task",
+  "model_may_add_categories": false,
+  "classification_basis": [
+    "primary_action",
+    "object",
+    "task_goal"
+  ],
+  "unresolved_policy": "use_other_task_and_record_for_review",
+  "categories": [
+    {
+      "name": "clean",
+      "zh": "清洁"
+    },
+    {
+      "name": "organize",
+      "zh": "整理"
+    },
+    {
+      "name": "move",
+      "zh": "移动搬运"
+    },
+    {
+      "name": "assemble",
+      "zh": "组装"
+    },
+    {
+      "name": "disassemble",
+      "zh": "拆解"
+    },
+    {
+      "name": "open",
+      "zh": "打开"
+    },
+    {
+      "name": "close",
+      "zh": "关闭"
+    },
+    {
+      "name": "fold",
+      "zh": "折叠"
+    },
+    {
+      "name": "cut",
+      "zh": "切割"
+    },
+    {
+      "name": "pack",
+      "zh": "包装"
+    },
+    {
+      "name": "pour",
+      "zh": "倾倒"
+    },
+    {
+      "name": "apply",
+      "zh": "涂抹施加"
+    },
+    {
+      "name": "secure",
+      "zh": "固定紧固"
+    },
+    {
+      "name": "replace",
+      "zh": "更换"
+    },
+    {
+      "name": "operate",
+      "zh": "设备操作"
+    },
+    {
+      "name": "check",
+      "zh": "检查检测"
+    },
+    {
+      "name": "write",
+      "zh": "书写绘图"
+    },
+    {
+      "name": "groom",
+      "zh": "梳理护理"
+    },
+    {
+      "name": "stir",
+      "zh": "搅拌混合"
+    },
+    {
+      "name": "discard",
+      "zh": "丢弃处置"
+    },
+    {
+      "name": "store",
+      "zh": "收纳存放"
+    },
+    {
+      "name": "collect",
+      "zh": "收集聚集"
+    },
+    {
+      "name": "fill",
+      "zh": "填充装载"
+    },
+    {
+      "name": "peel",
+      "zh": "剥皮剥离"
+    },
+    {
+      "name": "dry",
+      "zh": "干燥脱水"
+    },
+    {
+      "name": "polish",
+      "zh": "打磨抛光"
+    },
+    {
+      "name": "sew",
+      "zh": "缝纫编织"
+    },
+    {
+      "name": "shape",
+      "zh": "塑形变形"
+    },
+    {
+      "name": "massage",
+      "zh": "按摩护理"
+    },
+    {
+      "name": "remove",
+      "zh": "移除取下"
+    },
+    {
+      "name": "manipulation",
+      "zh": "物品操控"
+    },
+    {
+      "name": "processing",
+      "zh": "物品处理"
+    },
+    {
+      "name": "application",
+      "zh": "施加处理"
+    },
+    {
+      "name": "interaction",
+      "zh": "交互操作"
+    },
+    {
+      "name": "service",
+      "zh": "服务护理"
+    },
+    {
+      "name": "cover",
+      "zh": "覆盖／铺设",
+      "definition": "给物体或表面覆盖、铺设保护物或织物，以形成遮盖或铺覆状态为主要目标。",
+      "includes": [
+        "盖沙发罩",
+        "铺床单",
+        "铺桌布"
+      ],
+      "excludes": [
+        {
+          "example": "包裹商品",
+          "category": "pack"
+        },
+        {
+          "example": "盖瓶盖",
+          "category": "close"
+        },
+        {
+          "example": "涂抹表面",
+          "category": "apply"
+        }
+      ]
+    }
+  ],
+  "fallback_value": "other_task"
+}

@@ -1,0 +1,182 @@
+[
+  {
+    "repo_id": "HumanCOIN/l1_beauty_salon_file_task_1600x1300_30fps_2views",
+    "sha": "0353387ccc5be80a463ac581ab9abc55df6b2e9d",
+    "target": "HumanCOIN/l1_beauty_salon_polish_task_1600x1300_30fps_2views",
+    "samples": 5
+  },
+  {
+    "repo_id": "HumanCOIN/l1_hair_salon_attach_task_1600x1300_30fps_2views",
+    "sha": "ecc31eb14b5ebfc1524e86f2f506397a98fceb45",
+    "target": "HumanCOIN/l1_hair_salon_secure_task_1600x1300_30fps_2views",
+    "samples": 6
+  },
+  {
+    "repo_id": "HumanCOIN/l1_hair_salon_braid_task_1600x1300_30fps_2views",
+    "sha": "86a68edfe5d8299aa83578ff15905808d2449f59",
+    "target": "HumanCOIN/l1_hair_salon_groom_task_1600x1300_30fps_2views",
+    "samples": 2
+  },
+  {
+    "repo_id": "HumanCOIN/l1_hair_salon_comb_task_1600x1300_30fps_2views",
+    "sha": "a422a36e2b7451c542631f16146fcf2187bd7760",
+    "target": "HumanCOIN/l1_hair_salon_groom_task_1600x1300_30fps_2views",
+    "samples": 1
+  },
+  {
+    "repo_id": "HumanCOIN/l1_hair_salon_style_task_1600x1300_30fps_2views",
+    "sha": "ed08dc3555b262757ce59dce2209432d3d2d53fd",
+    "target": "HumanCOIN/l1_hair_salon_groom_task_1600x1300_30fps_2views",
+    "samples": 2
+  },
+  {
+    "repo_id": "HumanCOIN/l1_hair_salon_brush_task_1600x1300_30fps_2views",
+    "sha": "ef242b3a3429b98c2b44d37e088701ea0806dc47",
+    "target": "HumanCOIN/l1_hair_salon_groom_task_1600x1300_30fps_2views",
+    "samples": 9
+  },
+  {
+    "repo_id": "HumanCOIN/l1_hair_salon_straighten_task_1600x1300_30fps_2views",
+    "sha": "9c9af4aebf1ba4f677a980fd58b55cee4b128d70",
+    "target": "HumanCOIN/l1_hair_salon_groom_task_1600x1300_30fps_2views",
+    "samples": 4
+  },
+  {
+    "repo_id": "HumanCOIN/l1_living_room_scrape_task_1600x1300_30fps_2views",
+    "sha": "bbfb1cbb4611bf45402dd04144707cb66be076b0",
+    "target": "HumanCOIN/l1_living_room_clean_task_1600x1300_30fps_2views",
+    "samples": 1
+  },
+  {
+    "repo_id": "HumanCOIN/l1_workroom_attach_task_1600x1300_30fps_2views",
+    "sha": "6f814ca2fd2d774d734f98fcd4144bd833cb3979",
+    "target": "HumanCOIN/l1_workroom_secure_task_1600x1300_30fps_2views",
+    "samples": 2
+  },
+  {
+    "repo_id": "HumanCOIN/l1_kitchen_load_task_1920x1456_30fps_2views",
+    "sha": "353d4241bf4da512ea2836a831126fa88ef077a1",
+    "target": "HumanCOIN/l1_kitchen_fill_task_1920x1456_30fps_2views",
+    "samples": 3
+  },
+  {
+    "repo_id": "HumanCOIN/l1_kitchen_attach_task_1920x1456_30fps_2views",
+    "sha": "b3d4f084db43c0eb87231015316dfbe6ab608332",
+    "target": "HumanCOIN/l1_kitchen_secure_task_1920x1456_30fps_2views",
+    "samples": 2
+  },
+  {
+    "repo_id": "HumanCOIN/l1_retail_store_attach_task_1600x1300_30fps_2views",
+    "sha": "71bd55033defd604397541d292c42e6e76d12a4a",
+    "target": "HumanCOIN/l1_retail_store_secure_task_1600x1300_30fps_2views",
+    "samples": 41
+  },
+  {
+    "repo_id": "HumanCOIN/l1_laundry_area_roll_task_1920x1456_25fps_2views",
+    "sha": "7137cd387c573b789976cc905e5f65b31eab7906",
+    "target": "HumanCOIN/l1_laundry_area_fold_task_1920x1456_25fps_2views",
+    "samples": 1
+  },
+  {
+    "repo_id": "HumanCOIN/l1_living_room_unfold_task_1920x1456_30fps_2views",
+    "sha": "5eb29aa3de6fda3e8ce6442efbea622e7f25f050",
+    "target": "HumanCOIN/l1_living_room_fold_task_1920x1456_30fps_2views",
+    "samples": 1
+  },
+  {
+    "repo_id": "HumanCOIN/l1_living_room_attach_task_1920x1456_30fps_2views",
+    "sha": "f718ee2a388e25d3ad1a183665e201c5dec3b407",
+    "target": "HumanCOIN/l1_living_room_secure_task_1920x1456_30fps_2views",
+    "samples": 3
+  },
+  {
+    "repo_id": "HumanCOIN/l1_living_room_roll_task_1920x1456_30fps_2views",
+    "sha": "b7eee5edd7af1ba5a06e3aa54f0b08b3e1e19583",
+    "target": "HumanCOIN/l1_living_room_shape_task_1920x1456_30fps_2views",
+    "samples": 1
+  },
+  {
+    "repo_id": "HumanCOIN/l1_beverage_shop_scrape_task_1600x1300_30fps_2views",
+    "sha": "6d44185f218239c59a605cd6fbdd4883cc914f97",
+    "target": "HumanCOIN/l1_beverage_shop_clean_task_1600x1300_30fps_2views",
+    "samples": 2
+  },
+  {
+    "repo_id": "HumanCOIN/l1_logistics_facility_tear_task_1920x1456_30fps_2views",
+    "sha": "92ddcbf87af434748eaa7aa47f55530c498b8808",
+    "target": "HumanCOIN/l1_logistics_facility_cut_task_1920x1456_30fps_2views",
+    "samples": 4
+  },
+  {
+    "repo_id": "HumanCOIN/l1_laundry_area_roll_task_1920x1456_30fps_2views",
+    "sha": "057e9ca8a0fb71279a1d19be4a5908d1a6b6b54c",
+    "target": "HumanCOIN/l1_laundry_area_fold_task_1920x1456_30fps_2views",
+    "samples": 2
+  },
+  {
+    "repo_id": "HumanCOIN/l1_logistics_facility_attach_task_1920x1456_25fps_2views",
+    "sha": "13de6751a87ef3d0572beb9bf39ad14c3aabb494",
+    "target": "HumanCOIN/l1_logistics_facility_secure_task_1920x1456_25fps_2views",
+    "samples": 14
+  },
+  {
+    "repo_id": "HumanCOIN/l1_logistics_facility_unfold_task_1920x1456_30fps_2views",
+    "sha": "652a0b06ac1add1040a1c35cf1e043d54aba9d91",
+    "target": "HumanCOIN/l1_logistics_facility_fold_task_1920x1456_30fps_2views",
+    "samples": 1
+  },
+  {
+    "repo_id": "HumanCOIN/l1_office_load_task_1920x1456_30fps_2views",
+    "sha": "1f8b4407fe4e1609a859ea30749e4099697ac51d",
+    "target": "HumanCOIN/l1_office_fill_task_1920x1456_30fps_2views",
+    "samples": 2
+  },
+  {
+    "repo_id": "HumanCOIN/l1_office_attach_task_1920x1456_25fps_2views",
+    "sha": "b3a591b84e87376d57f1be2acd40c6f2e1983fd2",
+    "target": "HumanCOIN/l1_office_secure_task_1920x1456_25fps_2views",
+    "samples": 6
+  },
+  {
+    "repo_id": "HumanCOIN/l1_office_staple_task_1920x1456_25fps_2views",
+    "sha": "0dfa704ff2987622ed4564aa0cf2ac1d85d57cb6",
+    "target": "HumanCOIN/l1_office_secure_task_1920x1456_25fps_2views",
+    "samples": 7
+  },
+  {
+    "repo_id": "HumanCOIN/l1_retail_store_scan_task_1920x1456_30fps_2views",
+    "sha": "c6ddd47513ddced71551fe683826d524c00a6b92",
+    "target": "HumanCOIN/l1_retail_store_check_task_1920x1456_30fps_2views",
+    "samples": 1
+  },
+  {
+    "repo_id": "HumanCOIN/l1_storage_room_load_task_1920x1456_30fps_2views",
+    "sha": "de2fe36d39c8e570eb8269e2531e3e4ed7276c5d",
+    "target": "HumanCOIN/l1_storage_room_fill_task_1920x1456_30fps_2views",
+    "samples": 1
+  },
+  {
+    "repo_id": "HumanCOIN/l1_office_attach_task_1920x1456_30fps_2views",
+    "sha": "5ebbdd9c8ae02ecd1dfa29a6be618c635ca1ef9b",
+    "target": "HumanCOIN/l1_office_secure_task_1920x1456_30fps_2views",
+    "samples": 4
+  },
+  {
+    "repo_id": "HumanCOIN/l1_office_staple_task_1920x1456_30fps_2views",
+    "sha": "9604a37fd9cb66a73cf78d965cf65a37dce8203e",
+    "target": "HumanCOIN/l1_office_secure_task_1920x1456_30fps_2views",
+    "samples": 17
+  },
+  {
+    "repo_id": "HumanCOIN/l1_storage_room_attach_task_1920x1456_30fps_2views",
+    "sha": "ee6f8d48c31479b205e4141832f044a786f43582",
+    "target": "HumanCOIN/l1_storage_room_secure_task_1920x1456_30fps_2views",
+    "samples": 2
+  },
+  {
+    "repo_id": "HumanCOIN/l1_logistics_facility_attach_task_1920x1456_30fps_2views",
+    "sha": "950f68e0899520547cf91b0eafd4d7750f1644a7",
+    "target": "HumanCOIN/l1_logistics_facility_secure_task_1920x1456_30fps_2views",
+    "samples": 85
+  }
+]

@@ -1,0 +1,10 @@
+hub: huggingface
+namespace: HumanCOIN
+collection: https://huggingface.co/collections/HumanCOIN/humancoin-all-datasets
+# Add local dataset directories or supply --folders on the command line.
+folders: []
+create_repo: false
+private: false
+readme_only: false
+max_retries: 3
+skip_errors: false

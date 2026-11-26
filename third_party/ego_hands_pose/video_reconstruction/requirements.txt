@@ -1,0 +1,12 @@
+torch>=2.6,<3
+diffusers==0.39.0
+transformers>=4.48,<6
+accelerate>=1.0
+safetensors>=0.5
+einops>=0.8
+numpy>=1.26,<3
+Pillow>=10
+av>=18,<19
+threadpoolctl>=3
+smplx==0.1.28
+gradio>=6.26,<6.28

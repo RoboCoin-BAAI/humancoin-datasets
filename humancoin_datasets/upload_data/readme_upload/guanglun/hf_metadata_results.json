@@ -1,0 +1,212 @@
+[
+  {
+    "repo_id": "HumanCOIN/l1_beauty_salon_groom_task_1600x1300_30fps_2views",
+    "status": "done",
+    "metadata_files": 4,
+    "commit": "313a5de51dbc501aa7f31bccc5257d1b4afaaf4f"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_beauty_salon_dry_task_1600x1300_30fps_2views",
+    "status": "done",
+    "metadata_files": 4,
+    "commit": "19857f3032695ac92d016d3d68fd85f148ff0e96"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_beauty_salon_massage_task_1600x1300_30fps_2views",
+    "status": "done",
+    "metadata_files": 6,
+    "commit": "e4776443f2b0fdc6c050b1a9e3916a5aae41095e"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_bedroom_secure_task_1600x1300_30fps_2views",
+    "status": "done",
+    "metadata_files": 8,
+    "commit": "ad1441d507f811c282043515de522784c737a41b"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_beauty_salon_secure_task_1600x1300_30fps_2views",
+    "status": "done",
+    "metadata_files": 24,
+    "commit": "769d4b1654708c881078e27a11964917ed927d98"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_beverage_shop_secure_task_1600x1300_30fps_2views",
+    "status": "done",
+    "metadata_files": 50,
+    "commit": "43b76fc3c871e01eb1b99f4147d76e14a524f3a3"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_conference_center_secure_task_1600x1300_30fps_2views",
+    "status": "done",
+    "metadata_files": 4,
+    "commit": "a49c4ca68b65a0526473a914aae82f7ec628d036"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_conference_center_shape_task_1600x1300_30fps_2views",
+    "status": "done",
+    "metadata_files": 4,
+    "commit": "629ffbd8576acec0e92711d7976ca90f436ee6f9"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_hair_salon_dry_task_1600x1300_30fps_2views",
+    "status": "done",
+    "metadata_files": 12,
+    "commit": "c4f5f8cfb9ba4e09d0ce374755882f26d6ee8f61"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_healthcare_facility_massage_task_1600x1300_30fps_2views",
+    "status": "done",
+    "metadata_files": 6,
+    "commit": "bf35bd8212359b58f54f369e9a060546221766a0"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_logistics_facility_secure_task_1600x1300_30fps_2views",
+    "status": "done",
+    "metadata_files": 20,
+    "commit": "169492d6f388e468552d85a6945f08031544b895"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_other_secure_task_1600x1300_30fps_2views",
+    "status": "done",
+    "metadata_files": 4,
+    "commit": "3c962079fe45bb23a22014d31b7af78ec5306e73"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_restaurant_secure_task_1600x1300_30fps_2views",
+    "status": "done",
+    "metadata_files": 4,
+    "commit": "4093721c2660f8be593c936486d3b0e59723748b"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_bedroom_secure_task_1920x1456_30fps_2views",
+    "status": "done",
+    "metadata_files": 6,
+    "commit": "8acacbe07e2b5ac619b10ba32643a2903c846dd1"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_kitchen_collect_task_1920x1456_30fps_2views",
+    "status": "done",
+    "metadata_files": 14,
+    "commit": "a483ba942462e5f8f334f4f2aa5741733cd931b4"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_kitchen_fill_task_1920x1456_25fps_2views",
+    "status": "done",
+    "metadata_files": 4,
+    "commit": "50a14d6dbcd41b852863ba375747fa668162948b"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_laundry_area_fill_task_1920x1456_30fps_2views",
+    "status": "done",
+    "metadata_files": 8,
+    "commit": "2b011c5a84177436ddeb71e2dd0e2b7c3385749f"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_logistics_facility_check_task_1920x1456_25fps_2views",
+    "status": "done",
+    "metadata_files": 4,
+    "commit": "2aacc8c4946b742d3199402a0617765ba3783949"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_living_room_sew_task_1920x1456_30fps_2views",
+    "status": "done",
+    "metadata_files": 8,
+    "commit": "bc4b329e1c8746b8f2d42f48ced7587aa3efcd6c"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_logistics_facility_sew_task_1920x1456_30fps_2views",
+    "status": "done",
+    "metadata_files": 4,
+    "commit": "8c3a8867b48cedd61865ac9e46ff99fc067a3dd6"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_logistics_facility_fill_task_1920x1456_30fps_2views",
+    "status": "done",
+    "metadata_files": 14,
+    "commit": "e8f3ead365925deffbc64135bf9ef9725d39e332"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_logistics_facility_check_task_1920x1456_30fps_2views",
+    "status": "done",
+    "metadata_files": 80,
+    "commit": "c13421163639109e06c38b760dec06fa6bed457f"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_office_processing_task_1920x1456_25fps_2views",
+    "status": "done",
+    "metadata_files": 8,
+    "commit": "a5f0e2c5dc0d1cba86e9bdb49d219a127f1f8812"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_office_processing_task_1920x1456_30fps_2views",
+    "status": "done",
+    "metadata_files": 14,
+    "commit": "c07bc98ce60128179b63c392f3695d1653354154"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_other_secure_task_1920x1456_25fps_2views",
+    "status": "done",
+    "metadata_files": 4,
+    "commit": "899d2f71482a00b67d6f02ae93e6f4f2205296ec"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_office_shape_task_1920x1456_30fps_2views",
+    "status": "done",
+    "metadata_files": 32,
+    "commit": "80437a1e34a4d4efb9425ec5ae20cee34d7dc2be"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_retail_store_fill_task_1920x1456_25fps_2views",
+    "status": "done",
+    "metadata_files": 4,
+    "commit": "3cc003408410319197788e2ad74a33f786bbb788"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_retail_store_fill_task_1920x1456_30fps_2views",
+    "status": "done",
+    "metadata_files": 18,
+    "commit": "4c3c70e3edec0cd94d5490539fdaa5154dc65d17"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_storage_room_cut_task_1920x1456_30fps_2views",
+    "status": "done",
+    "metadata_files": 6,
+    "commit": "02f1e6e0877d12615b0b1d4a261d68d5163070eb"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_retail_store_secure_task_1920x1456_30fps_2views",
+    "status": "done",
+    "metadata_files": 10,
+    "commit": "d6939490ad936446497be2879bcf45e1ae74bf90"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_study_room_secure_task_1920x1456_25fps_2views",
+    "status": "done",
+    "metadata_files": 4,
+    "commit": "38c61ac160425d35ba95d91f2af3a58f9a04f42c"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_storage_room_sew_task_1920x1456_30fps_2views",
+    "status": "done",
+    "metadata_files": 6,
+    "commit": "20912934c07f567e2abcbb745039e04498f02809"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_storage_room_shape_task_1920x1456_30fps_2views",
+    "status": "done",
+    "metadata_files": 24,
+    "commit": "f1e48d56a79b3d56d4bd306b87962205024dce08"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_study_room_secure_task_1920x1456_30fps_2views",
+    "status": "done",
+    "metadata_files": 12,
+    "commit": "903bc649e38d63f9b32a3b138c445cdcd3667d2c"
+  },
+  {
+    "repo_id": "HumanCOIN/l1_workroom_sew_task_1920x1456_30fps_2views",
+    "status": "done",
+    "metadata_files": 6,
+    "commit": "73fc99b67c77b5cd02e6b111c7119bbfff8b7b24"
+  }
+]

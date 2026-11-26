@@ -1,0 +1,41 @@
+{
+ "about": "Pinned comparison models and output limits. Reasoning effort inherits the top-level setting unless overridden. Sampling and image settings follow label/policy.py; saved requests record the actual evidence supplied to each model. In-context runs include a reference annotation. No temperature, top_p or seed is sent.",
+ "reasoning": "medium",
+ "max_tokens": 64000,
+ "reference": "astra",
+ "models": {
+  "astra": {
+   "model": "openai/gpt-6-astra",
+   "name": "Astra"
+  },
+  "opus55": {
+   "model": "anthropic/claude-opus-5.5",
+   "name": "Claude Opus 5.5"
+  },
+  "sol6": {
+   "model": "openai/gpt-6-sol",
+   "name": "GPT-6 Sol"
+  },
+  "dsv41f": {
+   "model": "deepseek/deepseek-v4.1-flash",
+   "name": "DeepSeek v4.1 flash"
+  },
+  "sol61_medium": {
+   "model": "openai/gpt-6.1-sol",
+   "name": "GPT-6.1 Sol, medium reasoning",
+   "reasoning": "medium"
+  },
+  "sol61_high": {
+   "model": "openai/gpt-6.1-sol",
+   "name": "GPT-6.1 Sol, high reasoning",
+   "reasoning": "high"
+  }
+ },
+ "with_example": [
+  "opus55",
+  "sol6",
+  "dsv41f",
+  "sol61_medium",
+  "sol61_high"
+ ]
+}

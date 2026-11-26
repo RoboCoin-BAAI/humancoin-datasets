@@ -1,0 +1,10 @@
+{
+  "device": "cuda:0",
+  "precision": "auto",
+  "window_batch_size": 1,
+  "cpu_threads": 4,
+  "compile": true,
+  "max_frames": 0,
+  "overlay_backend": "auto",
+  "overlay_encoder": "auto"
+}

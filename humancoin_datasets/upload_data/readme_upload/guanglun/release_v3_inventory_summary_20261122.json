@@ -1,0 +1,271 @@
+{
+  "batches": [
+    {
+      "dataset": "jianzhi",
+      "batch": "batch_0000072",
+      "exists": true,
+      "samples": 100
+    },
+    {
+      "dataset": "jianzhi",
+      "batch": "batch_0000073",
+      "exists": true,
+      "samples": 100
+    },
+    {
+      "dataset": "jianzhi",
+      "batch": "batch_0000074",
+      "exists": true,
+      "samples": 100
+    },
+    {
+      "dataset": "jianzhi",
+      "batch": "batch_0000075",
+      "exists": true,
+      "samples": 100
+    },
+    {
+      "dataset": "jianzhi",
+      "batch": "batch_0000076",
+      "exists": true,
+      "samples": 100
+    },
+    {
+      "dataset": "jianzhi",
+      "batch": "batch_0000077",
+      "exists": true,
+      "samples": 99
+    },
+    {
+      "dataset": "jianzhi",
+      "batch": "batch_0000078",
+      "exists": true,
+      "samples": 100
+    },
+    {
+      "dataset": "jianzhi",
+      "batch": "batch_0000079",
+      "exists": true,
+      "samples": 99
+    },
+    {
+      "dataset": "jianzhi",
+      "batch": "batch_0000080",
+      "exists": true,
+      "samples": 100
+    },
+    {
+      "dataset": "jianzhi",
+      "batch": "batch_0000081",
+      "exists": true,
+      "samples": 100
+    },
+    {
+      "dataset": "jianzhi",
+      "batch": "batch_0000082",
+      "exists": true,
+      "samples": 100
+    },
+    {
+      "dataset": "jianzhi",
+      "batch": "batch_0000083",
+      "exists": true,
+      "samples": 99
+    },
+    {
+      "dataset": "jianzhi",
+      "batch": "batch_0000084",
+      "exists": true,
+      "samples": 100
+    },
+    {
+      "dataset": "jianzhi",
+      "batch": "batch_0000085",
+      "exists": true,
+      "samples": 100
+    },
+    {
+      "dataset": "jianzhi",
+      "batch": "batch_0000086",
+      "exists": true,
+      "samples": 99
+    },
+    {
+      "dataset": "jianzhi",
+      "batch": "batch_0000087",
+      "exists": true,
+      "samples": 100
+    },
+    {
+      "dataset": "jianzhi",
+      "batch": "batch_0000088",
+      "exists": true,
+      "samples": 100
+    },
+    {
+      "dataset": "jianzhi",
+      "batch": "batch_0000089",
+      "exists": true,
+      "samples": 100
+    },
+    {
+      "dataset": "jianzhi",
+      "batch": "batch_0000090",
+      "exists": true,
+      "samples": 100
+    },
+    {
+      "dataset": "jianzhi",
+      "batch": "batch_0000091",
+      "exists": true,
+      "samples": 99
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000050",
+      "exists": true,
+      "samples": 94
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000051",
+      "exists": true,
+      "samples": 93
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000052",
+      "exists": true,
+      "samples": 98
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000053",
+      "exists": true,
+      "samples": 87
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000054",
+      "exists": true,
+      "samples": 88
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000055",
+      "exists": true,
+      "samples": 88
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000056",
+      "exists": true,
+      "samples": 97
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000057",
+      "exists": true,
+      "samples": 95
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000058",
+      "exists": true,
+      "samples": 90
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000059",
+      "exists": true,
+      "samples": 95
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000060",
+      "exists": true,
+      "samples": 90
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000061",
+      "exists": true,
+      "samples": 90
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000062",
+      "exists": true,
+      "samples": 89
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000063",
+      "exists": true,
+      "samples": 96
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000064",
+      "exists": true,
+      "samples": 93
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000065",
+      "exists": true,
+      "samples": 99
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000066",
+      "exists": true,
+      "samples": 94
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000067",
+      "exists": true,
+      "samples": 99
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000068",
+      "exists": true,
+      "samples": 98
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000069",
+      "exists": true,
+      "samples": 98
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000070",
+      "exists": true,
+      "samples": 99
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000071",
+      "exists": true,
+      "samples": 79
+    },
+    {
+      "dataset": "guanglun",
+      "batch": "batch_0000072",
+      "exists": true,
+      "samples": 93
+    }
+  ],
+  "samples": {
+    "jianzhi": 1995,
+    "guanglun": 2142
+  },
+  "privacy_candidates": 671,
+  "errors": 0,
+  "missing_samples": {},
+  "empty_samples": {},
+  "policy": "Reports only. No sample moves or modifications. Privacy keyword hits need semantic review; no hit does not certify absence."
+}

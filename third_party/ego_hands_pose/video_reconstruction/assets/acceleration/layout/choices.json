@@ -1,0 +1,45 @@
+{
+  "encoder.down_blocks.0.resnets.0.conv1": {
+    "stages": 3,
+    "maxnreg": 128
+  },
+  "encoder.down_blocks.0.resnets.0.conv2": {
+    "stages": 3,
+    "maxnreg": 128
+  },
+  "encoder.down_blocks.0.resnets.1.conv1": {
+    "stages": 3,
+    "maxnreg": 128
+  },
+  "encoder.down_blocks.0.resnets.1.conv2": {
+    "stages": 3,
+    "maxnreg": 128
+  },
+  "encoder.down_blocks.1.resnets.0.conv2": {
+    "stages": 3,
+    "maxnreg": 128
+  },
+  "encoder.down_blocks.1.resnets.1.conv1": {
+    "stages": 3,
+    "maxnreg": 128
+  },
+  "encoder.down_blocks.1.resnets.1.conv2": {
+    "stages": 3,
+    "maxnreg": 128
+  },
+  "encoder.down_blocks.2.resnets.0.conv2": {
+    "stages": 2
+  },
+  "encoder.down_blocks.2.resnets.1.conv1": {
+    "stages": 2
+  },
+  "encoder.down_blocks.2.resnets.1.conv2": {
+    "stages": 2
+  },
+  "encoder.down_blocks.3.resnets.0.conv1": {
+    "stages": 3
+  },
+  "encoder.down_blocks.3.resnets.1.conv1": {
+    "stages": 3
+  }
+}

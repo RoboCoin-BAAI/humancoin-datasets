@@ -1,0 +1,27 @@
+# 共用视频标注入口
+
+结构化阶段默认最多尝试 3 次（首次加 2 次重试），覆盖网络故障、超时、HTTP 408/409/425/429/5xx 临时错误、响应不完整、JSON 解析、结构化语义校验及最终 Schema 校验。两次等待为 2 秒、4 秒。可设置 `ARGUS_STRUCTURED_MAX_ATTEMPTS=1..10` 调整总尝试次数。401/403 等永久请求错误及预算不足不重试；预算按每次请求单独检查。每次尝试记录到收据；网络超时等情况下重试可能产生重复服务商费用。用尽次数后保留工作目录和收据，重新启动不会绕过旧收据无限重试。该策略不改变前面的整段视频标注阶段。
+
+在 argus 仓库根目录执行：
+
+```powershell
+python -m review.base.run `
+  --data D:\data\example\episode_000000.mp4 `
+  --output D:\data\example\annotation\episode_000000_structured.json `
+  --model qwen3.7-plus --sample-fps 1 --concurrency 1
+```
+
+接受任意目录中的单条本地视频，无数据集命名要求。固定使用 ego_head 提示词，默认模型 qwen3.7-plus、关闭 board。模型密钥和服务端配置沿用共享 review。其他选项（采样、模型、超时、预算、dataset-note、annotation-start-s 等）转发给 review。
+
+流程：视频准备及抽帧 → 视频语义标注 → 共享结构化提取 → 完成收据校验 → 最终 JSON Schema 校验 → 原子保存并复读 → 删除本条工作目录。
+
+工作目录为系统临时目录中的 `argus-base/<输入及输出路径哈希>/`。只删除这条入口管理的工作目录，不删除视频、输出目录或其他任务。输出 JSON 中的 source/episode_dir 保留来源路径及哈希；默认清理后这些临时来源路径不再可访问。临时根目录可能保留小型锁文件。
+
+- 默认成功后删除工作目录；`--keep-work` 保留。
+- 失败或 Schema 不通过时保留工作目录；已有最终结果不会被失败结果替换。
+- `--dry-run` 只打印计划，不写文件、不调用模型。
+- `--free` 只准备和预览请求，保留工作目录，不产生最终 JSON。
+- 已有最终 JSON 通过 Schema 校验后直接复用，不调用模型；不验证它是否对应后来修改的视频或参数。需要重算时使用 `--force`。共享 review 的强制重算可能归档旧工作到临时根下的 `.review_history`，这些历史归档不自动删除。
+- 依赖 `jsonschema>=4.18,<5`，已加入 pyproject.toml。
+
+简智入口已复用 base，负责发现去畸变左目和确定输出路径。L1/L3 尚未切换，其数据发现、EXEC_START 和采集上下文仍由原入口管理。本次没有运行付费标注。

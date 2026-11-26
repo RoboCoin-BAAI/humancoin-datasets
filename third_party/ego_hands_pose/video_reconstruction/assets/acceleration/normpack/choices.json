@@ -1,0 +1,18 @@
+{
+  "encoder.down_blocks.0.resnets.0.conv1": {
+    "rows": 4,
+    "warps": 4
+  },
+  "encoder.down_blocks.0.resnets.0.conv2": {
+    "rows": 4,
+    "warps": 4
+  },
+  "encoder.down_blocks.0.resnets.1.conv1": {
+    "rows": 4,
+    "warps": 4
+  },
+  "encoder.down_blocks.0.resnets.1.conv2": {
+    "rows": 4,
+    "warps": 4
+  }
+}

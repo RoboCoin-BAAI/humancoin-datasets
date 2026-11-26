@@ -1,0 +1,808 @@
+{
+  "version": "HumanCOIN actions V3 / v0.5 selected99",
+  "source": "HumanCOIN_任务_动作_原子动作词表_v0.5_精选99词.docx",
+  "policy": "prefer_reference_allow_evidenced_extensions",
+  "output_field": "actions.vocabulary",
+  "model_may_add_verbs": true,
+  "entries": [
+    {
+      "verb": "wipe",
+      "zh": "擦拭",
+      "default_category_from_source": "clean",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "open",
+      "zh": "打开",
+      "default_category_from_source": "open",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "fold",
+      "zh": "折叠",
+      "default_category_from_source": "fold",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "arrange",
+      "zh": "摆放",
+      "default_category_from_source": "organize",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "throw",
+      "zh": "扔掉",
+      "default_category_from_source": "discard",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "remove",
+      "zh": "移除",
+      "default_category_from_source": "remove",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "close",
+      "zh": "关闭",
+      "default_category_from_source": "close",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "organize",
+      "zh": "归整",
+      "default_category_from_source": "organize",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "pour",
+      "zh": "倾倒",
+      "default_category_from_source": "pour",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "hang",
+      "zh": "悬挂",
+      "default_category_from_source": "store",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "unfold",
+      "zh": "展开折叠物",
+      "default_category_from_source": "fold",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "collect",
+      "zh": "收集",
+      "default_category_from_source": "collect",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "clean",
+      "zh": "清洁",
+      "default_category_from_source": "clean",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "stack",
+      "zh": "堆叠",
+      "default_category_from_source": "organize",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "insert",
+      "zh": "插入",
+      "default_category_from_source": "assemble",
+      "source_kind": "原子动作"
+    },
+    {
+      "verb": "cover",
+      "zh": "覆盖",
+      "default_category_from_source": "pack",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "cut",
+      "zh": "切割",
+      "default_category_from_source": "cut",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "tear",
+      "zh": "撕开",
+      "default_category_from_source": "cut",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "install",
+      "zh": "安装",
+      "default_category_from_source": "assemble",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "spray",
+      "zh": "喷洒",
+      "default_category_from_source": "apply",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "rinse",
+      "zh": "冲洗",
+      "default_category_from_source": "clean",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "secure",
+      "zh": "固定",
+      "default_category_from_source": "secure",
+      "source_kind": "原子动作"
+    },
+    {
+      "verb": "wrap",
+      "zh": "包裹",
+      "default_category_from_source": "pack",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "tighten",
+      "zh": "紧固",
+      "default_category_from_source": "secure",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "tie",
+      "zh": "系结",
+      "default_category_from_source": "secure",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "seal",
+      "zh": "密封",
+      "default_category_from_source": "pack",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "sweep",
+      "zh": "清扫",
+      "default_category_from_source": "clean",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "unscrew",
+      "zh": "旋出螺丝",
+      "default_category_from_source": "disassemble",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "attach",
+      "zh": "附着",
+      "default_category_from_source": "secure",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "sort",
+      "zh": "分类",
+      "default_category_from_source": "organize",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "stick",
+      "zh": "粘贴",
+      "default_category_from_source": "secure",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "screw",
+      "zh": "旋入螺丝",
+      "default_category_from_source": "secure",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "disassemble",
+      "zh": "拆卸",
+      "default_category_from_source": "disassemble",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "wash",
+      "zh": "洗涤",
+      "default_category_from_source": "clean",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "assemble",
+      "zh": "装配",
+      "default_category_from_source": "assemble",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "connect",
+      "zh": "连接",
+      "default_category_from_source": "assemble",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "check",
+      "zh": "检查",
+      "default_category_from_source": "check",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "dry",
+      "zh": "干燥",
+      "default_category_from_source": "dry",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "thread",
+      "zh": "穿线",
+      "default_category_from_source": "sew",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "replace",
+      "zh": "更换",
+      "default_category_from_source": "replace",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "peel",
+      "zh": "剥皮",
+      "default_category_from_source": "peel",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "apply",
+      "zh": "涂抹",
+      "default_category_from_source": "apply",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "untangle",
+      "zh": "解缠",
+      "default_category_from_source": "organize",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "scrape",
+      "zh": "刮除",
+      "default_category_from_source": "polish",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "separate",
+      "zh": "分开",
+      "default_category_from_source": "organize",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "scoop",
+      "zh": "舀取",
+      "default_category_from_source": "collect",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "scrub",
+      "zh": "刷洗",
+      "default_category_from_source": "clean",
+      "source_kind": "原子动作"
+    },
+    {
+      "verb": "write",
+      "zh": "书写",
+      "default_category_from_source": "write",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "wind",
+      "zh": "缠绕",
+      "default_category_from_source": "shape",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "draw",
+      "zh": "绘图",
+      "default_category_from_source": "write",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "staple",
+      "zh": "订合",
+      "default_category_from_source": "secure",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "fill",
+      "zh": "填充",
+      "default_category_from_source": "fill",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "unplug",
+      "zh": "拔掉插头",
+      "default_category_from_source": "operate",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "test",
+      "zh": "测试",
+      "default_category_from_source": "check",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "slice",
+      "zh": "切片",
+      "default_category_from_source": "cut",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "loosen",
+      "zh": "松开",
+      "default_category_from_source": "disassemble",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "stir",
+      "zh": "搅拌",
+      "default_category_from_source": "stir",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "discard",
+      "zh": "丢弃",
+      "default_category_from_source": "discard",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "unwrap",
+      "zh": "拆包裹",
+      "default_category_from_source": "open",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "trim",
+      "zh": "修剪",
+      "default_category_from_source": "cut",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "punch",
+      "zh": "打孔",
+      "default_category_from_source": "shape",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "load",
+      "zh": "装载",
+      "default_category_from_source": "fill",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "detach",
+      "zh": "拆离",
+      "default_category_from_source": "disassemble",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "divide",
+      "zh": "分割",
+      "default_category_from_source": "organize",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "scan",
+      "zh": "扫描",
+      "default_category_from_source": "check",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "plug",
+      "zh": "插电",
+      "default_category_from_source": "operate",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "disconnect",
+      "zh": "断开连接",
+      "default_category_from_source": "disassemble",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "pry",
+      "zh": "撬开",
+      "default_category_from_source": "open",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "wet",
+      "zh": "润湿",
+      "default_category_from_source": "apply",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "switch",
+      "zh": "切换",
+      "default_category_from_source": "operate",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "clamp",
+      "zh": "夹紧",
+      "default_category_from_source": "secure",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "brush",
+      "zh": "刷拭",
+      "default_category_from_source": "clean",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "pack",
+      "zh": "打包",
+      "default_category_from_source": "pack",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "polish",
+      "zh": "抛光",
+      "default_category_from_source": "polish",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "sew",
+      "zh": "缝纫",
+      "default_category_from_source": "sew",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "soak",
+      "zh": "浸泡",
+      "default_category_from_source": "clean",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "file",
+      "zh": "锉削",
+      "default_category_from_source": "polish",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "comb",
+      "zh": "梳理头发",
+      "default_category_from_source": "groom",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "braid",
+      "zh": "编辫",
+      "default_category_from_source": "groom",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "dye",
+      "zh": "染色或染发",
+      "default_category_from_source": "groom",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "perm",
+      "zh": "烫发",
+      "default_category_from_source": "groom",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "style",
+      "zh": "造型",
+      "default_category_from_source": "groom",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "massage",
+      "zh": "按摩",
+      "default_category_from_source": "massage",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "operate",
+      "zh": "操作设备",
+      "default_category_from_source": "operate",
+      "source_kind": "精选动作"
+    },
+    {
+      "verb": "approach",
+      "zh": "接近",
+      "default_category_from_source": "manipulation",
+      "source_kind": "原子动作"
+    },
+    {
+      "verb": "align",
+      "zh": "对准",
+      "default_category_from_source": "manipulation",
+      "source_kind": "原子动作"
+    },
+    {
+      "verb": "grasp",
+      "zh": "抓取",
+      "default_category_from_source": "manipulation",
+      "source_kind": "原子动作"
+    },
+    {
+      "verb": "lift",
+      "zh": "抬起",
+      "default_category_from_source": "move",
+      "source_kind": "原子动作"
+    },
+    {
+      "verb": "lower",
+      "zh": "放低",
+      "default_category_from_source": "move",
+      "source_kind": "原子动作"
+    },
+    {
+      "verb": "release",
+      "zh": "释放",
+      "default_category_from_source": "manipulation",
+      "source_kind": "原子动作"
+    },
+    {
+      "verb": "press",
+      "zh": "按压",
+      "default_category_from_source": "manipulation",
+      "source_kind": "原子动作"
+    },
+    {
+      "verb": "push",
+      "zh": "推动",
+      "default_category_from_source": "move",
+      "source_kind": "原子动作"
+    },
+    {
+      "verb": "pull",
+      "zh": "拉动",
+      "default_category_from_source": "move",
+      "source_kind": "原子动作"
+    },
+    {
+      "verb": "rotate",
+      "zh": "旋转",
+      "default_category_from_source": "manipulation",
+      "source_kind": "原子动作"
+    },
+    {
+      "verb": "tilt",
+      "zh": "倾斜",
+      "default_category_from_source": "manipulation",
+      "source_kind": "原子动作"
+    },
+    {
+      "verb": "slide",
+      "zh": "滑动",
+      "default_category_from_source": "move",
+      "source_kind": "原子动作"
+    },
+    {
+      "verb": "shake",
+      "zh": "摇晃",
+      "default_category_from_source": "manipulation",
+      "source_kind": "原子动作"
+    },
+    {
+      "verb": "strike",
+      "zh": "敲击",
+      "default_category_from_source": "processing",
+      "source_kind": "原子动作"
+    },
+    {
+      "verb": "retreat",
+      "zh": "撤离",
+      "default_category_from_source": "manipulation",
+      "source_kind": "原子动作"
+    }
+  ],
+  "atomic_actions": [
+    {
+      "verb": "approach",
+      "zh": "接近",
+      "definition": "手或操作端向目标靠近"
+    },
+    {
+      "verb": "align",
+      "zh": "对准",
+      "definition": "调整相对位置或姿态，使目标对齐"
+    },
+    {
+      "verb": "grasp",
+      "zh": "抓取",
+      "definition": "建立手与目标的抓握关系"
+    },
+    {
+      "verb": "secure",
+      "zh": "稳定保持",
+      "definition": "稳定保持已有抓握或约束"
+    },
+    {
+      "verb": "lift",
+      "zh": "抬起",
+      "definition": "使被操纵物体向上移动"
+    },
+    {
+      "verb": "lower",
+      "zh": "放低",
+      "definition": "使被操纵物体向下移动"
+    },
+    {
+      "verb": "release",
+      "zh": "释放",
+      "definition": "解除抓握或持有关系"
+    },
+    {
+      "verb": "press",
+      "zh": "按压",
+      "definition": "对目标施加压向接触面的作用"
+    },
+    {
+      "verb": "push",
+      "zh": "推动",
+      "definition": "施力使目标向远离施力者方向移动"
+    },
+    {
+      "verb": "pull",
+      "zh": "拉动",
+      "definition": "施力使目标向施力者方向移动"
+    },
+    {
+      "verb": "rotate",
+      "zh": "旋转",
+      "definition": "使目标绕轴发生角度变化"
+    },
+    {
+      "verb": "tilt",
+      "zh": "倾斜",
+      "definition": "使目标偏离原有竖直或水平姿态"
+    },
+    {
+      "verb": "slide",
+      "zh": "滑动",
+      "definition": "保持接触并沿表面相对移动"
+    },
+    {
+      "verb": "insert",
+      "zh": "插入",
+      "definition": "使对象沿入口或约束通道进入"
+    },
+    {
+      "verb": "shake",
+      "zh": "摇晃",
+      "definition": "执行往复振荡运动"
+    },
+    {
+      "verb": "strike",
+      "zh": "敲击",
+      "definition": "执行短时冲击接触"
+    },
+    {
+      "verb": "scrub",
+      "zh": "擦洗",
+      "definition": "在接触条件下反复摩擦目标表面"
+    },
+    {
+      "verb": "retreat",
+      "zh": "撤离",
+      "definition": "操作端离开目标区域"
+    }
+  ],
+  "category_mapping_policy": "Source defaults are advisory. Use object and goal; cover is a separate accepted category. See HUMANCOIN_ANNOTATION_STANDARD_V3.md.",
+  "task_category_config": "humancoin_task_categories_v0_5_cover.json",
+  "extension_policy": {
+    "scope": "actions.vocabulary",
+    "require_evidence": true,
+    "record_separately": true,
+    "extend_reference_99": false
+  },
+  "task_name_policy": {
+    "policy": "closed_enum",
+    "allowed_verbs": [
+      "wipe",
+      "open",
+      "fold",
+      "arrange",
+      "throw",
+      "remove",
+      "close",
+      "organize",
+      "pour",
+      "hang",
+      "unfold",
+      "collect",
+      "clean",
+      "stack",
+      "insert",
+      "cover",
+      "cut",
+      "tear",
+      "install",
+      "spray",
+      "rinse",
+      "secure",
+      "wrap",
+      "tighten",
+      "tie",
+      "seal",
+      "sweep",
+      "unscrew",
+      "attach",
+      "sort",
+      "stick",
+      "screw",
+      "disassemble",
+      "wash",
+      "assemble",
+      "connect",
+      "check",
+      "dry",
+      "thread",
+      "replace",
+      "peel",
+      "apply",
+      "untangle",
+      "scrape",
+      "separate",
+      "scoop",
+      "scrub",
+      "write",
+      "wind",
+      "draw",
+      "staple",
+      "fill",
+      "unplug",
+      "test",
+      "slice",
+      "loosen",
+      "stir",
+      "discard",
+      "unwrap",
+      "trim",
+      "punch",
+      "load",
+      "detach",
+      "divide",
+      "scan",
+      "plug",
+      "disconnect",
+      "pry",
+      "wet",
+      "switch",
+      "clamp",
+      "brush",
+      "pack",
+      "polish",
+      "sew",
+      "soak",
+      "file",
+      "comb",
+      "braid",
+      "dye",
+      "perm",
+      "style",
+      "massage",
+      "operate",
+      "approach",
+      "align",
+      "grasp",
+      "lift",
+      "lower",
+      "release",
+      "press",
+      "push",
+      "pull",
+      "rotate",
+      "tilt",
+      "slide",
+      "shake",
+      "strike",
+      "retreat"
+    ],
+    "model_may_add_verbs": false
+  }
+}

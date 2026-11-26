@@ -1,0 +1,267 @@
+{
+  "encoder.conv_in": {
+    "implementation": "original"
+  },
+  "encoder.down_blocks.0.resnets.0.conv1": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 3
+  },
+  "encoder.down_blocks.0.resnets.0.conv2": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 3
+  },
+  "encoder.down_blocks.0.resnets.1.conv1": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 3
+  },
+  "encoder.down_blocks.0.resnets.1.conv2": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 3
+  },
+  "encoder.down_blocks.1.resnets.0.conv_shortcut": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 3
+  },
+  "encoder.down_blocks.1.resnets.0.conv1": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 3
+  },
+  "encoder.down_blocks.1.resnets.0.conv2": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 4
+  },
+  "encoder.down_blocks.1.resnets.1.conv1": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 3
+  },
+  "encoder.down_blocks.1.resnets.1.conv2": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 3
+  },
+  "encoder.down_blocks.2.resnets.0.conv_shortcut": {
+    "implementation": "original"
+  },
+  "encoder.down_blocks.2.resnets.0.conv1": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 3
+  },
+  "encoder.down_blocks.2.resnets.0.conv2": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 4
+  },
+  "encoder.down_blocks.2.resnets.1.conv1": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 4
+  },
+  "encoder.down_blocks.2.resnets.1.conv2": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 4
+  },
+  "encoder.down_blocks.3.resnets.0.conv1": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 3
+  },
+  "encoder.down_blocks.3.resnets.0.conv2": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 4
+  },
+  "encoder.down_blocks.3.resnets.1.conv1": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 3
+  },
+  "encoder.down_blocks.3.resnets.1.conv2": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 3
+  },
+  "encoder.mid_block.resnets.0.conv1": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 3
+  },
+  "encoder.mid_block.resnets.0.conv2": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 3
+  },
+  "encoder.mid_block.resnets.1.conv1": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 4
+  },
+  "encoder.mid_block.resnets.1.conv2": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      128,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 4
+  },
+  "encoder.conv_out": {
+    "implementation": "original"
+  },
+  "quant_conv": {
+    "implementation": "original"
+  },
+  "encoder.down_blocks.1.downsampler.time_conv": {
+    "implementation": "implicit_fp8",
+    "block": [
+      128,
+      64,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 3
+  },
+  "encoder.down_blocks.2.downsampler.time_conv": {
+    "implementation": "implicit_fp8",
+    "block": [
+      64,
+      64,
+      64
+    ],
+    "alignment": 16,
+    "num_warps": 4,
+    "num_stages": 3
+  }
+}

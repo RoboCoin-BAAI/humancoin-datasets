@@ -1,0 +1,9 @@
+{
+  "assets_sha256": {
+    "convolution_choices.json": "2144702ea0003b3eff7ca2306371fa3a293f41e1e6ab7c2573e7b7507fadf2e2",
+    "fp8_vae_calibration.json": "af42502c7edc78d4ad45c665c62f65a0ba1d6a652c4e5f66179bffa06fbc24e8",
+    "fp8_vae_choices.json": "b342a8aa33d52a917fb89df19cf8f9e9c7a3226b13aa012a5ee6aed18463d3e8",
+    "pack_choices.json": "c62c45c776a3f00c0ed709de34368dab8b3493f966e552591486788fc7bdfc21"
+  },
+  "vae_weights_sha256": "c0d6887befad0af94b67b4a2403332a208a328944182855ce153a27a38f98244"
+}

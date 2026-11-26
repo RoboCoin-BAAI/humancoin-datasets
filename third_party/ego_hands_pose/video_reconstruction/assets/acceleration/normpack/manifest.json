@@ -1,0 +1,17 @@
+{
+  "choices_sha256": "ae63a66c5046fdab09ff119099b60371e90f9ffd80a493d5658791016baed5fa",
+  "scope": {
+    "batch": 1,
+    "channels": 160,
+    "times": [
+      1,
+      8
+    ],
+    "spatial": [
+      240,
+      240
+    ],
+    "channel_stride": 1,
+    "dtype": "float16"
+  }
+}

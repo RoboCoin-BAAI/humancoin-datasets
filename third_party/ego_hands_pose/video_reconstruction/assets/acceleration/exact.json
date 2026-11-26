@@ -1,0 +1,14 @@
+{
+  "torch": "2.13.0+cu130",
+  "capability": [
+    8,
+    9
+  ],
+  "weights_sha256": "f106fdee4ffb5d2bb997ef05bbbc9c7a68865ee5006f83c61c93effdefa4039f",
+  "options": {
+    "manual": true,
+    "norm": "deep",
+    "qkv": "gemm"
+  },
+  "conv_choices": {}
+}

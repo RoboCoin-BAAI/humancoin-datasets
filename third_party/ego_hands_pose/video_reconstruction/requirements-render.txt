@@ -1,0 +1,2 @@
+# Optional CUDA mesh rendering. Video encoding still requires hardware support.
+nvdiffrast==0.4.0
