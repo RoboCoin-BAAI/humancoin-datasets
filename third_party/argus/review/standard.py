@@ -87,7 +87,7 @@ def normalize_object_name(value):
     value = aliases.get(value, value)
     tokens = value.split()
     noun = tokens[-1] if tokens else ""
-    if noun.endswith("boxes"):
+    if noun.endswith(("xes", "ches", "shes", "sses", "zzes")):
         tokens[-1] = noun[:-2]
     elif noun.endswith("ies") and len(noun) > 4:
         tokens[-1] = noun[:-3] + "y"
