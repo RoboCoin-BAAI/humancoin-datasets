@@ -11,7 +11,7 @@ paths:
   ffmpeg: /share/project/liuyou/humancoin/envs/ego/bin/ffmpeg
   ffprobe: /share/project/liuyou/humancoin/envs/ego/bin/ffprobe
   ks3_tool: /share/project/liuyou/humancoin/utils/ks3/ks3util-linux-amd64
-  ks3_config: /share/project/liuyou/humancoin/utils/ks3/ks3util-config
+  ks3_config: /share/project/liuyou/humancoin/utils/ks3/ks3util-config-team
   model_root: /share/project/liuyou/humancoin/code/Fast-FoundationStereo
   checkpoint: /share/project/liuyou/humancoin/code/Fast-FoundationStereo/weights/23-36-37/model_best_bp2_serialize.pth
   openvins_root: /share/project/liuyou/humancoin/code/open_vins

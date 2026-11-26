@@ -9,7 +9,7 @@
 ```powershell
 python humancoin_datasets/download_data/archebase/inventory.py `
   --ks3-tool C:/Users/22563/Desktop/utils/ks3_internal/ks3util.exe `
-  --ks3-config C:/Users/22563/Desktop/utils/ks3_internal/ks3util-config `
+  --ks3-config C:/Users/22563/Desktop/utils/ks3_internal/ks3util-config-team `
   --output-dir C:/Users/22563/Desktop/data/archebase/batches_2026-11-06
 ```
 

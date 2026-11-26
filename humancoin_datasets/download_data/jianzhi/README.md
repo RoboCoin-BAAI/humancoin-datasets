@@ -11,7 +11,7 @@ Pipeline: [scripts/jianzhi/README.md](../../../scripts/jianzhi/README.md)
 ```powershell
 python humancoin_datasets/download_data/jianzhi/inventory.py `
   --ks3-tool C:\Users\22563\Desktop\utils\ks3_internal\ks3util.exe `
-  --ks3-config C:\Users\22563\Desktop\utils\ks3_internal\ks3util-config `
+  --ks3-config C:\Users\22563\Desktop\utils\ks3_internal\ks3util-config-team `
   --output-dir C:\Users\22563\Desktop\data\jianzhi\batches_2026-11-05
 ```
 
@@ -23,7 +23,7 @@ python humancoin_datasets/download_data/jianzhi/inventory.py `
 python -m humancoin_datasets.download_data.base.run `
   --batch-csv C:\Users\22563\Desktop\data\jianzhi\batches_2026-11-05\batch_0000001.csv `
   --ks3-tool C:\Users\22563\Desktop\utils\ks3_internal\ks3util.exe `
-  --ks3-config C:\Users\22563\Desktop\utils\ks3_internal\ks3util-config `
+  --ks3-config C:\Users\22563\Desktop\utils\ks3_internal\ks3util-config-team `
   --output-dir C:\Users\22563\Desktop\data\jianzhi\batch_0000001
 ```
 

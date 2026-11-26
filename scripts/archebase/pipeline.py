@@ -291,7 +291,7 @@ def main(argv=None):
     parser.add_argument('--state-root', type=Path, default=BASE/'data/archebase_pipeline_state')
     parser.add_argument('--argus-repo', type=Path, default=BASE/'code/argus')
     parser.add_argument('--ks3-tool', type=Path, default=BASE/'utils/ks3/ks3util-linux-amd64')
-    parser.add_argument('--ks3-config', type=Path, default=BASE/'utils/ks3/ks3util-config')
+    parser.add_argument('--ks3-config', type=Path, default=BASE/'utils/ks3/ks3util-config-team')
     parser.add_argument('--destination', default=DESTINATION)
     parser.add_argument('--python', default=sys.executable)
     parser.add_argument('--ffmpeg', default=str(BASE/'envs/ego/bin/ffmpeg'))

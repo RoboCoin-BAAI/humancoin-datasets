@@ -5,7 +5,7 @@
 ```powershell
 python -m humancoin_datasets.download_data.base.run `
   --ks3-tool C:\path\ks3util.exe `
-  --ks3-config C:\path\ks3util-config `
+  --ks3-config C:\path\ks3util-config-team `
   --batch-csv C:\data\batch_0000001.csv `
   --output-dir D:\data\batch_0000001 `
   --jobs 32

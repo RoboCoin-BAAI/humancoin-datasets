@@ -23,7 +23,7 @@ def main() -> None:
     parser.add_argument("--jobs", type=int, default=8, help="Concurrent files per session")
     assets = Path(__file__).parents[1] / "ks3"
     parser.add_argument("--ks3-tool", type=Path, default=assets / "ks3util-linux-amd64")
-    parser.add_argument("--ks3-config", type=Path, default=assets / "ks3util-config")
+    parser.add_argument("--ks3-config", type=Path, default=assets / "ks3util-config-team")
     # Keep direct mode independent of database packages (including SQLAlchemy).
     parser.add_argument("--table", type=str.lower, choices=("l1data", "l2data", "l3data"),
                         default="l1data", help="Database mode: table to claim and update, default l1data")

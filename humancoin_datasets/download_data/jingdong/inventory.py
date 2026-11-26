@@ -35,7 +35,7 @@ def main():
     parser.add_argument("--ks3-tool", type=Path,
                         default=Path("/opt/ks3/ks3util-2.18"))
     parser.add_argument("--ks3-config", type=Path,
-                        default=Path("/opt/ks3/ks3util-config"))
+                        default=Path("/opt/ks3/ks3util-config-team"))
     parser.add_argument("--output-dir", required=True, type=Path)
     args = parser.parse_args()
     if list(args.output_dir.glob("batch_*.csv")) or (args.output_dir / "inventory.json").exists():

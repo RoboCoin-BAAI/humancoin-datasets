@@ -53,7 +53,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--batch-csv", required=True, type=Path, help="Batch CSV file")
     parser.add_argument("--ks3-tool", required=True, type=Path, help="Path to ks3util")
-    parser.add_argument("--ks3-config", required=True, type=Path, help="Path to ks3util-config")
+    parser.add_argument("--ks3-config", required=True, type=Path, help="Path to ks3util-config-team")
     parser.add_argument("--output-dir", required=True, type=Path, help="Local download directory")
     parser.add_argument("--jobs", type=int, default=64,
                         help="Concurrent transfers inside ks3util (default: 64)")

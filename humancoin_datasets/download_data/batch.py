@@ -33,7 +33,7 @@ def download_batches(
     parser.add_argument('--ks3-tool', type=Path,
                         default=BASE / 'utils/ks3/ks3util-linux-amd64')
     parser.add_argument('--ks3-config', type=Path,
-                        default=BASE / 'utils/ks3/ks3util-config')
+                        default=BASE / 'utils/ks3/ks3util-config-team')
     parser.add_argument('--jobs', type=int, default=64)
     parser.add_argument('--dry-run', action='store_true')
     args = parser.parse_args(argv)

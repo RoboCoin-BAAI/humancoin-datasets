@@ -12,7 +12,7 @@ download_data/
 ```
 
 原目录 `downoad_data/` 已统一为 `download_data/`，原 KS3 工具、配置和日志已保留。
-默认工具是 `ks3/ks3util-linux-amd64`，配置是 `ks3/ks3util-config`。
+默认工具是 `ks3/ks3util-linux-amd64`，配置是 `ks3/ks3util-config-team`。
 其他机器需要准备同样的工具与配置，或通过 `--ks3-tool`、`--ks3-config` 指定。
 
 ## 直接下载
@@ -92,7 +92,7 @@ python -m humancoin_datasets.download_data.L1.cli \
 python -m humancoin_datasets.download_data.L1.cli \
   --output-dir ./data/l1 \
   --ks3-tool /path/to/ks3util-linux-amd64 \
-  --ks3-config /path/to/ks3util-config \
+  --ks3-config /path/to/ks3util-config-team \
   --jobs 8 \
   ks3://your-bucket/data/session001
 ```
