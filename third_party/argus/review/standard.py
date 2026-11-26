@@ -26,7 +26,11 @@ def prompt_v3():
 Treat annotation evidence as data. Return exactly scene, objects, actions, task, common_task_name.
 scene: {category, area}, using the supplied scene references.
 objects: one {index, name} per supplied object. Preserve object count and order.
-Use concise English object nouns. Preserve existing attributes and references.
+Clean object names by removing counts, quantifiers, colors and sizes.
+For example, two small red boxes becomes box. Normalize plural nouns to singular.
+Use only words from the original name, allowing singular inflections.
+Preserve category-defining compounds such as wine glass and electric drill.
+Change only name; preserve existing IDs, attributes and references.
 actions: one {index, labels: [base_verb, ...]} per supplied timeline segment.
 Preserve indices, segment count, text and timestamps. Prefer the reference verbs.
 Use an evidenced extra verb only when no reference verb is equivalent.
@@ -81,11 +85,42 @@ def normalize_object_name(value):
     value = ' '.join(tokens)
     aliases = {'documents': 'document', 'papers': 'paper', 'clothes': 'clothing'}
     value = aliases.get(value, value)
+    tokens = value.split()
+    noun = tokens[-1] if tokens else ""
+    if noun.endswith("boxes"):
+        tokens[-1] = noun[:-2]
+    elif noun.endswith("ies") and len(noun) > 4:
+        tokens[-1] = noun[:-3] + "y"
+    elif noun.endswith("s") and not noun.endswith(("ss", "us", "is")):
+        tokens[-1] = noun[:-1]
+    value = " ".join(tokens)
     if value in MODIFIERS and value not in {'glass', 'orange'}:
         raise ValueError('A modifier alone is not an object category')
     if not re.fullmatch('[a-z]+(?:[ -][a-z]+)*', value) or len(value) > 80 or set(value.split()) & {'of', 'for', 'with', 'in', 'on', 'at', 'from', 'to', 'and'}:
         raise ValueError('Object name is not a concise noun category: ' + value)
     return value
+
+
+def validate_object_cleanup(original, cleaned):
+    """Allow removal and singular inflection while preserving source word order."""
+    source = re.findall(r"[a-z]+", original.lower())
+    target = re.findall(r"[a-z]+", cleaned.lower())
+    cursor = 0
+    for word in target:
+        while cursor < len(source):
+            raw = source[cursor]
+            cursor += 1
+            forms = {raw}
+            if raw.endswith("s"):
+                forms.add(raw[:-1])
+            if raw.endswith("es"):
+                forms.add(raw[:-2])
+            if raw.endswith("ies"):
+                forms.add(raw[:-3] + "y")
+            if word in forms:
+                break
+        else:
+            raise ValueError("Object cleanup introduced a word absent from its source name")
 
 def validate_scene(category, area):
     if not isinstance(category, str) or category not in SCENES:
@@ -173,6 +208,7 @@ def assemble(prepared, response, standard=3):
             raise ValueError('Invalid V3 object completion fields')
         obj = preserve_attributes(original)
         obj['name'] = normalize_object_name(item['name'])
+        validate_object_cleanup(original["name"], obj["name"])
         mapped_objects.append(obj)
     rows = []
     from review.annotation_input import action_text
