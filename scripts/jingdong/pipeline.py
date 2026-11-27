@@ -8,6 +8,7 @@ import json
 import math
 from pathlib import Path
 import subprocess
+import shutil
 import sys
 
 REPO = Path(__file__).resolve().parents[2]
@@ -19,6 +20,26 @@ from humancoin_datasets.upload_data.ks3 import KS3, atomic_json, prefix
 from humancoin_datasets.upload_data.jingdong.run import plan as upload_plan
 
 STAGES = ("download", "convert", "load", "quality", "annotate", "upload")
+
+
+def cleanup_instance(raw, converted, args, record, record_path):
+    """Remove only this instance's directories after verified upload."""
+    if record["stages"]["upload"].get("status") != "done":
+        raise ValueError("Cleanup requires a verified upload")
+    targets = ((raw, args.raw_root / args.batch_id),
+               (converted, args.output_root / args.batch_id))
+    for path, batch in targets:
+        if path.is_symlink() or path.resolve().parent != batch.resolve():
+            raise ValueError(f"Unsafe instance cleanup path: {path}")
+        if path.name != record["instance"]:
+            raise ValueError(f"Cleanup instance mismatch: {path}")
+    record["cleanup"] = dict(status="running", started_at=now())
+    atomic_json(record_path, record)
+    for path, _ in targets:
+        if path.exists():
+            shutil.rmtree(path)
+    record["cleanup"].update(status="done", finished_at=now())
+    atomic_json(record_path, record)
 
 
 def now():
@@ -64,10 +85,11 @@ def process_instance(uri, args, client, report):
         record.update(identity=identity, identity_hash=identity_hash, status="pending")
         record["stages"]["upload"] = dict(status="pending", reason="destination_changed")
         atomic_json(record_path, record)
-    # Resume only a recorded, complete run whose published local dataset still exists.
-    if (record.get("status") == "done" and annotation.is_file()
-            and (converted / "meta/info.json").is_file()):
-        print(f"REUSE {name}: all stages completed", flush=True)
+    if record["stages"]["upload"].get("status") == "done":
+        cleanup_instance(raw, converted, args, record, record_path)
+        record["status"] = "done"
+        atomic_json(record_path, record)
+        print(f"REUSE {name}: uploaded; local data cleaned", flush=True)
         return record
     downloader = KS3Downloader(raw.parent, args.ks3_tool, args.ks3_config, args.jobs)
     actions = {
@@ -123,6 +145,7 @@ def process_instance(uri, args, client, report):
         atomic_json(record_path, record)
     record.update(status="done", finished_at=now())
     atomic_json(record_path, record)
+    cleanup_instance(raw, converted, args, record, record_path)
     return record
 
 
