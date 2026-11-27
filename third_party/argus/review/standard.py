@@ -211,8 +211,9 @@ def assemble(prepared, response, standard=3):
             raise ValueError('Invalid V3 object completion fields')
         obj = preserve_attributes(original)
         obj.setdefault("raw_name", original["name"])
-        obj['name'] = normalize_object_name(item['name'])
-        validate_object_cleanup(obj["raw_name"], obj["name"])
+        if item["name"] != original["name"]:
+            obj['name'] = normalize_object_name(item['name'])
+            validate_object_cleanup(obj["raw_name"], obj["name"])
         mapped_objects.append(obj)
     rows = []
     from review.annotation_input import action_text

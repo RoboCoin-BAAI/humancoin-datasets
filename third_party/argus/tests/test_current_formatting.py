@@ -36,6 +36,21 @@ def test_object_raw_name_survives_cleanup_and_repeated_processing():
     assert source["objects"][0]["name"] == "two small red boxes"
 
 
+def test_uncleanable_source_object_cannot_break_refinement_fallback():
+    source = annotation()
+    source["objects"] = [
+        dict(name="black wire vase with flowers", attributes=[], location=None),
+    ]
+    draft = build(source)
+    assert draft["objects"][0]["name"] == "unclassified"
+    for response in ({}, {"objects": []},
+                     {"objects": [{"index": 0, "name": "container"}]},
+                     {"objects": [{"index": 0, "name": "vase"}]}):
+        result, _ = refine(draft, response)
+        validate_final(result)
+        assert result["objects"][0]["raw_name"] == "black wire vase with flowers"
+
+
 def test_regular_video_uses_shared_current_standard(tmp_path):
     video = tmp_path / "left.mp4"
     video.touch()
