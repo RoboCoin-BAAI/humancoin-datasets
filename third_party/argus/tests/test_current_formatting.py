@@ -176,3 +176,15 @@ def test_mixed_description_maps_to_multiple_attribute_categories():
     assert attrs["unclassified"] == ["raised edge/lip"]
     assert result["objects"][0]["original_attributes"] == [
         "light brown wood grain", "raised edge/lip"]
+
+
+def test_no_hand_activity_has_no_action_label():
+    source = annotation()
+    source["subtask"] = [dict(start_s=0, end_s=2, action="no hand activity",
+                             contribution="idle")]
+    draft = build(source)
+    assert draft["subtask"][0]["action"] == []
+    assert draft["actions"]["vocabulary"] == []
+    result, _ = refine(draft, {"actions": [{"index": 0, "labels": []}]})
+    validate_final(result)
+    assert result["subtask"][0]["text"] == "no hand activity"

@@ -44,7 +44,7 @@ def build(prepared):
                 normalized.append(normalize_verb(label))
             except (ValueError, TypeError):
                 continue
-        row["action"] = list(dict.fromkeys(normalized)) or ["unclassified"]
+        row["action"] = list(dict.fromkeys(normalized))
         for name in ("arm", "object", "destination", "spatial_relation", "contribution",
                      "progress", "hands_visible", "hands_wearing"):
             row.setdefault(name, None)

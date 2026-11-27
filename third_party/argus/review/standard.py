@@ -55,6 +55,7 @@ Do not infer the setting solely from actions or objects; use other/other if unce
 Task names should primarily follow the timeline, objects and task description.
 actions: one {index, labels: [base_verb, ...]} per supplied timeline segment.
 Preserve indices, segment count, text and timestamps. Prefer the reference verbs.
+For segments with no visible action, return labels: []. Never label negation such as no or not as an action.
 Use an evidenced extra verb only when no reference verb is equivalent.
 task: null or {verb, object_name}. The verb must belong to the reference actions.
 Choose the episode's main purposeful manipulation and its principal object.
@@ -91,7 +92,7 @@ def normalize_verb(value, verbs=VERBS):
     value = VERB_ALIASES.get(value, value)
     if not re.fullmatch('[a-z]+', value) and value not in verbs:
         raise ValueError('Action phrases/modifiers are not allowed: ' + value)
-    if value in {'continue', 'repeat', 'again', 'carefully', 'quickly', 'slowly', 'gently', 'unknown'}:
+    if value in {'continue', 'repeat', 'again', 'carefully', 'quickly', 'slowly', 'gently', 'unknown', 'no', 'not', 'none', 'unclassified'}:
         raise ValueError('Execution wording is not an action category')
     return value
 
@@ -256,7 +257,7 @@ def assemble(prepared, response, standard=3):
     rows = []
     from review.annotation_input import action_text
     for item, original in zip(indexed(response['actions'], len(prepared['subtask']), 'actions'), prepared['subtask']):
-        if set(item) != {'index', 'labels'} or not isinstance(item['labels'], list) or (not item['labels']):
+        if set(item) != {'index', 'labels'} or not isinstance(item['labels'], list):
             raise ValueError('Each source segment needs base action labels')
         labels = list(dict.fromkeys((normalize_verb(value, verbs) for value in item['labels'])))
         row = copy.deepcopy(original)
