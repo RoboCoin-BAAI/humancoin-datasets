@@ -13,7 +13,6 @@ def max_attempts():
 
 
 def run(operation, *, receipt=None, on_attempt=None):
-    from jsonschema import ValidationError
     limit = max_attempts()
     history = []
     if receipt is not None:
@@ -33,7 +32,7 @@ def run(operation, *, receipt=None, on_attempt=None):
                 retryable = exc.code in (408, 409, 425, 429, 500, 502, 503, 504)
             else:
                 retryable = isinstance(exc, (TimeoutError, ConnectionError, urllib.error.URLError,
-                    http.client.HTTPException, ValueError, KeyError, IndexError, TypeError, AttributeError, ValidationError))
+                    http.client.HTTPException))
             if not retryable or attempt == limit:
                 raise
             delay = min(2 ** attempt, 8)

@@ -51,6 +51,18 @@ def test_uncleanable_source_object_cannot_break_refinement_fallback():
         assert result["objects"][0]["raw_name"] == "black wire vase with flowers"
 
 
+def test_local_validation_failure_does_not_repeat_model_work(monkeypatch):
+    import pytest
+    from review.structured_retry import run
+    calls = []
+    def invalid_result():
+        calls.append(1)
+        raise ValueError("Local validation bug")
+    with pytest.raises(ValueError):
+        run(invalid_result)
+    assert len(calls) == 1
+
+
 def test_regular_video_uses_shared_current_standard(tmp_path):
     video = tmp_path / "left.mp4"
     video.touch()
