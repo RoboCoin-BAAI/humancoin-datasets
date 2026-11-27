@@ -1044,7 +1044,10 @@
             "cuboid",
             "flat",
             "irregular",
-            null
+            null,
+            "chain_like",
+            "liquid_like",
+            "dot_like"
           ]
         },
         "unclassified": {
@@ -1120,7 +1123,10 @@
                   "conical",
                   "cuboid",
                   "flat",
-                  "irregular"
+                  "irregular",
+                  "chain_like",
+                  "liquid_like",
+                  "dot_like"
                 ]
               }
             }
