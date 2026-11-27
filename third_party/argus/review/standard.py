@@ -37,7 +37,13 @@ Do not force a match when the enumerations do not represent the described proper
 Clean object names by removing counts, quantifiers, colors and sizes.
 For example, two small red boxes becomes box. Normalize plural nouns to singular.
 Use only words from the original name, allowing singular inflections.
-Preserve category-defining compounds such as wine glass and electric drill.
+Object name should normally be 1-2 English words identifying the principal object category,
+not a description, sentence, or list of objects. Prefer the ordinary category noun.
+Remove colors, materials, sizes and attached contents/accessory phrases.
+Examples: black wire vase with flowers -> vase; two small red boxes -> box;
+cup with coffee -> cup. Preserve useful category compounds: wine glass, electric drill.
+The 1-2 word length is guidance, not a reason to discard a precise longer category name.
+Keep raw_name and original_attributes unchanged. Do not split or merge source objects.
 Change only name; preserve existing IDs, attributes and references.
 Use supplied video frames with scene descriptions to classify the scene.
 Do not infer the setting solely from actions or objects; use other/other if uncertain.
@@ -111,27 +117,6 @@ def normalize_object_name(value):
         raise ValueError('Object name is not a concise noun category: ' + value)
     return value
 
-
-def validate_object_cleanup(original, cleaned):
-    """Allow removal and singular inflection while preserving source word order."""
-    source = re.findall(r"[a-z]+", original.lower())
-    target = re.findall(r"[a-z]+", cleaned.lower())
-    cursor = 0
-    for word in target:
-        while cursor < len(source):
-            raw = source[cursor]
-            cursor += 1
-            forms = {raw}
-            if raw.endswith("s"):
-                forms.add(raw[:-1])
-            if raw.endswith("es"):
-                forms.add(raw[:-2])
-            if raw.endswith("ies"):
-                forms.add(raw[:-3] + "y")
-            if word in forms:
-                break
-        else:
-            raise ValueError("Object cleanup introduced a word absent from its source name")
 
 def validate_scene(category, area):
     if not isinstance(category, str) or category not in SCENES:
@@ -259,7 +244,6 @@ def assemble(prepared, response, standard=3):
             if not isinstance(name, str) or not name.strip():
                 raise ValueError("Model object name must be nonempty text")
             obj['name'] = name.strip()
-            validate_object_cleanup(obj["raw_name"], obj["name"])
         mapped_objects.append(obj)
     rows = []
     from review.annotation_input import action_text
