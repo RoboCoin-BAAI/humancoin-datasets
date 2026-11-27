@@ -45,6 +45,28 @@ def test_regular_video_uses_shared_current_standard(tmp_path):
     assert "--annotation-start-s" not in item["command"]
 
 
+def test_scene_images_are_sent_with_existing_text(monkeypatch):
+    import io
+    import json
+    from review import scene_frames, standard
+
+    images = [{"type": "image_url", "image_url": {"url": "data:image/jpeg;base64,test"}}]
+    monkeypatch.setattr(scene_frames, "sample", lambda video, timeline: (images, [2.0]))
+    def dispatch(request, timeout):
+        body = json.loads(request.data)
+        content = body["messages"][1]["content"]
+        assert content[0]["type"] == "text"
+        assert "timeline" in json.loads(content[0]["text"])
+        assert content[1] == images[0]
+        payload = {"choices": [{"finish_reason": "stop", "message": {"content": "{}"}}]}
+        return io.BytesIO(json.dumps(payload).encode())
+    monkeypatch.setattr(standard.urllib.request, "urlopen", dispatch)
+    receipt = {}
+    standard.call_qwen(build(annotation()), "qwen3.7-plus", "https://example.invalid",
+                       "key", 10, video="left.mp4", receipt=receipt)
+    assert receipt["scene_image_times_s"] == [2.0]
+
+
 def test_l2_uses_full_video_and_shared_standard(tmp_path):
     from review.L2.run import make_plan
     from review.L3.run import CAMERA

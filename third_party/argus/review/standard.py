@@ -31,6 +31,9 @@ For example, two small red boxes becomes box. Normalize plural nouns to singular
 Use only words from the original name, allowing singular inflections.
 Preserve category-defining compounds such as wine glass and electric drill.
 Change only name; preserve existing IDs, attributes and references.
+Use supplied video frames with scene descriptions to classify the scene.
+Do not infer the setting solely from actions or objects; use other/other if uncertain.
+Task names should primarily follow the timeline, objects and task description.
 actions: one {index, labels: [base_verb, ...]} per supplied timeline segment.
 Preserve indices, segment count, text and timestamps. Prefer the reference verbs.
 Use an evidenced extra verb only when no reference verb is equivalent.
@@ -43,7 +46,7 @@ Return JSON only.
 
 def signature(standard=3):
     digest = hashlib.sha256(Path(__file__).read_bytes())
-    for name in ('object_policy.py', 'annotation_input.py'):
+    for name in ('object_policy.py', 'annotation_input.py', 'scene_frames.py'):
         digest.update((Path(__file__).parent / name).read_bytes())
     for name in ('humancoin_scenes.json', 'humancoin_actions.json', 'HUMANCOIN_ANNOTATION_STANDARD.md', 'episode_structured.standard.schema.json'):
         digest.update((SCHEMAS / name).read_bytes())
@@ -277,7 +280,7 @@ def grouping_key(data):
         return None
     return (scene['category'], scene['area'], data['task_name'])
 
-def call_qwen(prepared, model, endpoint, key, timeout, *, receipt=None, result_validator=None, on_attempt=None, standard=3):
+def call_qwen(prepared, model, endpoint, key, timeout, *, receipt=None, result_validator=None, on_attempt=None, standard=3, video=None):
     from review.qwen_endpoint import gateway
     from review.object_policy import VOCABULARY
     _, evidence = completion_plan(prepared)
@@ -289,6 +292,19 @@ def call_qwen(prepared, model, endpoint, key, timeout, *, receipt=None, result_v
     evidence['required_object_count'] = len(evidence['objects'])
     references['common_task_names'] = sorted(TASK_CATEGORIES_V3)
     body = dict(model=model.removeprefix('dashscope/'), temperature=0, max_tokens=16384, messages=[dict(role='system', content=prompt + '\nReferences:\n' + json.dumps(references)), dict(role='user', content=json.dumps(evidence, ensure_ascii=False))])
+    if video is not None:
+        from review.scene_frames import sample
+        try:
+            images, times = sample(video, prepared["subtask"])
+        except (OSError, ValueError, RuntimeError) as error:
+            print(f"Scene images unavailable; using text evidence: {error}", flush=True)
+            if receipt is not None:
+                receipt["scene_image_error"] = str(error)
+        else:
+            body["messages"][1]["content"] = [
+                {"type": "text", "text": json.dumps(evidence, ensure_ascii=False)}, *images]
+            if receipt is not None:
+                receipt["scene_image_times_s"] = times
     body['response_format'] = {'type': 'json_object'}
     if gateway(model) and os.environ.get('ARGUS_ESTIMATED_CNY_LEDGER'):
         raise ValueError('Gateway cannot use legacy estimated pricing ledger')
@@ -340,6 +356,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--input', type=Path, required=True, help='Raw Argus episode JSON or an existing structured annotation')
     parser.add_argument('--output', type=Path, required=True, help='Separate new output JSON; never overwrite source')
+    parser.add_argument('--video', type=Path, help='Optional left video for scene evidence')
     parser.add_argument('--model', default='qwen3.7-plus')
     parser.add_argument('--timeout', type=float, default=180)
     parser.add_argument('--dry-run', action='store_true')
@@ -370,7 +387,7 @@ def main(argv=None):
         stream.flush()
         os.fsync(stream.fileno())
     receipt = {}
-    result = call_qwen(prepared, args.model, endpoint, key, args.timeout, receipt=receipt, on_attempt=lambda history: finish_claim(claim, dict(identity, status='dispatching', structured_attempts=history)))
+    result = call_qwen(prepared, args.model, endpoint, key, args.timeout, receipt=receipt, video=args.video, on_attempt=lambda history: finish_claim(claim, dict(identity, status='dispatching', structured_attempts=history)))
     if args.input.read_bytes() != raw:
         raise ValueError('Source changed during current standard extraction')
     from review.annotation_input import write_new

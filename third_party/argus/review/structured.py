@@ -100,7 +100,7 @@ def run(job: Path, model: str, timeout: int = 120, *, capture_snapshot=None, cap
             raise
         try:
             validate_schema = partial(extractor.validate_final, standard=standard)
-            call = partial(extractor.call_qwen, standard=standard)
+            call = partial(extractor.call_qwen, standard=standard, video=capture_video)
             result = call(prepared, model, endpoint, key, timeout,
                                           receipt=receipt, result_validator=validate_schema,
                                           on_attempt=lambda history: finish_claim(claim, {**identity,
