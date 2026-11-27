@@ -70,7 +70,8 @@ def main(argv=None):
         result = dict(local=str(local), destination=item["destination"])
         try:
             validate_dataset_load(local, "HumanCOIN/" + local.name, item["info"])
-            result.update(client.upload_directory(local, item["destination"], recursive_copy=True))
+            result.update(client.upload_directory(local, item["destination"], recursive_copy=True,
+                                                  exclude=("annotation/argus",)))
             result["status"] = "done"
         except Exception as error:
             failed += 1

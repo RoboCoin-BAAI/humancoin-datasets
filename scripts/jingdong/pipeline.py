@@ -71,7 +71,7 @@ def process_instance(uri, args, client, report):
             json.loads((converted / "meta/info.json").read_text())),
         "upload": lambda: client.upload_directory(
             converted, upload_plan(converted, args.destination)[0]["destination"],
-            recursive_copy=True),
+            recursive_copy=True, exclude=("annotation/argus",)),
     }
     artifacts = {
         "download": raw / ".ks3_download.json",

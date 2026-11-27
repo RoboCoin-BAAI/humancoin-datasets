@@ -86,17 +86,21 @@ class KS3:
             raise RuntimeError(f"Downloaded size mismatch: expected={item['size']}, actual={actual}: " + item["source_uri"])
         partial.replace(target)
 
-    def upload_directory(self, local, destination, *, recursive_copy=False):
+    def upload_directory(self, local, destination, *, recursive_copy=False, exclude=()):
         local, destination = Path(local).resolve(), prefix(destination)
         files = {}
         for path in sorted(local.rglob("*")):
+            relative = path.relative_to(local).as_posix()
+            if any(relative == item.rstrip("/") or relative.startswith(item.rstrip("/") + "/")
+                   for item in exclude):
+                continue
             if path.is_symlink():
                 raise ValueError("Refusing symlink in upload: " + str(path))
             if path.is_file():
                 files[path.relative_to(local).as_posix()] = path.stat().st_size
         if not files or "meta/info.json" not in files:
             raise ValueError("No converted dataset to upload")
-        if recursive_copy:
+        if recursive_copy and not exclude:
             # Same cp/update/jobs convention as download_data.base. The trailing
             # slash copies the session contents into the exact destination prefix.
             self._run(['-r', '-u', '--read-timeout', '6', '--jobs=64',
