@@ -12,7 +12,7 @@ def annotation():
                 source=dict(file='source.json', sha256='a'*64), timesteps_s=[], finish_reason='stop',
                 objects=[], scene=None, subtask=[], task_description=None, key_events=[],
                 state_changes=[], tasks=[], scene_graph=[], recovery=[], instruction_variants=[],
-                data_issues=[], viewpoint='first_person', performance_review=None, task_name=None,
+                data_issues=[], viewpoint='first_person', performance_review=None, task_name=None, common_task_name='other_task',
                 actions=dict(vocabulary=[]), scene_classification=dict(category='other', area='other',
                                                                       original_description=None))
 

@@ -307,7 +307,7 @@ def main() -> int:
     ap.add_argument('--structured-timeout', type=int, default=120,
                     help='Seconds per structured completion request (default 120)')
     ap.add_argument('--annotation-standard', type=int, choices=(3,), default=3,
-                    help='Structured annotation standard; 2 uses V2 scenes, verbs, object nouns and canonical task_name')
+                    help='Current shared structured annotation standard')
     ap.add_argument("--max-minutes", type=float, default=0, help="read at most this much footage (default: all)")
     ap.add_argument('--annotation-start-s', type=float, default=None,
                     help='Only label video frames at/after this original-video time; keep original timestamps')
@@ -327,9 +327,9 @@ def main() -> int:
         ap.error('--workers applies to --source; --concurrency controls requests within one --data job')
     structured_dir = None
     if a.source is None and a.out is None:
-        from review.l1_paths import default_l1_output
+        from review.dataset_paths import default_annotation_output
         try:
-            structured_dir = default_l1_output(a.data)
+            structured_dir = default_annotation_output(a.data)
             a.out = structured_dir / 'argus'
         except ValueError as error:
             ap.error(str(error))
@@ -645,9 +645,9 @@ def main():
     if args.out is not None:
         job = args.out.resolve()
     else:
-        from review.l1_paths import default_l1_output
+        from review.dataset_paths import default_annotation_output
         try:
-            job = default_l1_output(args.data) / 'argus'
+            job = default_annotation_output(args.data) / 'argus'
         except ValueError:
             return _native_main()
     with job_lock(job):

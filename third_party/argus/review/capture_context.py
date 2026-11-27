@@ -5,7 +5,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from review.l1_paths import default_l1_output
+from review.dataset_paths import default_annotation_output
 
 MAX_CONFIG_BYTES = 1_000_000
 OBJECT_FIELDS = ('name', 'lib_name', 'obj_id', 'color', 'color2', 'shape', 'dims', 'material', 'weight')
@@ -14,7 +14,7 @@ OBJECT_FIELDS = ('name', 'lib_name', 'obj_id', 'color', 'color2', 'shape', 'dims
 def snapshot_for_video(video: Path) -> dict | None:
     """Only inspect the annotation folder of this L1 video; configuration is optional."""
     try:
-        annotation = default_l1_output(str(video))
+        annotation = default_annotation_output(str(video))
     except ValueError:
         return None
     if not annotation.is_dir():

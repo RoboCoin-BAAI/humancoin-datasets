@@ -4,13 +4,13 @@ from review.completed import completed_result
 
 
 def test_completed_annotation_reuses_old_model_and_checks_integrity(tmp_path, monkeypatch):
-    from review import extract_dimensions
+    from review import annotation_input
     job=tmp_path/'argus'
     source=job/'run_final/out/episode_000000.json'
     source.parent.mkdir(parents=True)
     source.write_text('{}')
     (job/'run_final/run.json').write_text(json.dumps(dict(status='done',annotation_policy=dict(model='old-model'))))
-    monkeypatch.setattr(extract_dimensions,'prepare',lambda path: dict(source=dict(sha256='source-hash')))
+    monkeypatch.setattr(annotation_input,'prepare',lambda path: dict(source=dict(sha256='source-hash')))
     output=tmp_path/'episode_000000_structured.json'
     output.write_text('{"subtask": []}')
     receipt=job/'.episode_000000_structured.claim.json'

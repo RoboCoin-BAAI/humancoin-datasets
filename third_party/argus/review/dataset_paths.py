@@ -1,9 +1,9 @@
-"""Choose the annotation folder for an L1 session's review job."""
+"""Resolve the annotation folder for a local dataset video."""
 from pathlib import Path
 import re
 
 
-def default_l1_output(data: str) -> Path:
+def default_annotation_output(data: str) -> Path:
     if data.startswith(('http://', 'https://')):
         raise ValueError('a URL requires an explicit --out')
     video = Path(data).resolve()
@@ -12,6 +12,6 @@ def default_l1_output(data: str) -> Path:
             or not re.fullmatch(r'episode_\d+', video.stem)
             or not camera.name.startswith('observation.images.')
             or not re.fullmatch(r'chunk-\d+', chunk.name)
-            or videos.name != 'videos' or not session.name.startswith('cp_')):
-        raise ValueError('provide --out, or use an L1 session video in videos/chunk-N/observation.images.CAMERA/episode_N.mp4')
+            or videos.name != 'videos'):
+        raise ValueError('provide --out, or use a dataset video in videos/chunk-N/observation.images.CAMERA/episode_N.mp4')
     return session / 'annotation'

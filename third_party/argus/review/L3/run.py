@@ -69,6 +69,11 @@ def capture_context(session, video):
 
 
 def plan(video, arguments, note=None, structured_only=False):
+    arguments = list(arguments)
+    if not any(arg.split('=', 1)[0] == '--model' for arg in arguments):
+        arguments.extend(['--model', 'qwen3.7-plus'])
+    if not any(arg.split('=', 1)[0] == '--annotation-standard' for arg in arguments):
+        arguments.extend(['--annotation-standard', '3'])
     video = Path(video).resolve()
     session = video_session(video)
     snapshot = capture_context(session, video)

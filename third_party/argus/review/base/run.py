@@ -22,7 +22,7 @@ def selected_standard(arguments):
         elif argument.startswith('--annotation-standard='):
             value = int(argument.split('=', 1)[1])
     if value != 3:
-        raise ValueError('Annotation standard must be 1, 2 or 3')
+        raise ValueError('Only the current annotation standard (3) is supported')
     return value
 
 

@@ -55,12 +55,12 @@ def test_export_to_annotation_and_reuse(tmp_path):
 
 
 def test_full_success_can_be_compacted(tmp_path, monkeypatch):
-    from review import extract_dimensions
+    from review import annotation_input
     source = tmp_path / 'run_final/out/episode_000000.json'
     source.parent.mkdir(parents=True)
     source.write_text('{}')
     (tmp_path / 'run_final/run.json').write_text('{"status":"done"}')
-    monkeypatch.setattr(extract_dimensions, 'prepare',
+    monkeypatch.setattr(annotation_input, 'prepare',
                         lambda p: dict(source=dict(sha256='source-hash')))
     output = tmp_path / 'episode_000000_structured.json'
     output.write_text('{"subtask":[]}')

@@ -99,11 +99,8 @@ def run(job: Path, model: str, timeout: int = 120, *, capture_snapshot=None, cap
             claim.unlink()
             raise
         try:
-            if standard >= 2:
-                validate_schema = partial(extractor.validate_final, standard=standard)
-            else:
-                from review.base.run import validate as validate_schema
-            call = partial(extractor.call_qwen, standard=3) if standard == 3 else extractor.call_qwen
+            validate_schema = partial(extractor.validate_final, standard=standard)
+            call = partial(extractor.call_qwen, standard=standard)
             result = call(prepared, model, endpoint, key, timeout,
                                           receipt=receipt, result_validator=validate_schema,
                                           on_attempt=lambda history: finish_claim(claim, {**identity,

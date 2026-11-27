@@ -7,7 +7,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-from review.l1_paths import default_l1_output
+from review.dataset_paths import default_annotation_output
 
 CAMERA = 'observation.images.head_left_rectified'
 
@@ -43,7 +43,7 @@ def discover(source: Path) -> dict[Path, list[Path]]:
         if video in seen:
             continue
         try:
-            annotation = default_l1_output(str(video))
+            annotation = default_annotation_output(str(video))
         except ValueError:
             continue
         seen.add(video)

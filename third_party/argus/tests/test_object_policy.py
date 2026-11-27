@@ -38,7 +38,7 @@ def test_schema_rejects_non_enum_primary_and_additional_values():
     import json
     from pathlib import Path
     from jsonschema import Draft202012Validator, ValidationError
-    schema = json.loads((Path(__file__).parents[1] / 'review/schemas/episode_structured.schema.json').read_text(encoding='utf-8'))
+    schema = json.loads((Path(__file__).parents[1] / 'review/schemas/episode_structured.standard.schema.json').read_text(encoding='utf-8'))
     validator = Draft202012Validator({'$ref': '#/$defs/object', '$defs': schema['$defs']})
     row = object_row('cup', color='red')
     validator.validate(row)
@@ -47,12 +47,3 @@ def test_schema_rejects_non_enum_primary_and_additional_values():
         validator.validate(row)
 
 
-def test_shared_extractor_accepts_enum_mapping_and_rejects_free_values():
-    from review.extract_dimensions import validate
-    prepared = dict(scene=None, objects=[dict(name='two reddish cups', attributes=['reddish'])], subtask=[])
-    answer = dict(task_name=None, actions=[], scene=dict(category='household', area='kitchen'),
-                  objects=[dict(index=0, attributes=[dict(index=0, kind='color', value='red')])])
-    assert validate(answer, prepared)['objects'][0]['attributes']['color'] == 'red'
-    answer['objects'][0]['attributes'][0]['value'] = 'reddish'
-    with pytest.raises(ValueError, match='enum'):
-        validate(answer, prepared)
