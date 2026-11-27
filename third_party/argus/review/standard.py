@@ -30,6 +30,10 @@ attributes: match each original_attributes item, or attributes.unclassified when
 using {index, kind, value}. kind is color, material, shape, or unknown.
 Use only supplied enum values. For example light green -> color/green.
 Use unknown with value:null when no enum faithfully matches. Never infer material from finish.
+Read each full original description and choose its closest faithful enum meaning,
+not merely an exact word match. Keep source descriptions verbatim.
+For example, organic shape may match shape/irregular when supported by its meaning.
+Do not force a match when the enumerations do not represent the described property.
 Clean object names by removing counts, quantifiers, colors and sizes.
 For example, two small red boxes becomes box. Normalize plural nouns to singular.
 Use only words from the original name, allowing singular inflections.
@@ -205,6 +209,7 @@ def match_attributes(original, assignments):
     result = copy.deepcopy(original)
     attrs = result["attributes"]
     raw = original.get("original_attributes") or attrs.get("unclassified", [])
+    result.setdefault("original_attributes", copy.deepcopy(raw))
     matches = {}
     if isinstance(assignments, list):
         for item in assignments:

@@ -155,3 +155,5 @@ def test_model_matches_attributes_and_unmatched_text_is_retained():
     assert attrs["shape"] == "irregular"
     assert attrs["material"] is None
     assert attrs["unclassified"] == ["matte", "recessed compartments"]
+    assert result["objects"][0]["original_attributes"] == [
+        "light green", "matte", "organic shape", "recessed compartments"]
