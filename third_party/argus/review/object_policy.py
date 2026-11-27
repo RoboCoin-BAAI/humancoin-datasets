@@ -4,8 +4,8 @@ import re
 
 VOCABULARY = {
     'color': 'black white gray red orange yellow green blue purple pink brown beige cyan magenta gold silver transparent multicolor'.split(),
-    'material': 'plastic metal wood glass ceramic paper cardboard fabric rubber silicone leather stone concrete foam composite'.split(),
-    'shape': 'round square rectangular triangular oval cylindrical spherical conical cuboid flat irregular chain_like liquid_like dot_like'.split(),
+    'material': 'plastic metal wood glass ceramic paper cardboard fabric rubber silicone leather stone concrete foam composite bamboo cork wax resin soil'.split(),
+    'shape': 'round square rectangular triangular oval cylindrical spherical conical cuboid flat irregular chain_like liquid_like dot_like ring_like tubular sheet_like strip_like granular mesh_like'.split(),
 }
 ALIASES = {'grey': 'gray', 'wooden': 'wood', 'metallic': 'metal',
            'cylinder': 'cylindrical', 'sphere': 'spherical', 'rectangle': 'rectangular',

@@ -1024,7 +1024,12 @@
             "concrete",
             "foam",
             "composite",
-            null
+            null,
+            "bamboo",
+            "cork",
+            "wax",
+            "resin",
+            "soil"
           ]
         },
         "shape": {
@@ -1047,7 +1052,13 @@
             null,
             "chain_like",
             "liquid_like",
-            "dot_like"
+            "dot_like",
+            "ring_like",
+            "tubular",
+            "sheet_like",
+            "strip_like",
+            "granular",
+            "mesh_like"
           ]
         },
         "unclassified": {
@@ -1104,7 +1115,12 @@
                   "stone",
                   "concrete",
                   "foam",
-                  "composite"
+                  "composite",
+                  "bamboo",
+                  "cork",
+                  "wax",
+                  "resin",
+                  "soil"
                 ]
               }
             },
@@ -1126,7 +1142,13 @@
                   "irregular",
                   "chain_like",
                   "liquid_like",
-                  "dot_like"
+                  "dot_like",
+                  "ring_like",
+                  "tubular",
+                  "sheet_like",
+                  "strip_like",
+                  "granular",
+                  "mesh_like"
                 ]
               }
             }
