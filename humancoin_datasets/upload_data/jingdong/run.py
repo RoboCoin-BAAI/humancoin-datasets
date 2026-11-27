@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import math
 from pathlib import Path
 import re
 
@@ -31,7 +32,16 @@ def plan(batch, destination):
         if not re.fullmatch(r"instance-[A-Za-z0-9]+", session.name):
             raise ValueError(f"Invalid instance name: {session.name}")
         info = json.loads((session / "meta/info.json").read_text(encoding="utf-8"))
-        items.append(dict(local=str(session), destination=destination + area + "_" + task +
+        camera = info["features"]["observation.images.head_left_rectified"]
+        shape = camera.get("shape", [])
+        fps = camera.get("fps", info.get("fps"))
+        if (camera.get("dtype") != "video" or len(shape) != 3
+                or any(type(value) is not int or value <= 0 for value in shape[:2])
+                or type(fps) not in (int, float) or not math.isfinite(fps) or fps <= 0):
+            raise ValueError(f"Invalid rectified left video specification: {session}")
+        height, width = shape[:2]
+        group = f"l1_{area}_{task}_{width}x{height}_{fps:g}fps"
+        items.append(dict(local=str(session), destination=destination + group +
                           "/" + session.name + "/", info=info))
     return items
 
