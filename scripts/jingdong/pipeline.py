@@ -2,6 +2,7 @@
 
 import argparse
 from contextlib import contextmanager
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -179,6 +180,8 @@ def main(argv=None):
     parser.add_argument("--model", default="qwen3.7-plus")
     parser.add_argument("--sample-fps", type=float, default=1)
     parser.add_argument("--jobs", type=int, default=64)
+    parser.add_argument("--workers", type=int, default=1,
+                        help="Concurrent instances; stages within each instance remain sequential")
     cleanup = parser.add_mutually_exclusive_group()
     cleanup.add_argument("--delete-local", dest="delete_local", action="store_true",
                          help="Delete local instance data after verified upload (default)")
@@ -188,8 +191,8 @@ def main(argv=None):
     parser.add_argument("--prepare-batches", action="store_true",
                         help="Generate and upload missing batch inventories before processing")
     args = parser.parse_args(argv)
-    if args.jobs < 1 or not math.isfinite(args.sample_fps) or args.sample_fps <= 0:
-        parser.error("jobs and sample-fps must be positive")
+    if args.jobs < 1 or args.workers < 1 or not math.isfinite(args.sample_fps) or args.sample_fps <= 0:
+        parser.error("jobs, workers and sample-fps must be positive")
     for name in ("raw_root", "output_root", "report_root"):
         setattr(args, name, getattr(args, name).expanduser().resolve())
     args.source, args.destination = prefix(args.source), prefix(args.destination)
@@ -216,17 +219,20 @@ def main(argv=None):
             paths = read_batch(csv)
             csv.replace(report / csv.name)
         results = []
-        for uri in paths:
-            try:
-                result = process_instance(uri, args, client, report)
-            except Exception as error:
-                result = dict(instance=uri.rstrip("/").rsplit("/", 1)[-1],
-                              status="failed", error=str(error))
-                atomic_json(report / (result["instance"] + "_error.json"), result)
-            results.append(result)
-            atomic_json(report / "summary.json", dict(
-                batch=args.batch_id, total=len(paths), processed=len(results),
-                done=sum(r["status"] == "done" for r in results), results=results))
+        with ThreadPoolExecutor(max_workers=args.workers) as pool:
+            futures = {pool.submit(process_instance, uri, args, client, report): uri for uri in paths}
+            for future in as_completed(futures):
+                uri = futures[future]
+                try:
+                    result = future.result()
+                except Exception as error:
+                    result = dict(instance=uri.rstrip("/").rsplit("/", 1)[-1],
+                                  status="failed", error=str(error))
+                    atomic_json(report / (result["instance"] + "_error.json"), result)
+                results.append(result)
+                atomic_json(report / "summary.json", dict(
+                    batch=args.batch_id, total=len(paths), processed=len(results),
+                    done=sum(r["status"] == "done" for r in results), results=results))
         return int(any(result["status"] != "done" for result in results))
 
 
