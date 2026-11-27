@@ -13,7 +13,8 @@ from humancoin_datasets.upload_data.readme_upload.check_load import validate_dat
 def plan(batch, destination):
     batch = Path(batch).expanduser().resolve()
     destination = prefix(destination)
-    sessions = sorted(path for path in batch.glob("instance-*") if path.is_dir())
+    sessions = ([batch] if (batch / "meta/info.json").is_file() else
+                sorted(path for path in batch.glob("instance-*") if path.is_dir()))
     if not sessions:
         raise ValueError(f"No instance directories found: {batch}")
     items = []
