@@ -16,11 +16,6 @@ def build(prepared):
     for original in prepared.get("objects", []):
         obj = preserve_attributes(original)
         obj.setdefault("raw_name", original.get("name", ""))
-        from review.standard import normalize_object_name
-        try:
-            obj["name"] = normalize_object_name(original.get("name", ""))
-        except ValueError:
-            obj["name"] = "unclassified"
         obj.setdefault("location", None)
         objects.append(obj)
     result["objects"] = objects

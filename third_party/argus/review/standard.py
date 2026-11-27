@@ -212,7 +212,10 @@ def assemble(prepared, response, standard=3):
         obj = preserve_attributes(original)
         obj.setdefault("raw_name", original["name"])
         if item["name"] != original["name"]:
-            obj['name'] = normalize_object_name(item['name'])
+            name = item["name"]
+            if not isinstance(name, str) or not name.strip():
+                raise ValueError("Model object name must be nonempty text")
+            obj['name'] = name.strip()
             validate_object_cleanup(obj["raw_name"], obj["name"])
         mapped_objects.append(obj)
     rows = []
@@ -256,8 +259,8 @@ def validate_final(data, standard=3):
     scene = data['scene_classification']
     validate_scene(scene['category'], scene['area'])
     for obj in data['objects']:
-        if normalize_object_name(obj['name']) != obj['name']:
-            raise ValueError('Object name is not normalized')
+        if not obj['name'].strip():
+            raise ValueError('Object name must be nonempty')
     vocabulary = []
     for row in data['subtask']:
         for verb in row['action']:

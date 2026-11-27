@@ -28,9 +28,10 @@ def test_object_raw_name_survives_cleanup_and_repeated_processing():
         dict(name="two small red boxes", attributes=[], location=None),
     ]
     draft = build(source)
-    assert draft["objects"][0]["name"] == "box"
+    assert draft["objects"][0]["name"] == "two small red boxes"
     assert draft["objects"][0]["raw_name"] == "two small red boxes"
     result, _ = refine(draft, {"objects": [{"index": 0, "name": "box"}]})
+    assert result["objects"][0]["name"] == "box"
     repeated = build(result)
     assert repeated["objects"][0]["raw_name"] == "two small red boxes"
     assert source["objects"][0]["name"] == "two small red boxes"
@@ -42,7 +43,7 @@ def test_uncleanable_source_object_cannot_break_refinement_fallback():
         dict(name="black wire vase with flowers", attributes=[], location=None),
     ]
     draft = build(source)
-    assert draft["objects"][0]["name"] == "unclassified"
+    assert draft["objects"][0]["name"] == "black wire vase with flowers"
     for response in ({}, {"objects": []},
                      {"objects": [{"index": 0, "name": "container"}]},
                      {"objects": [{"index": 0, "name": "vase"}]}):
