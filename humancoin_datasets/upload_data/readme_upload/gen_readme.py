@@ -278,7 +278,7 @@ def render_l1_documents(folder, project, namespace='HumanCOIN', allow=None, igno
     keys = ' '.join(features).lower()
     modalities = [label for label, present in (
         ('RGB', any(ft.get('dtype') == 'video' and 'depth' not in key for key, ft in features.items())),
-        ('Depth', 'depth' in keys), ('Hand Pose', any(key.startswith('observation.hand_') for key in features)),
+        ('Depth', 'depth' in keys), ('Hand Pose', any(key.startswith(('observation.hand_', 'observation.raw_hand_')) for key in features)),
         ('Body Pose', 'body_pose' in keys), ('Gaze', 'gaze' in keys),
         ('Eye Camera', 'eye_rgb' in keys), ('EMG', 'emg' in keys), ('EEG', 'eeg' in keys),
         ('Manus', description.get('hand_capture_type') == 'glove' or 'hand_skeleton' in keys),
@@ -333,9 +333,9 @@ def render_l1_documents(folder, project, namespace='HumanCOIN', allow=None, igno
     for key, ft in features.items():
         if key in INDEX_FEATURES or key.startswith('observation.bad_frame_'):
             continue
-        supported = (ft.get('dtype') == 'video' or key.startswith('observation.hand_')
+        supported = (ft.get('dtype') == 'video' or key.startswith(('observation.hand_', 'observation.raw_hand_'))
                      or key in ('observation.head_pose', 'observation.relative_head_pose', 'observation.body_pose', 'observation.upper_body_pose', 'observation.lower_body_pose')
-                     or key.endswith('_camera_pose') or 'gaze' in key or 'imu' in key)
+                     or key == 'observation.camera_pose' or key.endswith('_camera_pose') or 'gaze' in key or 'imu' in key)
         if not supported:
             continue
         kind = 'depth video' if ft.get('info', {}).get('video.is_depth_map') is True else ft.get('dtype')

@@ -1,5 +1,69 @@
 # 通用 LeRobot readme 生成器
 
+## 发布元数据结构
+
+`meta/readme.json` 描述一个独立数据实例。README 和 `portal.yaml` 生成器消费该摘要，
+加载器的特征定义仍由 `meta/info.json` 提供。下面约定适用于 base 生成器。
+
+| 字段 | 类型 | 含义和来源 |
+| --- | --- | --- |
+| dataset_name | string | 发布集合名，包含层级、场景和任务等命名信息 |
+| unique_task_name | string，仅 L1 | 实例发布目录名，包含源实例名以区分相同任务 |
+| hand_capture_type | string | 当前 base 固定为 bare_hand |
+| scene | object | type、category、name，name 对应标注的 area |
+| task_name | string 或 null | 最终标注的具体任务名 |
+| common_task_name | string 或 null | 最终标注的任务大类 |
+| task_description | string 或 null | 最终标注的整段描述 |
+| actions | string[] | 各 episode 动作词汇合并去重 |
+| objects | object[] | 按清洗后 name 去重，每项仅包含 name |
+| duration_s | number 或 null | 主帧数除以主帧率，单位秒 |
+| frame_count | integer 或 null | master_index 行数，缺失时使用 info.total_frames |
+| master_fps | number 或 null | info.fps |
+| size_bytes | integer | 当前实例文件大小之和，排除 readme.json 及其写入临时文件 |
+| file_count | integer | 与 size_bytes 相同范围的文件数 |
+| cameras | object | 视频流计数、主相机和各流的规格 |
+| modalities | object | 按层级允许且实际存在的数值数据流 |
+
+### cameras
+
+`count` 为 info.features 中 dtype=video 的数量，表示视频流数量。
+原始和校正流同时存在时分别计数。L1 同时输出 color_count 和 depth_count。
+`primary_camera` 为选定的校正左目特征名，`synchronization_master` 来自 info.master_feature。
+`items` 每项包含 id、width、height、fps、sample_count，L1 另有 is_depth。
+width/height 单位为像素。L1 的 sample_count 来自对应相机时间戳 Parquet 的行数。
+
+### modalities
+
+| 层级 | 允许的分组 |
+| --- | --- |
+| L1 | hand_point、head_pose、camera_pose、imu、eye_gaze |
+| L2 | L1 分组，加 emg |
+| L3 | L1 分组，加 emg、eeg |
+
+不存在的分组省略。每组为 `{"streams": [...]}`，每条流包含：
+
+- feature_key，与 info.features 和数据文件名一致。
+- shape，特征维度数组。
+- sample_count，实际 Parquet 行数。
+- sample_rate_hz，特征 fps 或 sample_rate。
+- coordinate_frame、quaternion_order，源特征声明时保留。
+
+hand_point 包含供应方 raw_hand_*_points 和 hand_*_points。
+camera_pose 包含 observation.camera_pose 及带相机位置限定的 *_camera_pose。
+时间戳的秒制、坐标系及单位解释沿用 info 中的声明。
+
+### 发布端读取关系
+
+单实例 README 读取该实例的 readme.json 和 info.json。
+L1 集合 README/portal.yaml 从各实例摘要汇总帧数、时长、文件数和体积；
+集合目录名必须与 dataset_name 一致，实例目录名必须与 unique_task_name 一致。
+实例 meta/readme.json 自身的大小和文件数在集合汇总时补计。
+当前集合的传感器规格取首个实例的 info.features，尚未核对整个集合的规格一致性。
+
+KS3 的 area_common_task_name 分组目录与发布集合名是两个命名用途，
+准备发布集合时仍需按 dataset_name/unique_task_name 组织目录。
+
+
 复用原光轮实现，输出字段和统计规则不变。无需模型调用，生成正式文件 `meta/readme.json`。读取视频容器帧数，不逐帧解码。
 
 ```powershell

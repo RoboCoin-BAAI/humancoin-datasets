@@ -56,7 +56,7 @@ def prepare(folder, project, namespace):
     modalities = [name for name, present in (
         ("RGB", any("depth" not in c["id"] for c in items)),
         ("Depth", any("depth" in c["id"] for c in items)),
-        ("Hand Pose", bool(groups.get("hand_estimation", {}).get("streams"))),
+        ("Hand Pose", bool(groups.get("hand_point", groups.get("hand_estimation", {})).get("streams"))),
         ("Gaze", bool(groups.get("eye_gaze", {}).get("streams"))),
         ("EMG", bool(groups.get("emg", {}).get("streams"))),
         ("IMU", bool(groups.get("imu", {}).get("streams"))),
