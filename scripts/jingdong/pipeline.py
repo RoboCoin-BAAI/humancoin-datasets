@@ -86,10 +86,11 @@ def process_instance(uri, args, client, report):
         record["stages"]["upload"] = dict(status="pending", reason="destination_changed")
         atomic_json(record_path, record)
     if record["stages"]["upload"].get("status") == "done":
-        cleanup_instance(raw, converted, args, record, record_path)
+        if args.delete_local:
+            cleanup_instance(raw, converted, args, record, record_path)
         record["status"] = "done"
         atomic_json(record_path, record)
-        print(f"REUSE {name}: uploaded; local data cleaned", flush=True)
+        print(f"REUSE {name}: already uploaded", flush=True)
         return record
     downloader = KS3Downloader(raw.parent, args.ks3_tool, args.ks3_config, args.jobs)
     actions = {
@@ -145,7 +146,8 @@ def process_instance(uri, args, client, report):
         atomic_json(record_path, record)
     record.update(status="done", finished_at=now())
     atomic_json(record_path, record)
-    cleanup_instance(raw, converted, args, record, record_path)
+    if args.delete_local:
+        cleanup_instance(raw, converted, args, record, record_path)
     return record
 
 
@@ -177,6 +179,12 @@ def main(argv=None):
     parser.add_argument("--model", default="qwen3.7-plus")
     parser.add_argument("--sample-fps", type=float, default=1)
     parser.add_argument("--jobs", type=int, default=64)
+    cleanup = parser.add_mutually_exclusive_group()
+    cleanup.add_argument("--delete-local", dest="delete_local", action="store_true",
+                         help="Delete local instance data after verified upload (default)")
+    cleanup.add_argument("--keep-local", dest="delete_local", action="store_false",
+                         help="Keep local instance data after upload")
+    parser.set_defaults(delete_local=True)
     parser.add_argument("--prepare-batches", action="store_true",
                         help="Generate and upload missing batch inventories before processing")
     args = parser.parse_args(argv)
