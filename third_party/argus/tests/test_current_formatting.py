@@ -43,6 +43,7 @@ def test_regular_video_uses_shared_current_standard(tmp_path):
     assert selected_standard(item["command"]) == 3
     assert item["command"][item["command"].index("--model") + 1] == "qwen3.7-plus"
     assert "--annotation-start-s" not in item["command"]
+    assert item["command"][item["command"].index("--sample-fps") + 1] == "1"
 
 
 def test_scene_images_are_sent_with_existing_text(monkeypatch):
@@ -76,5 +77,6 @@ def test_l2_uses_full_video_and_shared_standard(tmp_path):
     video.touch()
     item = make_plan(video, [])
     assert selected_standard(item["command"]) == 3
+    assert item["command"][item["command"].index("--sample-fps") + 1] == "2"
     assert "--annotation-start-s" not in item["command"]
     assert item["output"] == str(session / "annotation/episode_000000_structured.json")

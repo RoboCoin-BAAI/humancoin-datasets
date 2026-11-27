@@ -27,6 +27,8 @@ def make_plan(video, options):
         raise ValueError(f'Expected an L2 rectified left video: {video}')
     note = dataset_note(None, capture_context(session, video))
     arguments = ['--model', MODEL, '--annotation-standard', '3', '--no-board', *options]
+    if not any(arg.split('=', 1)[0] == '--sample-fps' for arg in options):
+        arguments.extend(['--sample-fps', '2'])
     if note:
         arguments.extend(['--dataset-note', note])
     output = session / 'annotation' / f'{video.stem}_structured.json'

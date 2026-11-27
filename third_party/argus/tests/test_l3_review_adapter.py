@@ -96,7 +96,7 @@ class L3ReviewTests(unittest.TestCase):
     def test_parent_cleanup_handoff_preserves_adapter_lock(self):
         with tempfile.TemporaryDirectory() as tmp:
             session, video = self.fixture(Path(tmp))
-            item = plan(video, [])
+            item = plan(video, [], structured_only=False)
             job = Path(item['job'])
             job.mkdir(parents=True)
             (job / 'old_failed_request.json').write_text('{}')

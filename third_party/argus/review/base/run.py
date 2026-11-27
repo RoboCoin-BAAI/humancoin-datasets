@@ -39,6 +39,8 @@ def plan(video, output, arguments=(), keep_work=False):
     if output.suffix.lower() != '.json' or output.resolve() == video:
         raise ValueError('Expected a separate output JSON path')
     arguments = list(arguments)
+    if not any(a.split('=', 1)[0] == '--sample-fps' for a in arguments):
+        arguments += ['--sample-fps', '1']
     if not any(a.split('=', 1)[0] == '--annotation-standard' for a in arguments):
         arguments += ['--annotation-standard', '3']
     selected_standard(arguments)

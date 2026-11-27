@@ -68,8 +68,10 @@ def capture_context(session, video):
     return dict(source_file=str(path), sha256=hashlib.sha256(raw).hexdigest(), context=context)
 
 
-def plan(video, arguments, note=None, structured_only=False):
+def plan(video, arguments, note=None, structured_only=True):
     arguments = list(arguments)
+    if not any(arg.split('=', 1)[0] == '--sample-fps' for arg in arguments):
+        arguments.extend(['--sample-fps', '2'])
     if not any(arg.split('=', 1)[0] == '--model' for arg in arguments):
         arguments.extend(['--model', 'qwen3.7-plus'])
     if not any(arg.split('=', 1)[0] == '--annotation-standard' for arg in arguments):
@@ -92,7 +94,7 @@ def plan(video, arguments, note=None, structured_only=False):
         command.extend(['--dataset-note', combined])
     identity = dict(video=str(video), capture=snapshot, execution=execution)
     return dict(video=str(video), job=str(job), command=command, identity=identity,
-                structured_only=structured_only)
+                structured_only=structured_only and "--free" not in arguments and "--no-structured" not in arguments)
 
 
 def run_one(item):
@@ -223,8 +225,10 @@ def main(argv=None):
     inputs.add_argument('--data', type=Path, help='One L3 rectified left-eye MP4')
     parser.add_argument('--workers', type=int, default=1)
     parser.add_argument('--dataset-note')
-    parser.add_argument('--structured-only', action='store_true',
+    parser.add_argument('--structured-only', action='store_true', default=True,
                         help='After verified success, retain structured JSON and reuse metadata only')
+    parser.add_argument('--keep-work', dest='structured_only', action='store_false',
+                        help='Keep intermediate annotation work after success')
     parser.add_argument('--sessions-file', type=Path, help='JSON allowlist of sessions under --source')
     parser.add_argument('--dry-run', action='store_true', help='Print plans; no files or model calls')
     args, extra = parser.parse_known_args(argv)
