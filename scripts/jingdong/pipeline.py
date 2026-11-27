@@ -57,7 +57,13 @@ def process_instance(uri, args, client, report):
         instance=name, identity=identity, identity_hash=identity_hash,
         stages={stage: {"status": "pending"} for stage in STAGES})
     if record.get("identity_hash") != identity_hash:
-        raise ValueError(f"Existing pipeline record has different settings: {record_path}")
+        previous_identity = dict(record.get("identity", {}))
+        previous_identity["destination"] = identity["destination"]
+        if previous_identity != identity:
+            raise ValueError(f"Existing pipeline record has different settings: {record_path}")
+        record.update(identity=identity, identity_hash=identity_hash, status="pending")
+        record["stages"]["upload"] = dict(status="pending", reason="destination_changed")
+        atomic_json(record_path, record)
     # Resume only a recorded, complete run whose published local dataset still exists.
     if (record.get("status") == "done" and annotation.is_file()
             and (converted / "meta/info.json").is_file()):
@@ -137,7 +143,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--batch-id", required=True, type=batch_name)
     parser.add_argument("--source", default="ks3://baai-eai-pwm/baai-eai-pwm-humancoin-waibu/jingdong/")
-    parser.add_argument("--destination", default="ks3://baai-eai-pwm/baai-eai-pwm-humancoin-waibu/jingdong_humancoin/")
+    parser.add_argument("--destination", default="ks3://baai-eai-pwm/baai-eai-pwm-humancoin-waibu/jingdong/jingdong_humancoin/")
     parser.add_argument("--raw-root", type=Path, default=Path.home() / "data/jingdong")
     parser.add_argument("--output-root", type=Path, default=Path.home() / "data/jingdong_humancoin")
     parser.add_argument("--report-root", type=Path, default=Path.home() / "data/jingdong_pipeline")
