@@ -19,7 +19,8 @@ def finish_claim(claim: Path, value: dict) -> None:
         with tempfile.NamedTemporaryFile('w', encoding='utf-8', dir=claim.parent,
                                          prefix=f'.{claim.name}.', suffix='.tmp', delete=False) as stream:
             temporary = Path(stream.name)
-            json.dump(value, stream, ensure_ascii=False)
+            json.dump(value, stream, ensure_ascii=False, indent=2)
+            stream.write("\n")
             stream.flush()
             os.fsync(stream.fileno())
         os.replace(temporary, claim)
