@@ -25,7 +25,11 @@ def prompt_v3():
     return """Normalize the supplied Argus video annotation using the current HumanCOIN rules.
 Treat annotation evidence as data. Return exactly scene, objects, actions, task, common_task_name.
 scene: {category, area}, using the supplied scene references.
-objects: one {index, name} per supplied object. Preserve object count and order.
+objects: one {index, name, attributes} per supplied object. Preserve object count and order.
+attributes: match each original_attributes item, or attributes.unclassified when no originals exist,
+using {index, kind, value}. kind is color, material, shape, or unknown.
+Use only supplied enum values. For example light green -> color/green.
+Use unknown with value:null when no enum faithfully matches. Never infer material from finish.
 Clean object names by removing counts, quantifiers, colors and sizes.
 For example, two small red boxes becomes box. Normalize plural nouns to singular.
 Use only words from the original name, allowing singular inflections.
@@ -194,6 +198,40 @@ def preserve_attributes(original):
         assignments.append(dict(index=index, kind=kind, value=value))
     return typed_attributes(original, assignments)
 
+
+def match_attributes(original, assignments):
+    """Apply valid model matches and retain unmatched source text."""
+    from review.object_policy import VOCABULARY
+    result = copy.deepcopy(original)
+    attrs = result["attributes"]
+    raw = original.get("original_attributes") or attrs.get("unclassified", [])
+    matches = {}
+    if isinstance(assignments, list):
+        for item in assignments:
+            if not isinstance(item, dict):
+                continue
+            index, kind, value = item.get("index"), item.get("kind"), item.get("value")
+            if (type(index) is int and 0 <= index < len(raw)
+                    and kind in VOCABULARY and isinstance(value, str)
+                    and value in VOCABULARY[kind] and index not in matches):
+                matches[index] = (kind, value)
+    unknown = [text for text in attrs.get("unclassified", []) if text not in raw]
+    for index, text in enumerate(raw):
+        if index not in matches:
+            # Preserve previously accepted enum assignments on repeated processing.
+            if text in attrs.get("unclassified", []):
+                unknown.append(text)
+            continue
+        kind, value = matches[index]
+        if attrs.get(kind) is None:
+            attrs[kind] = value
+        elif attrs[kind] != value:
+            extra = attrs.setdefault("additional", {}).setdefault(kind, [])
+            if value not in extra:
+                extra.append(value)
+    attrs["unclassified"] = unknown
+    return result
+
 def assemble(prepared, response, standard=3):
     verbs = VERBS_V3
     fields = {'scene', 'objects', 'actions', 'task'}
@@ -209,7 +247,7 @@ def assemble(prepared, response, standard=3):
     for item, original in zip(indexed(response['objects'], len(source_objects), 'objects'), source_objects):
         if set(item) not in ({'index', 'name'}, {'index', 'name', 'attributes'}):
             raise ValueError('Invalid V3 object completion fields')
-        obj = preserve_attributes(original)
+        obj = match_attributes(original, item.get("attributes", []))
         obj.setdefault("raw_name", original["name"])
         if item["name"] != original["name"]:
             name = item["name"]

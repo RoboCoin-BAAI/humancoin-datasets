@@ -84,7 +84,8 @@ def test_source_optional_types_are_repaired_without_fabricating_times():
     source["subtask"] = [dict(start_s="0", end_s="2", action="wash cup",
                               progress=4, hands_visible="yes")]
     result = build(source)
-    assert result["objects"][0]["attributes"]["color"] == "red"
+    assert result["objects"][0]["attributes"]["color"] is None
+    assert result["objects"][0]["attributes"]["unclassified"] == ["red"]
     assert result["subtask"][0]["hands_visible"] is True
     assert result["subtask"][0]["progress"] is None
     del source["subtask"][0]["start_s"]
@@ -136,3 +137,21 @@ def test_l2_uses_full_video_and_shared_standard(tmp_path):
     assert item["command"][item["command"].index("--sample-fps") + 1] == "2"
     assert "--annotation-start-s" not in item["command"]
     assert item["output"] == str(session / "annotation/episode_000000_structured.json")
+
+
+def test_model_matches_attributes_and_unmatched_text_is_retained():
+    source = annotation()
+    source["objects"] = [dict(name="green tray", location=None,
+        attributes=["light green", "matte", "organic shape", "recessed compartments"])]
+    draft = build(source)
+    assert draft["objects"][0]["attributes"]["color"] is None
+    result, _ = refine(draft, {"objects": [{"index": 0, "name": "tray",
+        "attributes": [
+            {"index": 0, "kind": "color", "value": "green"},
+            {"index": 1, "kind": "material", "value": "matte"},
+            {"index": 2, "kind": "shape", "value": "irregular"}]}]})
+    attrs = result["objects"][0]["attributes"]
+    assert attrs["color"] == "green"
+    assert attrs["shape"] == "irregular"
+    assert attrs["material"] is None
+    assert attrs["unclassified"] == ["matte", "recessed compartments"]

@@ -5,7 +5,7 @@ import re
 
 
 def build(prepared):
-    from review.standard import normalize_verb, preserve_attributes, validate_final
+    from review.standard import normalize_verb, validate_final, typed_attributes
     from review.annotation_input import action_text
 
     result = copy.deepcopy(prepared)
@@ -20,7 +20,12 @@ def build(prepared):
             original["attributes"] = [original["attributes"]]
         if original.get("attributes") is None:
             original["attributes"] = []
-        obj = preserve_attributes(original)
+        if isinstance(original.get("attributes"), dict):
+            obj = original
+        else:
+            raw = original.get("attributes", [])
+            obj = typed_attributes(original, [
+                dict(index=i, kind="unknown", value=None) for i in range(len(raw))])
         obj.setdefault("raw_name", original.get("name", ""))
         obj.setdefault("location", None)
         objects.append(obj)
