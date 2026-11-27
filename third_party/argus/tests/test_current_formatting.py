@@ -157,3 +157,22 @@ def test_model_matches_attributes_and_unmatched_text_is_retained():
     assert attrs["unclassified"] == ["matte", "recessed compartments"]
     assert result["objects"][0]["original_attributes"] == [
         "light green", "matte", "organic shape", "recessed compartments"]
+
+
+def test_mixed_description_maps_to_multiple_attribute_categories():
+    source = annotation()
+    source["objects"] = [dict(name="wooden table", location=None,
+        attributes=["light brown wood grain", "raised edge/lip"])]
+    draft = build(source)
+    result, _ = refine(draft, {"objects": [{"index": 0, "name": "table",
+        "attributes": [
+            {"index": 0, "kind": "color", "value": "brown"},
+            {"index": 0, "kind": "material", "value": "wood"},
+            {"index": 0, "kind": "color", "value": "brown"},
+            {"index": 1, "kind": "unknown", "value": None}]}]})
+    attrs = result["objects"][0]["attributes"]
+    assert attrs["color"] == "brown"
+    assert attrs["material"] == "wood"
+    assert attrs["unclassified"] == ["raised edge/lip"]
+    assert result["objects"][0]["original_attributes"] == [
+        "light brown wood grain", "raised edge/lip"]

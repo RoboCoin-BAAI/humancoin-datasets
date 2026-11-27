@@ -28,6 +28,11 @@ scene: {category, area}, using the supplied scene references.
 objects: one {index, name, attributes} per supplied object. Preserve object count and order.
 attributes: match each original_attributes item, or attributes.unclassified when no originals exist,
 using {index, kind, value}. kind is color, material, shape, or unknown.
+Descriptions may mix several properties. Extract every evidenced color, material and shape
+independently. Repeat the same source index for different kinds or multiple values.
+For example light brown wood grain on a wooden table can provide color/brown and material/wood.
+There is no one-description-to-one-property restriction.
+Keep unsupported structural details in unknown entries.
 Use only supplied enum values. For example light green -> color/green.
 Use unknown with value:null when no enum faithfully matches. Never infer material from finish.
 Read each full original description and choose its closest faithful enum meaning,
@@ -203,8 +208,11 @@ def match_attributes(original, assignments):
             index, kind, value = item.get("index"), item.get("kind"), item.get("value")
             if (type(index) is int and 0 <= index < len(raw)
                     and kind in VOCABULARY and isinstance(value, str)
-                    and value in VOCABULARY[kind] and index not in matches):
-                matches[index] = (kind, value)
+                    and value in VOCABULARY[kind]):
+                match = (kind, value)
+                values = matches.setdefault(index, [])
+                if match not in values:
+                    values.append(match)
     unknown = [text for text in attrs.get("unclassified", []) if text not in raw]
     for index, text in enumerate(raw):
         if index not in matches:
@@ -212,13 +220,13 @@ def match_attributes(original, assignments):
             if text in attrs.get("unclassified", []):
                 unknown.append(text)
             continue
-        kind, value = matches[index]
-        if attrs.get(kind) is None:
-            attrs[kind] = value
-        elif attrs[kind] != value:
-            extra = attrs.setdefault("additional", {}).setdefault(kind, [])
-            if value not in extra:
-                extra.append(value)
+        for kind, value in matches[index]:
+            if attrs.get(kind) is None:
+                attrs[kind] = value
+            elif attrs[kind] != value:
+                extra = attrs.setdefault("additional", {}).setdefault(kind, [])
+                if value not in extra:
+                    extra.append(value)
     attrs["unclassified"] = unknown
     return result
 
