@@ -1,12 +1,11 @@
 """Shared closed vocabularies for structured object descriptions."""
 import json
 import re
+from pathlib import Path
 
-VOCABULARY = {
-    'color': 'black white gray red orange yellow green blue purple pink brown beige cyan magenta gold silver transparent multicolor'.split(),
-    'material': 'plastic metal wood glass ceramic paper cardboard fabric rubber silicone leather stone concrete foam composite bamboo cork wax resin soil'.split(),
-    'shape': 'round square rectangular triangular oval cylindrical spherical conical cuboid flat irregular chain_like liquid_like dot_like ring_like tubular sheet_like strip_like granular mesh_like'.split(),
-}
+VOCABULARY = json.loads(
+    (Path(__file__).parent / "schemas/humancoin_object_attributes.json").read_text(encoding="utf-8")
+)
 ALIASES = {'grey': 'gray', 'wooden': 'wood', 'metallic': 'metal',
            'cylinder': 'cylindrical', 'sphere': 'spherical', 'rectangle': 'rectangular',
            'triangle': 'triangular', 'circle': 'round', 'circular': 'round',

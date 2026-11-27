@@ -52,7 +52,7 @@ def signature(standard=3):
     digest = hashlib.sha256(Path(__file__).read_bytes())
     for name in ('object_policy.py', 'annotation_input.py', 'scene_frames.py'):
         digest.update((Path(__file__).parent / name).read_bytes())
-    for name in ('humancoin_scenes.json', 'humancoin_actions.json', 'HUMANCOIN_ANNOTATION_STANDARD.md', 'episode_structured.standard.schema.json'):
+    for name in ('humancoin_scenes.json', 'humancoin_actions.json', 'humancoin_object_attributes.json', 'HUMANCOIN_ANNOTATION_STANDARD.md', 'episode_structured.standard.schema.json'):
         digest.update((SCHEMAS / name).read_bytes())
     for name in ('HUMANCOIN_ACTIONS.md', 'humancoin_task_categories_v0_5_cover.json'):
         digest.update((SCHEMAS / name).read_bytes())
