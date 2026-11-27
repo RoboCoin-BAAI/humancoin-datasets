@@ -85,7 +85,12 @@ def process_instance(uri, args, client, report):
             record["stages"][stage] = dict(status="not_configured")
             atomic_json(record_path, record)
             continue
-        if stage in artifacts and previous["status"] == "done" and artifacts[stage].is_file():
+        if stage in artifacts and artifacts[stage].is_file():
+            record["stages"][stage] = dict(
+                previous, status="done", reused=True,
+                completion_basis="existing_artifact", artifact=str(artifacts[stage]))
+            atomic_json(record_path, record)
+            print(f"REUSE {name}: {stage}", flush=True)
             continue
         record["stages"][stage] = dict(status="running", started_at=now(),
                                       attempts=previous.get("attempts", 0) + 1)
