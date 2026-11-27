@@ -37,7 +37,7 @@ def build(prepared):
         row["text"] = text
         labels = row.get("action")
         if not isinstance(labels, list):
-            labels = re.findall(r"[A-Za-z]+", text)[:1]
+            labels = []
         normalized = []
         for label in labels:
             try:

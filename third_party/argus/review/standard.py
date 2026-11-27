@@ -54,6 +54,16 @@ Use supplied video frames with scene descriptions to classify the scene.
 Do not infer the setting solely from actions or objects; use other/other if uncertain.
 Task names should primarily follow the timeline, objects and task description.
 actions: one {index, labels: [base_verb, ...]} per supplied timeline segment.
+Interpret the complete source text before selecting verbs; never use its first word mechanically.
+Extract only actions that are actually performed. Prefer an equivalent reference verb.
+Examples:
+- lift and rotate tray slightly -> ["lift", "rotate"]
+- picking up a necklace -> ["pick"]
+- no hand activity -> []
+- hands are out of view, static scene -> []
+- does not lift the tray -> [] for the negated lift
+Object names, locations, adverbs, conjunctions and negation are not action labels.
+Keep separate meaningful verbs in compound actions, without adding actions not described.
 Preserve indices, segment count, text and timestamps. Prefer the reference verbs.
 For segments with no visible action, return labels: []. Never label negation such as no or not as an action.
 Use an evidenced extra verb only when no reference verb is equivalent.
