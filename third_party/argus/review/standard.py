@@ -326,9 +326,14 @@ def call_qwen(prepared, model, endpoint, key, timeout, *, receipt=None, result_v
             payload = cny_budget.execute(body, 'postprocess', dispatch)
         else:
             payload = dispatch()
-        choice = payload['choices'][0]
+        if not isinstance(payload, dict):
+            payload = {}
+        choices = payload.get("choices") if isinstance(payload, dict) else None
+        choice = choices[0] if isinstance(choices, list) and choices and isinstance(choices[0], dict) else {}
         incomplete = choice.get('finish_reason') != 'stop'
-        content = (choice['message'].get('content') or '').strip()
+        message = choice.get("message")
+        content = message.get("content") if isinstance(message, dict) else ""
+        content = content.strip() if isinstance(content, str) else ""
         if incomplete:
             content = ''
         if content.startswith('```'):

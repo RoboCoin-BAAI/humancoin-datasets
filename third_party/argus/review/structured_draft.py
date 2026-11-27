@@ -9,11 +9,17 @@ def build(prepared):
     from review.annotation_input import action_text
 
     result = copy.deepcopy(prepared)
-    result.update(task_name=None, common_task_name="other_task",
-                  scene_classification=dict(category="other", area="other",
-                                            original_description=prepared.get("scene")))
+    result.setdefault("task_name", None)
+    result.setdefault("common_task_name", "other_task")
+    result.setdefault("scene_classification", dict(
+        category="other", area="other", original_description=prepared.get("scene")))
     objects = []
     for original in prepared.get("objects", []):
+        original = copy.deepcopy(original)
+        if isinstance(original.get("attributes"), str):
+            original["attributes"] = [original["attributes"]]
+        if original.get("attributes") is None:
+            original["attributes"] = []
         obj = preserve_attributes(original)
         obj.setdefault("raw_name", original.get("name", ""))
         obj.setdefault("location", None)
@@ -41,6 +47,21 @@ def build(prepared):
             row["arm"] = None
         if row["contribution"] not in ("advancing", "wasteful", "idle", None):
             row["contribution"] = None
+        progress = row["progress"]
+        if progress is not None and (type(progress) not in (int, float) or not 0 <= progress <= 1):
+            row["progress"] = None
+        if isinstance(row["hands_visible"], str):
+            row["hands_visible"] = {"yes": True, "true": True,
+                                    "no": False, "false": False}.get(row["hands_visible"].lower())
+        if row["hands_visible"] is not None and type(row["hands_visible"]) is not bool:
+            row["hands_visible"] = None
+        for name in ("start_s", "end_s"):
+            try:
+                row[name] = float(row[name])
+            except (KeyError, TypeError, ValueError) as error:
+                raise ValueError(f"Segment {len(rows)} has no valid {name}") from error
+        if not 0 <= row["start_s"] < row["end_s"]:
+            raise ValueError(f"Segment {len(rows)} has an invalid time interval")
         rows.append(row)
     result["subtask"] = rows
     result["actions"] = dict(vocabulary=list(dict.fromkeys(
@@ -57,7 +78,9 @@ def refine(draft, response):
         scene={key: draft["scene_classification"][key] for key in ("category", "area")},
         objects=[dict(index=i, name=obj["name"]) for i, obj in enumerate(draft["objects"])],
         actions=[dict(index=i, labels=row["action"]) for i, row in enumerate(draft["subtask"])],
-        task=None, common_task_name=draft.get("common_task_name", "other_task"))
+        task=(dict(zip(("verb", "object_name"), draft["task_name"].split(" ", 1)))
+              if draft.get("task_name") else None),
+        common_task_name=draft.get("common_task_name", "other_task"))
     issues = []
     if not isinstance(response, dict):
         return copy.deepcopy(draft), ["Model response is not an object"]

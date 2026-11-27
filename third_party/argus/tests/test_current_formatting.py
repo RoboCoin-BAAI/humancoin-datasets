@@ -64,6 +64,34 @@ def test_local_validation_failure_does_not_repeat_model_work(monkeypatch):
     assert len(calls) == 1
 
 
+def test_reprocessing_preserves_accepted_task_and_scene():
+    source = annotation()
+    source["task_name"] = "wash cup"
+    source["common_task_name"] = "clean_task"
+    source["scene_classification"] = dict(category="household", area="kitchen",
+                                          original_description="Kitchen")
+    draft = build(source)
+    result, _ = refine(draft, {"objects": []})
+    assert result["task_name"] == "wash cup"
+    assert result["common_task_name"] == "clean_task"
+    assert result["scene_classification"]["area"] == "kitchen"
+
+
+def test_source_optional_types_are_repaired_without_fabricating_times():
+    import pytest
+    source = annotation()
+    source["objects"] = [dict(name="red cup", attributes="red", location=None)]
+    source["subtask"] = [dict(start_s="0", end_s="2", action="wash cup",
+                              progress=4, hands_visible="yes")]
+    result = build(source)
+    assert result["objects"][0]["attributes"]["color"] == "red"
+    assert result["subtask"][0]["hands_visible"] is True
+    assert result["subtask"][0]["progress"] is None
+    del source["subtask"][0]["start_s"]
+    with pytest.raises(ValueError, match="start_s"):
+        build(source)
+
+
 def test_regular_video_uses_shared_current_standard(tmp_path):
     video = tmp_path / "left.mp4"
     video.touch()
