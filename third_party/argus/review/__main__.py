@@ -302,6 +302,8 @@ def main() -> int:
     ap.add_argument('--retry-received', action='append', default=[], metavar='EPISODE',
                     help='retry only this unit with a received unusable reply; repeat for additional units')
     ap.add_argument('--max-tokens', type=int, default=None, help='completion limit for new label requests')
+    ap.add_argument('--no-structured', action='store_true',
+                    help='Run video annotation without structured postprocessing')
     ap.add_argument('--structured-model', default=None,
                     help='Model for semantic structured completion; defaults to --model')
     ap.add_argument('--structured-timeout', type=int, default=120,
@@ -371,7 +373,7 @@ def main() -> int:
         print('WARNING: --cap 0 disables the spending limit; provider billing still applies.', flush=True)
     if a.model and a.model.startswith(('qwen', 'dashscope/')) and a.cap > 0 and not a.free:
         ap.error('Qwen deployment pricing is unknown; use --free to preview or explicitly --cap 0 for uncapped calls')
-    qwen_structured = bool(a.model and a.model.startswith(('qwen', 'dashscope/')))
+    qwen_structured = not a.no_structured and bool(a.model and a.model.startswith(('qwen', 'dashscope/')))
     if qwen_structured and not a.free:
         from review.qwen_endpoint import settings
         try:
