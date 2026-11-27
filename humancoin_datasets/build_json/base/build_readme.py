@@ -132,22 +132,18 @@ def build(session, level='L1'):
     def add(group, stream):
         modalities.setdefault(group, {'streams': []})['streams'].append(stream)
     groups = {
-        'hand_estimation': lambda k: k.startswith('observation.hand_') and ('points' in k or 'quaternions' in k),
-        'head_trajectory': lambda k: k == 'observation.head_pose',
-        'body_trajectory': lambda k: k in ('observation.body_pose', 'observation.upper_body_pose', 'observation.lower_body_pose'),
-        'camera_trajectory': lambda k: k.endswith('_camera_pose'),
-        'quality_flags': lambda k: k.startswith('observation.bad_frame_'),
+        'hand_point': lambda k: re.fullmatch(r'observation\.(?:raw_)?hand_(?:left|right)_points', k),
+        'head_pose': lambda k: k in ('observation.head_pose', 'observation.relative_head_pose'),
+        'camera_pose': lambda k: k == 'observation.camera_pose' or k.endswith('_camera_pose'),
         'eye_gaze': lambda k: 'gaze' in k,
         'imu': lambda k: 'imu' in k,
-        'emg': lambda k: k.endswith('_emg'),
-        'eeg': lambda k: k == 'observation.eeg',
     }
     emg_sources = {}
-    if is_l2:
-        groups['emg'] = lambda k: re.fullmatch(r'observation\.(left|right)_wrist_emg(?:_raw|_denoised)?', k)
-    if is_l1:
-        for group in ('quality_flags', 'emg', 'eeg'):
-            groups.pop(group)
+    if level.upper() in ('L2', 'L3'):
+        groups['emg'] = lambda k: re.fullmatch(
+            r'observation\.(?:left|right)_wrist_emg(?:_raw|_denoised)?', k) or k.endswith('_emg')
+    if level.upper() == 'L3':
+        groups['eeg'] = lambda k: k == 'observation.eeg'
     for key in sorted({p.stem for p in files if p.suffix == '.parquet' and 'depth' not in p.relative_to(session).parts}):
         group = next((g for g, match in groups.items() if match(key)), None)
         if group is None:
@@ -174,9 +170,6 @@ def build(session, level='L1'):
         if is_l2 and group == 'emg' and stream['sample_count']:
             emg_sources[physical] = shape[0]
         add(group, stream)
-    if not is_l1:
-        for stream in depth_streams(session):
-            add('depth', stream)
     actions = set()
     objects = {}
     for a in annotations:
@@ -220,7 +213,7 @@ def build(session, level='L1'):
         frame_count=frames, master_fps=fps, size_bytes=sum(p.stat().st_size for p in files), file_count=len(files),
         cameras=dict(count=len(cameras), primary_camera=primary if main else None,
                      synchronization_master=info.get('master_feature'), items=cameras),
-        modalities=normalize_modalities(modalities))
+        modalities=modalities)
     if is_l2:
         result.pop('common_task', None)
         for group in ('eeg', 'glove'):
